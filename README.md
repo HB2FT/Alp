@@ -1,6 +1,6 @@
 # Alp
 ***
-# 0.1.0
+# Initial Commit
 * Added 'player idle sprites'
 * Added 'player idle weapon sprites'
 * Added 'player run sprites'
