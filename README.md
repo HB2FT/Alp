@@ -1,5 +1,11 @@
 # Alp
 ***
+# V0.0.1
+* Added 'sword animation':
+	- Idle
+	- Run
+	- Attack
+***
 # Initial Commit
 * Added 'player idle sprites'
 * Added 'player idle weapon sprites'
