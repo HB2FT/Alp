@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Camera : MonoBehaviour
+public class GameCamera : MonoBehaviour
 {
-    public static readonly Vector3 minBound = new Vector3(0f, 0f, -10f);
+    public static readonly Vector3 minBound = new Vector3(-45f, 0f, -10f);
 
     public Vector3 offset = new Vector3(0f, 0f, -10f);
     public float smoothTime = 0.25f;

@@ -34,12 +34,20 @@ public class Player : Entity
 
             #region Move Codes
 
-            if (Input.GetKey(KeyCode.D) && isAttacking && isGrounded)
+            if (Input.GetKey(KeyCode.D))
             {
-
-                // TODO: provide playercan move while player !isGrounded and isAttacking
-
-                transform.position += transform.right * speed * Time.deltaTime;
+                if (!isGrounded) // Havadaysa
+                {
+                    transform.position += transform.right * speed * Time.deltaTime;
+                }
+                else // Yerseyse
+                {
+                    if (!isAttacking) // Saldýrmýyorsa
+                    {
+                        transform.position += transform.right * speed * Time.deltaTime;
+                    }
+                }
+                
                 animator.SetBool("IsRunning", true);
 
                 if (!isRight)
@@ -48,9 +56,23 @@ public class Player : Entity
                 }
             }
 
-            if (Input.GetKey(KeyCode.A) && !isAttacking && isGrounded)
+            if (Input.GetKey(KeyCode.A))
             {
-                transform.position -= -transform.right * speed * Time.deltaTime;
+                if (!isGrounded) // Havadaysa
+                {
+                    
+                    transform.position -= -transform.right * speed * Time.deltaTime;
+                    
+                    
+                }
+                else // Yerdeyse
+                {
+                    if (!isAttacking) // Saldýrmýyorsa
+                    {
+                        transform.position -= -transform.right * speed * Time.deltaTime;
+                    }
+                }
+
                 animator.SetBool("IsRunning", true);
 
                 if (isRight)

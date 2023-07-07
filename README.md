@@ -1,5 +1,9 @@
 # Alp
 ***
+# V0.1.0
+* Improved player control mechanic
+* Extended Forest map
+***
 # V0.0.1
 * Added 'sword animation':
 	- Idle
