@@ -1,5 +1,8 @@
 # Alp
 ***
+# V0.3.0
+* Added health bar and mechanics
+***
 # V0.2.0
 * Added Visual Novel mechanic
 * Added Atomic Boolean script (One time usable boolean)

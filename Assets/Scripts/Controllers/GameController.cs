@@ -10,6 +10,7 @@ public partial class GameController : MonoBehaviour // Oyunu genel hatlarýyla ko
     {
         //if (bottomBar.Enabled) BottomBarStart();
         PlayerStart();
+        HealthBarStart();
     }
 
     void Update()
@@ -18,5 +19,6 @@ public partial class GameController : MonoBehaviour // Oyunu genel hatlarýyla ko
 
         if (bottomBar.Enabled) BottomBarUpdate();
         PlayerUpdate();
+        HealthBarUpdate();
     }
 }
