@@ -1,5 +1,9 @@
 # Alp
 ***
+# V0.2.0
+* Added Visual Novel mechanic
+* Added Atomic Boolean script (One time usable boolean)
+***
 # V0.1.0
 * Improved player control mechanic
 * Extended Forest map

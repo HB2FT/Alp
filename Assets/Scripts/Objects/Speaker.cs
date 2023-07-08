@@ -6,5 +6,6 @@ using UnityEngine;
 [System.Serializable]
 public class Speaker : ScriptableObject
 {
-    // TODO: Create visual novel
+    public string speakerName;
+    public Color textColor;
 }

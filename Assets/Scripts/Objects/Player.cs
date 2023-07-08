@@ -5,6 +5,8 @@ using UnityEngine.Rendering.VirtualTexturing;
 
 public class Player : Entity
 {
+    public GameObject bottomBar;
+
     public bool isGrounded;
     public bool isAttacking = false;
     public float jumpForce;
@@ -34,7 +36,9 @@ public class Player : Entity
 
             #region Move Codes
 
-            if (Input.GetKey(KeyCode.D))
+           if (!bottomBar.activeSelf)
+            {
+                 if (Input.GetKey(KeyCode.D))
             {
                 if (!isGrounded) // Havadaysa
                 {
@@ -118,6 +122,7 @@ public class Player : Entity
             }
 
             #endregion
+            }
 
             #endregion
         }
