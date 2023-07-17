@@ -1,7 +1,5 @@
 # Alp
 ***
-# VGithubDeneme
-***
 # V0.3.0
 * Added health bar and mechanics
 ***
