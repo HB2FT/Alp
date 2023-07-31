@@ -16,6 +16,8 @@ public class Player : Entity
     public const int MIN_MOUSE_SCROLL = 0;
     public int currentMouseScroll = 0;
 
+    private AtomicBoolean deathChecker = new AtomicBoolean(true);
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -126,6 +128,11 @@ public class Player : Entity
 
             #endregion
         }
+
+        else
+        {
+            if (deathChecker.Value) OnDeath();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -148,5 +155,12 @@ public class Player : Entity
     {
         animator.SetBool("IsAttacking", false);
         isAttacking = false;
+    }
+
+    protected override void OnDeath()
+    {
+        base.OnDeath();
+
+        animator.SetBool("IsDied", true);
     }
 }

@@ -20,5 +20,6 @@ public partial class GameController : MonoBehaviour // Oyunu genel hatlarýyla ko
         if (bottomBar.Enabled) BottomBarUpdate();
         PlayerUpdate();
         HealthBarUpdate();
+        MenuUpdate();
     }
 }

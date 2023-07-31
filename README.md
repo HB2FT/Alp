@@ -1,5 +1,14 @@
 # Alp
 ***
+# V0.3.1
+* Added die animation to player
+* Added GameController.Menu partial class to control game menu
+* Entity class make abstract
+* Added OnDeath virtual method to Entity class
+* Death animation applied to player
+* TODO:
+	- Create game menu
+***
 # V0.3.0
 * Added health bar and mechanics
 ***

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity : MonoBehaviour
+public abstract class Entity : MonoBehaviour
 {
     protected Animator animator;
     protected Rigidbody2D rigidBody;
@@ -15,5 +15,10 @@ public class Entity : MonoBehaviour
     {
         isRight = !isRight;
         transform.Rotate(0f, 180f, 0f);
+    }
+
+    protected virtual void OnDeath()
+    {
+        speed = 0f;
     }
 }
