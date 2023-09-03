@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 partial class GameController
 {
+    public Player player;
     public Slider slider;
     public Gradient gradient;
     public Image Fill;

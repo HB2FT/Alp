@@ -150,7 +150,7 @@ public class Player : Entity
         if (collision.gameObject.name == "Öcü")
         {
             Öcü collidedÖcü = collision.gameObject.GetComponent<Öcü>();
-            collidedÖcü.health -= damage;
+            //collidedÖcü.health -= damage;
         }
     }
 

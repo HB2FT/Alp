@@ -9,6 +9,7 @@ public class CombatTrigger1 : MonoBehaviour
 
     public Player player;
     public GameObject cutCam, mainCam;
+    public FirstCombatSceneController firstCombatSceneController;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,8 @@ public class CombatTrigger1 : MonoBehaviour
             if (Playable.Value)
             {
                 combatSound_Infected.Play();
+
+                firstCombatSceneController.combatStarted = true;
 
                 StartCombatCutScene();
             }

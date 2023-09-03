@@ -1,5 +1,12 @@
 # Alp
 ***
+# V0.3.2
+* Öcü takes damage when player attaks on it now (OnTriggerEnter2D method in Öcü class)
+* Prepared music engine disgn for 'First combat scene' 
+	- music-in (plays on combat start)
+	- music-main (plays in loop after music-in)
+	- music-out (plays on end combat)
+***
 # V0.3.1.1
 * Added combat trigger with öcü
 ***

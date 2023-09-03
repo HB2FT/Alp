@@ -8,6 +8,8 @@ public class Öcü : Entity
     public float range;
     public float border;
 
+    public Player player; // Accessed for damage
+
     public AtomicBoolean isDead;
 
     // Start is called before the first frame update
@@ -39,6 +41,14 @@ public class Öcü : Entity
             {
                 this.gameObject.SetActive(false);
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "PlayerAttackCollider")
+        {
+            health -= player.damage;
         }
     }
 }
