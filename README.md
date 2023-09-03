@@ -1,4 +1,7 @@
 # Alp
+**
+# V0.3.2.1
+* Fixed camera oriantation
 ***
 # V0.3.2
 * Öcü takes damage when player attaks on it now (OnTriggerEnter2D method in Öcü class)
