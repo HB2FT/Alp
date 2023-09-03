@@ -21,4 +21,6 @@ public abstract class Entity : MonoBehaviour
     {
         speed = 0f;
     }
+
+    public Animator Animator { get { return animator; } }
 }

@@ -1,5 +1,8 @@
 # Alp
 ***
+# V0.3.1.1
+* Added combat trigger with öcü
+***
 # V0.3.1
 * Added die animation to player
 * Added GameController.Menu partial class to control game menu
