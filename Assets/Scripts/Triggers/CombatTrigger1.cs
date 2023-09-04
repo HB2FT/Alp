@@ -29,7 +29,7 @@ public class CombatTrigger1 : MonoBehaviour
         {
             if (Playable.Value)
             {
-                combatSound_Infected.Play();
+                //combatSound_Infected.Play();
 
                 firstCombatSceneController.combatStarted = true;
 

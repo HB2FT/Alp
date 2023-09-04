@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public partial class GameController : MonoBehaviour // Oyunu genel hatlarýyla kontrol eder
 {
-    public GameObject square;
-
     void Start()
     {
         //if (bottomBar.Enabled) BottomBarStart();
@@ -19,5 +18,7 @@ public partial class GameController : MonoBehaviour // Oyunu genel hatlarýyla ko
         if (bottomBar.Enabled) BottomBarUpdate();
         HealthBarUpdate();
         MenuUpdate();
+
+
     }
 }

@@ -4,9 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 partial class GameController
 {
+    public GameObject cutCam;
+
+    public PostProcessVolume postProcessVolume_BackgroundBlur;
+    public GameObject pauseMenu;
+
+    public Music music;
+
     private bool IsMenuOpen = false;
 
     void MenuUpdate()
@@ -16,7 +24,6 @@ partial class GameController
             if (!IsMenuOpen) // Esc basıldığında manü açık değilse (menü açılır)
             {
                 ShowMenu();
-
                 Time.timeScale = 0f;
 
                 IsMenuOpen = !IsMenuOpen;
@@ -35,12 +42,19 @@ partial class GameController
 
     private void ShowMenu()
     {
-        /// TODO: Create game menu and show it via this method
+        pauseMenu.SetActive(true);
+        postProcessVolume_BackgroundBlur.enabled = true;
+        player.isControllable = false;
+        music.Pause();
     }
 
     private void HideMenu()
     {
-        /// TODO: Create game menu and hide it via this method
+        pauseMenu.SetActive(false);
+        postProcessVolume_BackgroundBlur.enabled = false;
+        player.isControllable = true;
+        music.Resume();
+
     }
 }
 

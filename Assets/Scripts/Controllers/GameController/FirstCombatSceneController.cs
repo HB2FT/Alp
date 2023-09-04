@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class FirstCombatSceneController : MonoBehaviour
 {
+    public Music music;
+
     public List<Öcü> öcüler;
     public Player player;
     public AudioSource sceneMusic;
@@ -17,26 +19,33 @@ public class FirstCombatSceneController : MonoBehaviour
     private AtomicBoolean atomicBoolean;
 
     public bool combatStarted = false;
+    public AtomicBoolean onceCheck = new AtomicBoolean(true);
 
     void Start()
     {
         öcüNumber = öcüler.Count;
         atomicBoolean = new AtomicBoolean(true);
-
         
     }
 
     void Update()
     {
-        if (!sceneMusic.isPlaying && combatStarted)
+        if (combatStarted && onceCheck.Value)
+        {
+            music.audioSource.clip = musicIn;
+            music.audioSource.loop = false;
+            music.audioSource.Play();
+        }
+
+        if (!music.audioSource.isPlaying && combatStarted && !music.isPaused)
         {
             clipIndex++;
 
             if (clipIndex == 1)
             {
-                sceneMusic.clip = musicMain;
-                sceneMusic.loop = true;
-                sceneMusic.Play();
+                music.audioSource.clip = musicMain;
+                music.audioSource.loop = true;
+                music.audioSource.Play();
             }
 
            
@@ -62,9 +71,9 @@ public class FirstCombatSceneController : MonoBehaviour
     {
         Debug.Log("OnEndCombat1");
 
-        sceneMusic.clip = musicOut;
-        sceneMusic.loop = false;
-        sceneMusic.Play();
+        music.audioSource.clip = musicOut;
+        music.audioSource.loop = false;
+        music.audioSource.Play();
 
         combatStarted = false;
     }
