@@ -1,12 +1,5 @@
 # Alp
-***
-# V0.3.3
-* Added pause menu mechanics:
-	- On click ESC button:
-		+ give blur background
-		+ stop game
-		+ stop music
-***
+**
 # V0.3.2.1
 * Fixed camera oriantation
 ***
