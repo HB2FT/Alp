@@ -1,16 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.Rendering.VirtualTexturing;
 
 public class Player : Entity
 {
     public GameObject bottomBar;
     public GameObject attackCollider;
+    public GameObject deathMenu;
+
+    public PostProcessVolume postProcessVolume;
+
+    public PostProcessProfile profileDeath;
+
+    public Music music;
+    public MusicSession deathMusic;
 
     public bool isGrounded;
     public bool isAttacking = false;
     public bool isControllable = true;
+    public bool isDying = false;
     public float jumpForce;
     public float gravity;
     public static int Damage = 20;
@@ -137,6 +147,20 @@ public class Player : Entity
         else
         {
             if (deathChecker.Value) OnDeath();
+
+            if (postProcessVolume.weight <= 1) postProcessVolume.weight += Time.deltaTime * 0.5f;
+
+            else
+            {
+                deathMenu.SetActive(true);
+            }
+
+            if (Time.timeScale >= 0 && postProcessVolume.weight > 1) Time.timeScale -= Time.deltaTime * 0.8f;
+        }
+
+        if (isDying)
+        {
+            
         }
     }
 
@@ -172,6 +196,13 @@ public class Player : Entity
     protected override void OnDeath()
     {
         base.OnDeath();
+
+        postProcessVolume.weight = 0;
+        postProcessVolume.profile = profileDeath;
+        postProcessVolume.enabled = true;
+        isDying = true;
+
+        music.Play(deathMusic, false);
 
         animator.SetBool("IsDied", true);
     }

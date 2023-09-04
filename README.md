@@ -1,5 +1,18 @@
 # Alp
 ***
+# V0.4.0
+* ımproved music mechanics
+* Created 'Music Session' object
+	+ Contains clips for the session
+* Improved pause menu mechanics
+* Added death menu (Appears after player died)
+* Added death mechanics:
+	+ Time scale decreases by Time.deltaTime * 0.8f
+	+ Visual effects (post processing profile -> Death)
+	+ Sound effects (death, death1)
+* Added 'IsDead' variable to player
+* In first combat scene, music enters main clip when cutCam animation is over
+***
 # V0.3.3
 * Added pause menu mechanics:
 	- On click ESC button:

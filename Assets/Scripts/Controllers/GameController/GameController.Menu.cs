@@ -10,7 +10,10 @@ partial class GameController
 {
     public GameObject cutCam;
 
-    public PostProcessVolume postProcessVolume_BackgroundBlur;
+    public PostProcessVolume postProcessVolume;
+
+    public PostProcessProfile pauseMenuProfile;
+
     public GameObject pauseMenu;
 
     public Music music;
@@ -19,7 +22,7 @@ partial class GameController
 
     void MenuUpdate()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.Escape) && !player.IsDead)
         {
             if (!IsMenuOpen) // Esc basıldığında manü açık değilse (menü açılır)
             {
@@ -43,7 +46,8 @@ partial class GameController
     private void ShowMenu()
     {
         pauseMenu.SetActive(true);
-        postProcessVolume_BackgroundBlur.enabled = true;
+        postProcessVolume.profile = pauseMenuProfile;
+        postProcessVolume.enabled = true;
         player.isControllable = false;
         music.Pause();
     }
@@ -51,7 +55,7 @@ partial class GameController
     private void HideMenu()
     {
         pauseMenu.SetActive(false);
-        postProcessVolume_BackgroundBlur.enabled = false;
+        postProcessVolume.enabled = false;
         player.isControllable = true;
         music.Resume();
 

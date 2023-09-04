@@ -7,6 +7,8 @@ public class CutCam : MonoBehaviour
     public GameObject cutCam, mainCam;
     public Player player;
 
+    public Music music;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,11 @@ public class CutCam : MonoBehaviour
     IEnumerator OnEndCutScene()
     {
         yield return new WaitForSeconds(2f);
+
+        if (music.index == 0)
+        {
+            music.PlayNext(true);
+        }
 
         cutCam.SetActive(false);
         mainCam.SetActive(true);

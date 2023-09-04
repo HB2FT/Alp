@@ -10,6 +10,7 @@ public abstract class Entity : MonoBehaviour
     public bool isRight;
     public float speed;
     public int health;
+    private bool isDead;
 
     public void Rotate()
     {
@@ -23,4 +24,12 @@ public abstract class Entity : MonoBehaviour
     }
 
     public Animator Animator { get { return animator; } }
+
+    public bool IsDead
+    {
+        get
+        {
+            return health <= 0;
+        }
+    }
 }

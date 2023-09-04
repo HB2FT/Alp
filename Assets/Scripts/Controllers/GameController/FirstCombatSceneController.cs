@@ -11,6 +11,7 @@ public class FirstCombatSceneController : MonoBehaviour
     public List<Öcü> öcüler;
     public Player player;
     public AudioSource sceneMusic;
+    public MusicSession session;
     
     public AudioClip musicIn, musicMain, musicOut;
     public int clipIndex = 0;
@@ -32,13 +33,17 @@ public class FirstCombatSceneController : MonoBehaviour
     {
         if (combatStarted && onceCheck.Value)
         {
-            music.audioSource.clip = musicIn;
             music.audioSource.loop = false;
-            music.audioSource.Play();
+            music.Play(session, false);
+
+            //music.audioSource.clip = musicIn;
+            //music.audioSource.loop = false;
+            //music.audioSource.Play();
         }
 
-        if (!music.audioSource.isPlaying && combatStarted && !music.isPaused)
+        if (music.isEnded && combatStarted && !music.isPaused)
         {
+            /*
             clipIndex++;
 
             if (clipIndex == 1)
@@ -47,8 +52,9 @@ public class FirstCombatSceneController : MonoBehaviour
                 music.audioSource.loop = true;
                 music.audioSource.Play();
             }
+            */
 
-           
+            music.PlayNext(true);
         }
 
         for (int i = 0; i < öcüNumber; i++)
@@ -71,9 +77,11 @@ public class FirstCombatSceneController : MonoBehaviour
     {
         Debug.Log("OnEndCombat1");
 
-        music.audioSource.clip = musicOut;
+        //music.audioSource.clip = musicOut;
         music.audioSource.loop = false;
-        music.audioSource.Play();
+        //music.audioSource.Play();
+
+        music.PlayNext(false);
 
         combatStarted = false;
     }
