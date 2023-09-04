@@ -1,7 +1,7 @@
 # Alp
 ***
 # V0.4.0
-* ımproved music mechanics
+* Improved music mechanics
 * Created 'Music Session' object
 	+ Contains clips for the session
 * Improved pause menu mechanics
