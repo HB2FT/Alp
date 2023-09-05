@@ -52,6 +52,16 @@ public class Player : Entity
 
             #region Move Codes
 
+            ///
+            /// DEBUG
+            
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                health = 0;
+            }
+            ///
+
            if (!bottomBar.activeSelf && isControllable)
            {
                 if (Input.GetKey(KeyCode.D))
@@ -148,7 +158,7 @@ public class Player : Entity
         {
             if (deathChecker.Value) OnDeath();
 
-            if (postProcessVolume.weight <= 1) postProcessVolume.weight += Time.deltaTime * 0.5f;
+            if (postProcessVolume.weight <= 1) postProcessVolume.weight += Time.deltaTime * 0.44f;
 
             else
             {

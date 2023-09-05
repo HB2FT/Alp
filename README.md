@@ -1,5 +1,8 @@
 # Alp
 ***
+# V0.5.1
+* Changed death sound to 'death1'
+***
 # V0.5.0
 * Added 'MainMenu' scene
 	+ Canvas contains 2 components:

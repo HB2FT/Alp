@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Death
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: c56d27f7a0ce5234d8a39de9285405de, type: 3}
+  - {fileID: 8300000, guid: ce03e19a4e8381d4fb859547b580536c, type: 3}
