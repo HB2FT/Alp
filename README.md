@@ -1,5 +1,22 @@
 # Alp
 ***
+# V0.5.0
+* Added 'MainMenu' scene
+	+ Canvas contains 2 components:
+		+ Main (Panel):
+			+ Play button
+			+ Options button
+			+ Quit button
+		+ Options (Panel):
+			+ Tittle (Text Mesh Pro)
+			+ Back button
+			+ Volume Slider
+			+ Text -> Volume
+* Musics added to Main Menu
+	+ All Gone (The Ultmatum)
+	+ Reclaimed Memories
+	+ The Aqurium (Beginnings)
+***
 # V0.4.1
 * Some terrain changements
 ***
