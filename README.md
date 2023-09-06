@@ -1,5 +1,10 @@
 # Alp
 ***
+# V0.5.3
+* Edited combat1-infected-out
+* Changed some level design parts
+* Resized ormandüzzemin (128 x 128 to 49 x 49)
+***
 # V0.5.2
 * New assets added
 ***

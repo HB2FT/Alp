@@ -52,16 +52,6 @@ public class Player : Entity
 
             #region Move Codes
 
-            ///
-            /// DEBUG
-            
-
-            if (Input.GetKey(KeyCode.D))
-            {
-                health = 0;
-            }
-            ///
-
            if (!bottomBar.activeSelf && isControllable)
            {
                 if (Input.GetKey(KeyCode.D))
