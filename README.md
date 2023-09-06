@@ -1,5 +1,8 @@
 # Alp
 ***
+# V0.5.2
+* New assets added
+***
 # V0.5.1
 * Changed death sound to 'death1'
 ***
