@@ -1,5 +1,13 @@
 # Alp
 ***
+# V0.6.0
+* Designed 'Pause Menu'
+* Designed 'Death Menu'
+* Resized 'Player'
+* Added low health effect:
+	+ Heart beat effect if healt < 25
+	+ Screen effect if healt < 25
+***
 # V0.5.3
 * Edited combat1-infected-out
 * Changed some level design parts

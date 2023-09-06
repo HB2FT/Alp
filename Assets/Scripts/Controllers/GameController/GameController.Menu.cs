@@ -27,38 +27,41 @@ partial class GameController
             if (!IsMenuOpen) // Esc basıldığında manü açık değilse (menü açılır)
             {
                 ShowMenu();
-                Time.timeScale = 0f;
-
-                IsMenuOpen = !IsMenuOpen;
+                
             }
 
             else // Esc basıldığında menü açıksa (menü kapatılır)
             {
                 HideMenu();
 
-                Time.timeScale = 1f;
-
-                IsMenuOpen = !IsMenuOpen;
+                
             }
         }
     }
 
-    private void ShowMenu()
+    public void ShowMenu()
     {
         pauseMenu.SetActive(true);
         postProcessVolume.profile = pauseMenuProfile;
         postProcessVolume.enabled = true;
         player.isControllable = false;
         music.Pause();
+
+        Time.timeScale = 0f;
+
+        IsMenuOpen = !IsMenuOpen;
     }
 
-    private void HideMenu()
+    public void HideMenu()
     {
         pauseMenu.SetActive(false);
         postProcessVolume.enabled = false;
         player.isControllable = true;
         music.Resume();
 
+        Time.timeScale = 1f;
+
+        IsMenuOpen = !IsMenuOpen;
     }
 }
 

@@ -10,12 +10,14 @@ public class Player : Entity
     public GameObject attackCollider;
     public GameObject deathMenu;
 
-    public PostProcessVolume postProcessVolume;
+    public List<PostProcessVolume> postProcessVolumes = new List<PostProcessVolume>();
+    public GameObject mainCam;
 
-    public PostProcessProfile profileDeath;
+    public PostProcessVolume postProcessVolume, volumeDeathEffect, volumeLowHealthEffect;
+    public PostProcessProfile profileDeath, profileLowHealth;
 
-    public Music music;
-    public MusicSession deathMusic;
+    public Music music, musicHeartbeatEffect;
+    public MusicSession deathMusic, sessionLowHealth;
 
     public bool isGrounded;
     public bool isAttacking = false;
@@ -31,17 +33,32 @@ public class Player : Entity
     public int currentMouseScroll = 0;
 
     private AtomicBoolean deathChecker = new AtomicBoolean(true);
+    private AtomicBoolean atomicBoolean_lowHealthSoundEffect1 = new AtomicBoolean(true);
+    private AtomicBoolean atomicBoolean_lowHealthSoundEffect2 = new AtomicBoolean(true);
 
     void Start()
     {
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
+
+        postProcessVolumes.AddRange(mainCam.GetComponents<PostProcessVolume>());
+
+        volumeDeathEffect = postProcessVolumes[0];
+        volumeLowHealthEffect = postProcessVolumes[1];
+
+        Time.timeScale = 1;
     }
 
     void Update()
     {
+
         if (health > 0)
         {
+            //
+            // Düþük saðlýk efektleri
+            //
+
+
             //
             // Stop run animation on key up
             //
@@ -51,6 +68,16 @@ public class Player : Entity
             }
 
             #region Move Codes
+
+           /// DEBUG
+           /// 
+
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                health -= 20;
+            }
+            
+           ///
 
            if (!bottomBar.activeSelf && isControllable)
            {
@@ -142,13 +169,34 @@ public class Player : Entity
            }
 
             #endregion
+
+            #region check low health
+
+            if (health <= 25 && atomicBoolean_lowHealthSoundEffect1.Value)
+            {
+                volumeLowHealthEffect.weight = 0.8f;
+                volumeLowHealthEffect.enabled = true; Debug.Log("bool1");
+
+                musicHeartbeatEffect.Play(sessionLowHealth, true);
+
+                atomicBoolean_lowHealthSoundEffect2.Value = true;
+            }
+
+            if (health > 25 && atomicBoolean_lowHealthSoundEffect2.Value)
+            {
+                volumeLowHealthEffect.enabled = false; Debug.Log("bool2");
+                musicHeartbeatEffect.Stop();
+                atomicBoolean_lowHealthSoundEffect1.Value = true;
+            }
+
+            #endregion
         }
 
         else
         {
             if (deathChecker.Value) OnDeath();
 
-            if (postProcessVolume.weight <= 1) postProcessVolume.weight += Time.deltaTime * 0.44f;
+            if (volumeDeathEffect.weight <= 1) volumeDeathEffect.weight += Time.deltaTime * 0.44f; 
 
             else
             {
@@ -197,10 +245,11 @@ public class Player : Entity
     {
         base.OnDeath();
 
-        postProcessVolume.weight = 0;
-        postProcessVolume.profile = profileDeath;
-        postProcessVolume.enabled = true;
+        volumeDeathEffect.weight = 0;
+        volumeDeathEffect.profile = profileDeath;
+        volumeDeathEffect.enabled = true;
         isDying = true;
+        musicHeartbeatEffect.Stop();
 
         music.Play(deathMusic, false);
 
