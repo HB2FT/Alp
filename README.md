@@ -14,10 +14,10 @@
 ***
 # V0.6.2
 * Some spiretes resized and improved:
- 	+ Player idle resized and improved
+	+ Player idle resized and improved
 	+ Player run resized and improved
 	+ Player attack resized and improved
-	+ Öcü resized
+	+ Öcü resized
 ***
 # V0.6.0
 * Designed 'Pause Menu'
