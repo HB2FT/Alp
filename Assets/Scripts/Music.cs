@@ -12,6 +12,7 @@ public class Music : MonoBehaviour
     public int index;
 
     public bool started;
+    public bool clipEnded;
 
     private void Update()
     {
@@ -28,6 +29,11 @@ public class Music : MonoBehaviour
                 {
                     Stop();
                 }
+            }
+
+            if (audioSource.time == session.clips[index].length)
+            {
+                clipEnded = !audioSource.loop;
             }
         }
     }
@@ -53,6 +59,7 @@ public class Music : MonoBehaviour
         isPaused = false;
         isEnded = false;
         started = false;
+        clipEnded = true;
         index = 0;
         audioSource.Stop();
     }

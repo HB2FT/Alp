@@ -86,21 +86,26 @@ public class Player : Entity
                     if (!isGrounded) // Havadaysa
                     {
                         transform.position += transform.right * speed * Time.deltaTime;
+
+                        if (!isRight)
+                        {
+                            Rotate();
+                        }
                     }
                     else // Yerseyse
                     {
                         if (!isAttacking) // Saldýrmýyorsa
                         {
                             transform.position += transform.right * speed * Time.deltaTime;
+
+                            if (!isRight)
+                            {
+                                Rotate();
+                            }
                         }
                     }
                 
                     animator.SetBool("IsRunning", true);
-
-                    if (!isRight)
-                    {
-                        Rotate();
-                    }
                 }
 
                 if (Input.GetKey(KeyCode.A))
@@ -109,23 +114,26 @@ public class Player : Entity
                     {
                     
                         transform.position -= -transform.right * speed * Time.deltaTime;
-                    
-                    
+
+                        if (isRight)
+                        {
+                            Rotate();
+                        }
                     }
                     else // Yerdeyse
                     {
                         if (!isAttacking) // Saldýrmýyorsa
                         {
                             transform.position -= -transform.right * speed * Time.deltaTime;
+
+                            if (isRight)
+                            {
+                                Rotate();
+                            }
                         }
                     }
 
                     animator.SetBool("IsRunning", true);
-
-                    if (isRight)
-                    {
-                        Rotate();
-                    }
                 }
 
                 if (Input.GetKeyDown(KeyCode.Space))

@@ -1,5 +1,24 @@
 # Alp
 ***
+# V0.6.3
+* Added boss 'Tepegöz'
+	+ Run sprites (animated)
+	+ Idle sprites (animated)
+	+ Attack sprites
+	+ Die sprites
+* Added music for boss fight (They're Still Out Here -> BossFight)
+* Added boss controls:
+	+ Tepegöz moves to player when player is in the -15 - 15 area
+* Added boss fight trigger
+* Added boss fight scene manager
+***
+# V0.6.2
+* Some spiretes resized and improved:
+         - Player idle resized and improved
+         - Player run resized and improved
+         - Player attack resized and improved
+         - Öcü resized
+***
 # V0.6.0
 * Designed 'Pause Menu'
 * Designed 'Death Menu'

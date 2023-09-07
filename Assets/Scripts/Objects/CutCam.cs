@@ -23,15 +23,23 @@ public class CutCam : MonoBehaviour
 
     IEnumerator OnEndCutScene()
     {
+        Debug.Log("Bossfight0");
         yield return new WaitForSeconds(2f);
 
-        if (music.index == 0)
+        if (music.index == 0 && music.session.name == "FirstCombat")
         {
-            music.PlayNext(true);
+            try
+            {
+                music.PlayNext(true);
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log(e);
+            }
         }
 
         cutCam.SetActive(false);
         mainCam.SetActive(true);
-        player.isControllable = true;
+        player.isControllable = true;Debug.Log("Bossfight1");
     }
 }
