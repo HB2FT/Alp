@@ -1,5 +1,12 @@
 # Alp
 ***
+# V0.6.4
+* Added combat mechanics to Tepegöz:
+	+ Hits after 0.5 seconds
+	+ Throws back player
+	+ Damage = 40
+	+ Health = 200
+***
 # V0.6.3
 * Added boss 'Tepegöz'
 	+ Run sprites (animated)

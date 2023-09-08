@@ -43,12 +43,4 @@ public class Öcü : Entity
             }
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "PlayerAttackCollider")
-        {
-            health -= player.damage;
-        }
-    }
 }

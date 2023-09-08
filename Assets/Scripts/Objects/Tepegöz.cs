@@ -6,7 +6,10 @@ public class Tepegöz : Entity
 {
     private AtomicBoolean deathChecker;
     public bool triggered;
+    public bool isAttacking;
+    public bool collidedWithPlayer;
     public readonly float[] triggerArea = {-15f, 15f };
+    public int damage = 40;
 
     public Player target;
 
@@ -20,10 +23,11 @@ public class Tepegöz : Entity
     }
     void Update()
     {
-        if (health > 0)
+        if (!IsDead)
         {
             if (target.transform.position.x - transform.position.x > triggerArea[0] 
-                && target.transform.position.x - transform.position.x < triggerArea[1])
+                && target.transform.position.x - transform.position.x < triggerArea[1]
+                && !target.IsDead)
             {
                 triggered = true;
             }
@@ -35,18 +39,18 @@ public class Tepegöz : Entity
 
             #region Move Codes
 
-            if (triggered)
+            if (triggered && !isAttacking && !collidedWithPlayer)
             {
                 if (target.transform.position.x > transform.position.x) // Move right
                 {
-                    if (!isRight) Rotate(); Debug.Log("player x > x");
+                    if (!isRight) Rotate(); //Debug.Log("player x > x");
 
                     transform.position -= speed * Time.deltaTime * transform.right;
                 }
 
                 if (target.transform.position.x < transform.position.x)
                 {
-                    if (isRight) Rotate(); Debug.Log("player x < x");
+                    if (isRight) Rotate(); //Debug.Log("player x < x");
 
                     transform.position -= speed * Time.deltaTime * transform.right;
                 }
@@ -73,22 +77,46 @@ public class Tepegöz : Entity
         base.OnDeath();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.name == "PlayerAttackCollider")
+        if (!IsDead)
         {
-            health -= target.damage;
+            if (collision.gameObject.name == "Player")
+            {
+                isAttacking = true;
+                StartCoroutine(AttackToPlayer());
+                collidedWithPlayer = true;
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (!IsDead)
+        {
+            if (collision.gameObject.name == "Player")
+            {
+                collidedWithPlayer = false;
+            }
+        }
+    }
+
+    public void OnAttackEnd()
+    {
+        if (collidedWithPlayer)
+        {
+            Rigidbody2D targetRB = target.gameObject.GetComponent<Rigidbody2D>();
+            targetRB.AddForce(new Vector2(-10, 5), ForceMode2D.Impulse); Debug.Log("Player add force");
+            target.health -= damage;
         }
 
-        if (collision.name == "Player")
-        {
-
-        }
+        animator.SetBool("isAttacking", false);
+        isAttacking = false;
     }
 
     IEnumerator AttackToPlayer()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         animator.SetBool("isAttacking", true);
     }

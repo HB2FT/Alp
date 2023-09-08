@@ -52,7 +52,7 @@ public class Player : Entity
     void Update()
     {
 
-        if (health > 0)
+        if (!IsDead)
         {
             //
             // Düþük saðlýk efektleri

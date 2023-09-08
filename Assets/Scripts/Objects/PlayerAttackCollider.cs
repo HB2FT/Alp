@@ -12,5 +12,11 @@ public class PlayerAttackCollider : MonoBehaviour
             Öcü collidedÖcü = collision.gameObject.GetComponent<Öcü>();
             collidedÖcü.health -= Player.Damage;
         }
+
+        if (collision.gameObject.name == "Tepegöz")
+        {
+            Tepegöz collidedTepegöz = collision.gameObject.GetComponent<Tepegöz>();
+            collidedTepegöz.health -= Player.Damage;
+        }
     }
 }

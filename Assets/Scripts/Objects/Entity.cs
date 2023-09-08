@@ -10,7 +10,7 @@ public abstract class Entity : MonoBehaviour
     public bool isRight;
     public float speed;
     public int health;
-    private bool isDead;
+    public const int MIN_HEALTH = 0;
 
     public void Rotate()
     {
@@ -29,7 +29,7 @@ public abstract class Entity : MonoBehaviour
     {
         get
         {
-            return health <= 0;
+            return health <= MIN_HEALTH;
         }
     }
 }
