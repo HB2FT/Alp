@@ -1,34 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour
+public class LoadingScreen : MonoBehaviour
 {
-    public GameController menuController;
     public GameObject loadingScreen;
 
-    private AtomicBoolean once = new AtomicBoolean(true);
-
-    public void btn_Resume()
-    {
-        menuController.HideMenu();
-    }
-
-    public void btn_MainMenu()
+    public void LoadScene()
     {
         loadingScreen.SetActive(true);
+        Debug.Log("Set active");
 
         StartCoroutine(Load("MainMenu"));
+
+        
     }
 
     IEnumerator Load(string sceneName)
     {
         yield return SceneManager.LoadSceneAsync(sceneName);
-    }
-
-    IEnumerator wait()
-    {
-        yield return new WaitForSeconds(1f);
     }
 }

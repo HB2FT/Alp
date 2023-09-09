@@ -1,5 +1,11 @@
 # Alp
 ***
+V0.6.8
+* Added death animation to Tepegöz
+* Added damage animation to Tepegöz
+* Player cannot push Tepegöz anymore
+* Added 'LoadingScreen'
+***
 # V0.6.4
 * Added combat mechanics to Tepegöz:
 	+ Hits after 0.5 seconds

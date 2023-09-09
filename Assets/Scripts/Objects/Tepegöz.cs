@@ -8,8 +8,11 @@ public class Tepegöz : Entity
     public bool triggered;
     public bool isAttacking;
     public bool collidedWithPlayer;
+    public bool isDamaged;
     public readonly float[] triggerArea = {-15f, 15f };
     public int damage = 40;
+
+    int index = 0; // This is for setting isDead variable in animator
 
     public Player target;
 
@@ -39,7 +42,7 @@ public class Tepegöz : Entity
 
             #region Move Codes
 
-            if (triggered && !isAttacking && !collidedWithPlayer)
+            if (triggered && !isAttacking && !collidedWithPlayer && !isDamaged)
             {
                 if (target.transform.position.x > transform.position.x) // Move right
                 {
@@ -69,12 +72,19 @@ public class Tepegöz : Entity
         else
         {
             if (deathChecker.Value) OnDeath();
+
+            if (++index == 10)
+            {
+                animator.SetBool("isDead", false);
+            }
         }
     }
 
     protected override void OnDeath()
     {
         base.OnDeath();
+
+        animator.SetBool("isDead", true);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -114,10 +124,20 @@ public class Tepegöz : Entity
         isAttacking = false;
     }
 
+    public void OnHurtEnd()
+    {
+        animator.SetBool("isDamaged", false);
+        isAttacking = false;
+        isDamaged = false;
+    }
+
     IEnumerator AttackToPlayer()
     {
         yield return new WaitForSeconds(0.5f);
 
-        animator.SetBool("isAttacking", true);
+        if (!isDamaged)
+        {
+            animator.SetBool("isAttacking", true);
+        }
     }
 }

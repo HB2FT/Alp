@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerAttackCollider : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class PlayerAttackCollider : MonoBehaviour
         {
             Tepegöz collidedTepegöz = collision.gameObject.GetComponent<Tepegöz>();
             collidedTepegöz.health -= Player.Damage;
+            collidedTepegöz.Animator.SetBool("isDamaged", true);
+            collidedTepegöz.Animator.SetBool("isRunning", false);
+            collidedTepegöz.Animator.SetBool("isAttacking", false);
+            collidedTepegöz.isDamaged = true;
         }
     }
 }

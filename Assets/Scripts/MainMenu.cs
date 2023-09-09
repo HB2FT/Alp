@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject LoadingScreen;
 
     public Music music;
     public MusicSession session;
@@ -37,7 +38,14 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        LoadingScreen.SetActive(true);
+
+        StartCoroutine(LoadAsync());
+    }
+
+    IEnumerator LoadAsync()
+    {
+        yield return SceneManager.LoadSceneAsync("SampleScene");
     }
 
     public void Quit()

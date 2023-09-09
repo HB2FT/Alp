@@ -25,7 +25,7 @@ public class GameCamera : MonoBehaviour
         
         if (target.position.x < minBound.x)
         {
-            targetPosition = minBound + offset;
+            //targetPosition = minBound + offset;
         }
 
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
