@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Tepegöz : Entity
@@ -11,10 +12,13 @@ public class Tepegöz : Entity
     public bool isDamaged;
     public readonly float[] triggerArea = {-15f, 15f };
     public int damage = 40;
+    public float waitForAttack;
 
     int index = 0; // This is for setting isDead variable in animator
 
     public Player target;
+    public GameObject attackCollider;
+    
 
     void Start()
     {
@@ -84,6 +88,8 @@ public class Tepegöz : Entity
     {
         base.OnDeath();
 
+        GetComponent<BoxCollider2D>().enabled = false;
+
         animator.SetBool("isDead", true);
     }
 
@@ -111,19 +117,6 @@ public class Tepegöz : Entity
         }
     }
 
-    public void OnAttackEnd()
-    {
-        if (collidedWithPlayer)
-        {
-            Rigidbody2D targetRB = target.gameObject.GetComponent<Rigidbody2D>();
-            targetRB.AddForce(new Vector2(-10, 5), ForceMode2D.Impulse); Debug.Log("Player add force");
-            target.health -= damage;
-        }
-
-        animator.SetBool("isAttacking", false);
-        isAttacking = false;
-    }
-
     public void OnHurtEnd()
     {
         animator.SetBool("isDamaged", false);
@@ -131,9 +124,26 @@ public class Tepegöz : Entity
         isDamaged = false;
     }
 
+    public void OnAttackEnd()
+    {
+        animator.SetBool("isAttacking", false);
+        isAttacking = false;
+        attackCollider.SetActive(false);
+
+        TepegözAttackCollider tepegözAttackCollider = attackCollider.GetComponent<TepegözAttackCollider>();
+
+        tepegözAttackCollider.once.Value = true;
+
+    }
+
+    public void EnableAttackCollider()
+    {
+        attackCollider.SetActive(true);
+    }
+
     IEnumerator AttackToPlayer()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(waitForAttack);
 
         if (!isDamaged)
         {

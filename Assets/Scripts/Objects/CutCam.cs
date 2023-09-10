@@ -9,6 +9,9 @@ public class CutCam : MonoBehaviour
 
     public Music music;
 
+    public BottomBarController bottomBarController;
+    public StoryScene bossFightStoryScene;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +26,6 @@ public class CutCam : MonoBehaviour
 
     IEnumerator OnEndCutScene()
     {
-        Debug.Log("Bossfight0");
         yield return new WaitForSeconds(2f);
 
         if (music.index == 0 && music.session.name == "FirstCombat")
@@ -38,8 +40,13 @@ public class CutCam : MonoBehaviour
             }
         }
 
+        if (music.session.name == "BossFight")
+        {
+            bottomBarController.PlayScene(bossFightStoryScene);
+        }
+
         cutCam.SetActive(false);
         mainCam.SetActive(true);
-        player.isControllable = true;Debug.Log("Bossfight1");
+        player.isControllable = true;
     }
 }

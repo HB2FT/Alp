@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatTrigger1 : MonoBehaviour
+public class CombatTrigger : MonoBehaviour
 {
     public AudioSource combatSound_Infected;
     private AtomicBoolean Playable;
@@ -25,12 +25,11 @@ public class CombatTrigger1 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.name == "Player")
         {
             if (Playable.Value)
             {
-                //combatSound_Infected.Play();
-
                 firstCombatSceneController.combatStarted = true;
 
                 StartCombatCutScene();

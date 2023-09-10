@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: attack
+  m_Name: Prepared Bow
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,13 +20,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: f0dfc2fbcdf9c024ba80144afae20dde, type: 3}
-    - time: 0.1
-      value: {fileID: 21300000, guid: 26c8d3c8f20d09543bea4dcf42ee6479, type: 3}
-    - time: 0.23333333
-      value: {fileID: 21300000, guid: 858bcf8c0ba73b540a326fb512bea502, type: 3}
-    - time: 0.33333334
-      value: {fileID: 21300000, guid: 17e21fe42d1edd14dabb9090f7fe2a58, type: 3}
+      value: {fileID: 21300000, guid: 4f777b750dad1c647b20cc62edbb1b36, type: 3}
+    - time: 0.21666667
+      value: {fileID: 21300000, guid: 45f344366d270e64c8e14bc91010b3b8, type: 3}
+    - time: 0.41666666
+      value: {fileID: 21300000, guid: 71808e9a2247cbd4d8b40edc97d66079, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,16 +44,15 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: f0dfc2fbcdf9c024ba80144afae20dde, type: 3}
-    - {fileID: 21300000, guid: 26c8d3c8f20d09543bea4dcf42ee6479, type: 3}
-    - {fileID: 21300000, guid: 858bcf8c0ba73b540a326fb512bea502, type: 3}
-    - {fileID: 21300000, guid: 17e21fe42d1edd14dabb9090f7fe2a58, type: 3}
+    - {fileID: 21300000, guid: 4f777b750dad1c647b20cc62edbb1b36, type: 3}
+    - {fileID: 21300000, guid: 45f344366d270e64c8e14bc91010b3b8, type: 3}
+    - {fileID: 21300000, guid: 71808e9a2247cbd4d8b40edc97d66079, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.35000002
+    m_StopTime: 0.43333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -74,18 +71,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0.23333333
-    functionName: EnableAttackCollider
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.33333334
-    functionName: OnAttackEnd
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []
