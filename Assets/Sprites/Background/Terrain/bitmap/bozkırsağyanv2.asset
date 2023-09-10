@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: "bozk\u0131rsa\u011Fyanv2"
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   m_Sprite: {fileID: 21300000, guid: 334c49b8248ba4f48beeae4d8dad2a99, type: 3}
+=======
+  m_Sprite: {fileID: 21300000, guid: fc8d0ad21541f6d4cb6d1fbef1647cc9, type: 3}
+>>>>>>> Stashed changes
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
