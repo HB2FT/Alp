@@ -73,6 +73,15 @@ public class Music : MonoBehaviour
         audioSource.Play();
     }
 
+    public void PlayLast(bool loop)
+    {
+        isEnded = false;
+
+        audioSource.clip = session.clips[session.clips.Count - 1];
+        audioSource.loop = loop;
+        audioSource.Play();
+    }
+
     public void Pause() 
     { 
         audioSource.Pause();

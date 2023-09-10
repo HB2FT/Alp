@@ -38,6 +38,8 @@ public class BossFightController : MonoBehaviour
 
     public void OnEndBossFight()
     {
+        music.PlayLast(false);
+
         combatStarted = false;
     }
 }

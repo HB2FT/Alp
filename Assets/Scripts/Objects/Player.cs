@@ -23,12 +23,13 @@ public class Player : Entity
     public bool isAttacking = false;
     public bool isControllable = true;
     public bool isDying = false;
+    public bool bowHanded = false;
     public float jumpForce;
     public float gravity;
     public static int Damage = 20;
     public int damage = Damage;
 
-    public const int MAX_MOUSE_SCROLL = 1;
+    public const int MAX_MOUSE_SCROLL = 2;
     public const int MIN_MOUSE_SCROLL = 0;
     public int currentMouseScroll = 0;
 
@@ -51,6 +52,18 @@ public class Player : Entity
 
     void Update()
     {
+        ///DEBUG
+        if (currentMouseScroll == 2)
+        {
+            speed = 0; 
+            bowHanded = true;
+        }
+        else
+        {
+            speed = 5;
+            bowHanded = false;
+        }
+        ///
 
         if (!IsDead)
         {
@@ -81,7 +94,7 @@ public class Player : Entity
 
            if (!bottomBar.activeSelf && isControllable)
            {
-                if (Input.GetKey(KeyCode.D))
+                if (Input.GetKey(KeyCode.D) && !bowHanded) // Yay Kuþanýlmamýþsa
                 {
                     if (!isGrounded) // Havadaysa
                     {
@@ -108,7 +121,7 @@ public class Player : Entity
                     animator.SetBool("IsRunning", true);
                 }
 
-                if (Input.GetKey(KeyCode.A))
+                if (Input.GetKey(KeyCode.A) && !bowHanded) // Yay kuþanýlmamýþsa
                 {
                     if (!isGrounded) // Havadaysa
                     {
@@ -169,7 +182,26 @@ public class Player : Entity
                     {
                         animator.SetBool("IsAttacking", true);
                         isAttacking = true;
-                        attackCollider.SetActive(true);
+                        
+                        if (currentMouseScroll == 1)
+                        {
+                            attackCollider.SetActive(true);
+                        }
+                    }
+                }
+
+                if (Input.GetMouseButtonUp(0))
+                {
+                    bool bowPrepared = animator.GetBool("BowPrepared");
+                    if (bowHanded && !bowPrepared)
+                    {
+                        isAttacking = false;
+                        animator.SetBool("IsAttacking", false);
+                    }
+
+                    if (bowHanded && bowPrepared)
+                    {
+                        animator.SetBool("ArrowThrowable", true);
                     }
                 }
 
@@ -183,7 +215,7 @@ public class Player : Entity
             if (health <= 25 && atomicBoolean_lowHealthSoundEffect1.Value)
             {
                 volumeLowHealthEffect.weight = 0.8f;
-                volumeLowHealthEffect.enabled = true; Debug.Log("bool1");
+                volumeLowHealthEffect.enabled = true;
 
                 musicHeartbeatEffect.Play(sessionLowHealth, true);
 
@@ -192,7 +224,7 @@ public class Player : Entity
 
             if (health > 25 && atomicBoolean_lowHealthSoundEffect2.Value)
             {
-                volumeLowHealthEffect.enabled = false; Debug.Log("bool2");
+                volumeLowHealthEffect.enabled = false;
                 musicHeartbeatEffect.Stop();
                 atomicBoolean_lowHealthSoundEffect1.Value = true;
             }
@@ -262,5 +294,18 @@ public class Player : Entity
         music.Play(deathMusic, false);
 
         animator.SetBool("IsDied", true);
+    }
+
+    protected void BowPrepared()
+    {
+        animator.SetBool("BowPrepared", true);
+    }   
+
+    protected void ArrowThrowed()
+    {
+        animator.SetBool("IsAttacking", false);
+        isAttacking = false;
+        animator.SetBool("BowPrepared", false);
+        animator.SetBool("ArrowThrowable", false);
     }
 }
