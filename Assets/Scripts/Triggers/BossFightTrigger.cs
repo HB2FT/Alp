@@ -29,6 +29,7 @@ public class BossFightTrigger : MonoBehaviour
         {
             if (once.Value)
             {
+                cutCam.GetComponent<Animator>().SetBool("bossFight", true);
                 bossFightController.combatStarted = true;
                 StartCutScene();
             }

@@ -14,14 +14,19 @@ public class PlayerAttackCollider : MonoBehaviour
             collidedÖcü.health -= Player.Damage;
         }
 
-        if (collision.gameObject.name == "Tepegöz")
+        if (collision.gameObject.name == "Tepegöz") // Tepegöz -> Head
         {
-            Tepegöz collidedTepegöz = collision.gameObject.GetComponent<Tepegöz>();
-            collidedTepegöz.health -= Player.Damage;
-            collidedTepegöz.Animator.SetBool("isDamaged", true);
-            collidedTepegöz.Animator.SetBool("isRunning", false);
-            collidedTepegöz.Animator.SetBool("isAttacking", false);
-            collidedTepegöz.isDamaged = true;
+            TepegözHead head = collision.gameObject.GetComponentInChildren<TepegözHead>();
+
+            if (head != null)
+            {
+                Tepegöz collidedTepegöz = collision.gameObject.GetComponent<Tepegöz>();
+                collidedTepegöz.health -= Player.Damage;
+                collidedTepegöz.Animator.SetBool("isDamaged", true);
+                collidedTepegöz.Animator.SetBool("isRunning", false);
+                collidedTepegöz.Animator.SetBool("isAttacking", false);
+                collidedTepegöz.isDamaged = true;
+            }
         }
     }
 }
