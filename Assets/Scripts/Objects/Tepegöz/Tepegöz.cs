@@ -88,7 +88,8 @@ public class Tepegöz : Entity
     {
         base.OnDeath();
 
-        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<BoxCollider2D>().isTrigger = true;
+        GetComponent<Rigidbody2D>().gravityScale = 0;
 
         animator.SetBool("isDead", true);
     }
