@@ -3,7 +3,12 @@ guid: 8cf71195fc5dd8140ac98ea1a06485e2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - player: {instanceID: 0}
+  - spriteRenderer: {instanceID: 0}
+  - boxCollider: {instanceID: 0}
+  - rigidbody: {instanceID: 0}
+  - spr_arrow: {fileID: 21300000, guid: c40e3cc3929e13f4c8adb21e91160ea3, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

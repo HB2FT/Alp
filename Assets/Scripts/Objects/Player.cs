@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,8 @@ public class Player : Entity
 
     public Music music, musicHeartbeatEffect;
     public MusicSession deathMusic, sessionLowHealth;
+
+    public Sprite spr_Arrow;
 
     public bool isGrounded;
     public bool isAttacking = false;
@@ -89,10 +92,15 @@ public class Player : Entity
             {
                 health -= 20;
             }
-            
-           ///
 
-           if (!bottomBar.activeSelf && isControllable)
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                rigidBody.AddForce(new Vector2(600, 50));
+            }
+
+            ///
+
+            if (!bottomBar.activeSelf && isControllable)
            {
                 if (Input.GetKey(KeyCode.D) && !bowHanded) // Yay Ku�an�lmam��sa
                 {
@@ -313,7 +321,15 @@ public class Player : Entity
 
     private void CreateArrow() 
     {
-        Vector3 bounds = transform.position + new Vector3(10f, 0, 0);
-        Arrow.Instantiate(new Arrow());
+        Vector3 bounds = transform.position + new Vector3(1f, 0, 0);
+
+        GameObject arrow = new GameObject();
+        arrow.AddComponent<Arrow>();
+        arrow.AddComponent<Rigidbody2D>();
+        arrow.AddComponent<BoxCollider2D>();
+        arrow.AddComponent<SpriteRenderer>();
+
+        arrow.GetComponent<SpriteRenderer>().sprite = spr_Arrow;
+        arrow.transform.position = bounds;
     }
 }

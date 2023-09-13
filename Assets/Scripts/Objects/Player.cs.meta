@@ -3,7 +3,21 @@ guid: 4874a372d16d84442b0b20be81a98ee7
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bottomBar: {instanceID: 0}
+  - attackCollider: {instanceID: 0}
+  - deathMenu: {instanceID: 0}
+  - mainCam: {instanceID: 0}
+  - postProcessVolume: {instanceID: 0}
+  - volumeDeathEffect: {instanceID: 0}
+  - volumeLowHealthEffect: {instanceID: 0}
+  - profileDeath: {instanceID: 0}
+  - profileLowHealth: {instanceID: 0}
+  - music: {instanceID: 0}
+  - musicHeartbeatEffect: {instanceID: 0}
+  - deathMusic: {instanceID: 0}
+  - sessionLowHealth: {instanceID: 0}
+  - spr_Arrow: {fileID: 21300000, guid: c40e3cc3929e13f4c8adb21e91160ea3, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
