@@ -68,7 +68,7 @@ public class Player : Entity
         if (!IsDead)
         {
             //
-            // Düþük saðlýk efektleri
+            // Dï¿½ï¿½ï¿½k saï¿½lï¿½k efektleri
             //
 
 
@@ -94,7 +94,7 @@ public class Player : Entity
 
            if (!bottomBar.activeSelf && isControllable)
            {
-                if (Input.GetKey(KeyCode.D) && !bowHanded) // Yay Kuþanýlmamýþsa
+                if (Input.GetKey(KeyCode.D) && !bowHanded) // Yay Kuï¿½anï¿½lmamï¿½ï¿½sa
                 {
                     if (!isGrounded) // Havadaysa
                     {
@@ -107,7 +107,7 @@ public class Player : Entity
                     }
                     else // Yerseyse
                     {
-                        if (!isAttacking) // Saldýrmýyorsa
+                        if (!isAttacking) // Saldï¿½rmï¿½yorsa
                         {
                             transform.position += transform.right * speed * Time.deltaTime;
 
@@ -121,7 +121,7 @@ public class Player : Entity
                     animator.SetBool("IsRunning", true);
                 }
 
-                if (Input.GetKey(KeyCode.A) && !bowHanded) // Yay kuþanýlmamýþsa
+                if (Input.GetKey(KeyCode.A) && !bowHanded) // Yay kuï¿½anï¿½lmamï¿½ï¿½sa
                 {
                     if (!isGrounded) // Havadaysa
                     {
@@ -135,7 +135,7 @@ public class Player : Entity
                     }
                     else // Yerdeyse
                     {
-                        if (!isAttacking) // Saldýrmýyorsa
+                        if (!isAttacking) // Saldï¿½rmï¿½yorsa
                         {
                             transform.position -= -transform.right * speed * Time.deltaTime;
 
@@ -254,19 +254,19 @@ public class Player : Entity
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Terrain") // Zemine deðiyor mu
+        if (collision.gameObject.name == "Terrain") // Zemine deï¿½iyor mu
         {
             isGrounded = true;
         }
 
-        if (collision.gameObject.name == "Öcü")
+        if (collision.gameObject.name == "Ã–cÃ¼")
         {
-            Öcü collidedÖcü = collision.gameObject.GetComponent<Öcü>();
-            //collidedÖcü.health -= damage;
+            Ã–cÃ¼ collidedÃ–cÃ¼ = collision.gameObject.GetComponent<Ã–cÃ¼>();
+            //collidedï¿½cï¿½.health -= damage;
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision) // Zemine deðmiyor mu
+    private void OnCollisionExit2D(Collision2D collision) // Zemine deï¿½miyor mu
     {
         if (collision.gameObject.name == "Terrain")
         {
@@ -307,5 +307,13 @@ public class Player : Entity
         isAttacking = false;
         animator.SetBool("BowPrepared", false);
         animator.SetBool("ArrowThrowable", false);
+
+        CreateArrow();
+    }
+
+    private void CreateArrow() 
+    {
+        Vector3 bounds = transform.position + new Vector3(10f, 0, 0);
+        Arrow.Instantiate(new Arrow());
     }
 }
