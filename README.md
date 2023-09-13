@@ -1,6 +1,6 @@
 # Alp
 ***
-#V0.6.8
+# V0.6.8
 * Added death animation to Tepegöz
 * Added damage animation to Tepegöz
 * Player cannot push Tepegöz anymore
