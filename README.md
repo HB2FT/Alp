@@ -1,5 +1,9 @@
 # Alp
 ***
+# V0.7.4
+* (Some missing attributes)
+* Addded archery mechanics
+***
 # V0.6.8
 * Added death animation to Tepegöz
 * Added damage animation to Tepegöz
