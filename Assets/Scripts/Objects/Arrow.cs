@@ -20,7 +20,7 @@ public class Arrow : MonoBehaviour
         transform.position = transform.position + new Vector3(1f, 0, 0);
         transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
 
-        rigidbody.AddForce(new Vector2(600, 50)); //Fýrlatýlma
+        rigidbody.AddForce(new Vector2(600, 50)); //Fï¿½rlatï¿½lma
 
         //spriteRenderer.sprite = spr_arrow;
         spriteRenderer.sortingLayerName = "Objects";
@@ -45,9 +45,6 @@ public class Arrow : MonoBehaviour
             collidedEntity.health -= damage;
         }
 
-        if (collision.gameObject.name != "Player")
-        {
-            // TODO remove component
-        }
+        Destroy(gameObject);
     }
 }

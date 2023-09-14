@@ -1,5 +1,8 @@
 # Alp
 ***
+# V0.7.5
+* Arrow disappears when collides an object
+***
 # V0.7.4
 * (Some missing attributes)
 * Addded archery mechanics
