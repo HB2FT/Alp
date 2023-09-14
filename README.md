@@ -1,6 +1,9 @@
 # Alp
 ***
 # V0.7.6
+* Some map improvements
+***
+# V0.7.6
 * Fixed throwing arrow to left
 ***
 # V0.7.5
