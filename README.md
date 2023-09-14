@@ -1,5 +1,8 @@
 # Alp
 ***
+# V0.7.6
+* Fixed throwing arrow to left
+***
 # V0.7.5
 * Arrow disappears when collides an object
 ***

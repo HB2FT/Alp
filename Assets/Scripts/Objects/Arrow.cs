@@ -10,17 +10,25 @@ public class Arrow : MonoBehaviour
 
     public int damage = 25;
     public float rotationSpeed = 20f;
+    public bool isRight;
+    public int Direction = 1;
 
     void Start()
     {
+        player = GameObject.Find("Player").GetComponent<Player>();
+
+        if (!player.isRight) 
+        {
+            Rotate();
+            Direction = -1;
+        }
+
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
 
-        transform.position = transform.position + new Vector3(1f, 0, 0);
+        transform.position = transform.position + new Vector3(2f * Direction, 0, 0);
         transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
-
-        rigidbody.AddForce(new Vector2(600, 50)); //F�rlat�lma
 
         //spriteRenderer.sprite = spr_arrow;
         spriteRenderer.sortingLayerName = "Objects";
@@ -28,6 +36,7 @@ public class Arrow : MonoBehaviour
         boxCollider.offset = new Vector2(-0.006f, -0.007f);
         boxCollider.size = new Vector2(0.17f, 0.05f);
 
+        rigidbody.AddForce(new Vector2(600 * Direction, 50)); //F�rlat�lma
     }
 
     void Update()
@@ -46,5 +55,11 @@ public class Arrow : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    public void Rotate() 
+    {
+        isRight = !isRight;
+        transform.Rotate(0f, 180f, 0f);
     }
 }
