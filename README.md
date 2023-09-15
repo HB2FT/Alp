@@ -1,5 +1,13 @@
 # Alp
 ***
+# V0.7.8
+* Added Kngiht sprites
+* Created animations:
+	- Knight attack
+	- Knight walk
+	- Knight idle
+	* *Made transitions among them
+***
 # V0.7.6
 * Some map improvements
 ***
