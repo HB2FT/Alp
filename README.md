@@ -1,5 +1,22 @@
 # Alp
 ***
+# V0.7.8
+* Added Kngiht sprites
+* Created animations:
+	- Knight attack
+	- Knight walk
+	- Knight idle
+	* *Made transitions among them
+***
+# V0.7.6
+* Some map improvements
+***
+# V0.7.6
+* Fixed throwing arrow to left
+***
+# V0.7.5
+* Arrow disappears when collides an object
+***
 # V0.7.4
 * (Some missing attributes)
 * Addded archery mechanics
