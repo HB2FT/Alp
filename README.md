@@ -1,11 +1,22 @@
 # Alp
 ***
+# V0.7.10
+* Added get Rigidbody func. to Entity
+* Added KnightAttackCollider to Knight
+* Added KnightAttackTrigger to Knight
+* Improved direction mechanics in arrow etc. AddForce
+* Fixed knight die animation 9
+***
 # V0.7.9
 * Added knight mechanics
 * Added knight animations:
 	- Die
 	- Walk
 	- Idle
+# V0.7.8.1
+* Added musics:
+	- It Can't Last (Sunset)
+	- Collateral
 ***
 # V0.7.8
 * Added Kngiht sprites

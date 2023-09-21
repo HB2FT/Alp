@@ -20,7 +20,7 @@ public class Arrow : MonoBehaviour
         if (!player.isRight) 
         {
             Rotate();
-            Direction = -1;
+            Direction *= -1;
         }
 
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
