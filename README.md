@@ -6,6 +6,10 @@
 	- Die
 	- Walk
 	- Idle
+# V0.7.8.1
+* Added musics:
+	- It Can't Last (Sunset)
+	- Collateral
 ***
 # V0.7.8
 * Added Kngiht sprites
