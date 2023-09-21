@@ -1,5 +1,12 @@
 # Alp
 ***
+# V0.7.9
+* Added knight mechanics
+* Added knight animations:
+	- Die
+	- Walk
+	- Idle
+***
 # V0.7.8
 * Added Kngiht sprites
 * Created animations:
