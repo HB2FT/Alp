@@ -1,5 +1,11 @@
 # Alp
 ***
+# V0.7.9
+* Added knight mechanics
+* Added knight animations:
+	- Die
+	- Walk
+	- Idle
 # V0.7.8.1
 * Added musics:
 	- It Can't Last (Sunset)
