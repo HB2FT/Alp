@@ -24,6 +24,7 @@ public abstract class Entity : MonoBehaviour
     }
 
     public Animator Animator { get { return animator; } }
+    public Rigidbody2D Rigidbody { get { return rigidBody; } }
 
     public bool IsDead
     {
