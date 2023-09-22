@@ -31,12 +31,12 @@ public class Arrow : MonoBehaviour
         transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
 
         //spriteRenderer.sprite = spr_arrow;
-        spriteRenderer.sortingLayerName = "Objects";
+        spriteRenderer.sortingLayerName = "Player";
 
         boxCollider.offset = new Vector2(-0.006f, -0.007f);
         boxCollider.size = new Vector2(0.17f, 0.05f);
 
-        rigidbody.AddForce(new Vector2(600 * Direction, 50)); //F�rlat�lma
+        rigidbody.AddForce(new Vector2(600 * Direction, 50)); //F rlat lma
     }
 
     void Update()
