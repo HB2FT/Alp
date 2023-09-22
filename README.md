@@ -1,5 +1,8 @@
 # Alp
 ***
+# V0.7.11
+* Improved 'Player Attack Collider' damage system
+***
 # V0.7.10
 * Added get Rigidbody func. to Entity
 * Added KnightAttackCollider to Knight
