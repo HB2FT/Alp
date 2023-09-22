@@ -1,5 +1,14 @@
 # Alp
 ***
+# V0.7.13
+* Added player animations:
+	- Attack 2 
+	- Attack 3
+* Attemp to make combo between 3 attack animation
+***
+# V0.7.11
+* Improved 'Player Attack Collider' damage system
+***
 # V0.7.10
 * Added get Rigidbody func. to Entity
 * Added KnightAttackCollider to Knight

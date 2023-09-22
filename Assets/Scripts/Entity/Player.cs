@@ -36,6 +36,12 @@ public class Player : Entity
     public const int MIN_MOUSE_SCROLL = 0;
     public int currentMouseScroll = 0;
 
+    public const int attack1 = 0;
+    public const int attack2 = 1;
+    public const int attack3 = 2;
+    public int currentAttackComboIndex = 0;
+    public bool attackCombo;
+
     private AtomicBoolean deathChecker = new AtomicBoolean(true);
     private AtomicBoolean atomicBoolean_lowHealthSoundEffect1 = new AtomicBoolean(true);
     private AtomicBoolean atomicBoolean_lowHealthSoundEffect2 = new AtomicBoolean(true);
@@ -191,9 +197,10 @@ public class Player : Entity
                         animator.SetBool("IsAttacking", true);
                         isAttacking = true;
                         
-                        if (currentMouseScroll == 1)
+                        if (currentMouseScroll == 1) // Attack with sword
                         {
                             attackCollider.SetActive(true);
+
                         }
                     }
                 }
@@ -284,9 +291,27 @@ public class Player : Entity
 
     public void OnAttackAnimationEnd()
     {
-        animator.SetBool("IsAttacking", false);
-        isAttacking = false;
-        attackCollider.SetActive(false);
+        if (!attackCombo)
+        {
+            animator.SetBool("IsAttacking", false);
+            isAttacking = false;
+            attackCollider.SetActive(false);
+        }
+
+        if (attackCombo && currentAttackComboIndex == attack1)
+        {
+            animator.SetInteger("AttackComboIndex", attack2);
+        }
+
+        if (attackCombo && currentAttackComboIndex == attack2)
+        {
+            animator.SetInteger("AttackComboIndex", attack3);
+        }
+
+        if (currentAttackComboIndex == attack3)
+        {
+            attackCombo = false;
+        }
     }
 
     protected override void OnDeath()
