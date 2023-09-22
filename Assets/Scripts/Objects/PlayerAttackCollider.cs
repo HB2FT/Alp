@@ -7,26 +7,34 @@ public class PlayerAttackCollider : MonoBehaviour
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Entity collidedEntitiy = collision.gameObject.GetComponent<Entity>();
 
-        if (collision.gameObject.name == "Öcü")
+        if (collidedEntitiy != null)
         {
-            Öcü collidedÖcü = collision.gameObject.GetComponent<Öcü>();
-            collidedÖcü.health -= Player.Damage;
+            collidedEntitiy.health -= 20;
         }
 
-        if (collision.gameObject.name == "Tepegöz") // Tepegöz -> Head
+        /*
+        if (collision.gameObject.name == "Ã–cÃ¼")
         {
-            TepegözHead head = collision.gameObject.GetComponentInChildren<TepegözHead>();
+            Ã–cÃ¼ collidedÃ–cÃ¼ = collision.gameObject.GetComponent<Ã–cÃ¼>();
+            collidedÃ–cÃ¼.health -= Player.Damage;
+        }
+
+        if (collision.gameObject.name == "TepegÃ¶z") // Tepegï¿½z -> Head
+        {
+            TepegÃ¶zHead head = collision.gameObject.GetComponentInChildren<TepegÃ¶zHead>();
 
             if (head != null)
             {
-                Tepegöz collidedTepegöz = collision.gameObject.GetComponent<Tepegöz>();
-                collidedTepegöz.health -= Player.Damage;
-                collidedTepegöz.Animator.SetBool("isDamaged", true);
-                collidedTepegöz.Animator.SetBool("isRunning", false);
-                collidedTepegöz.Animator.SetBool("isAttacking", false);
-                collidedTepegöz.isDamaged = true;
+                TepegÃ¶z collidedTepegÃ¶z = collision.gameObject.GetComponent<TepegÃ¶z>();
+                collidedTepegÃ¶z.health -= Player.Damage;
+                collidedTepegÃ¶z.Animator.SetBool("isDamaged", true);
+                collidedTepegÃ¶z.Animator.SetBool("isRunning", false);
+                collidedTepegÃ¶z.Animator.SetBool("isAttacking", false);
+                collidedTepegÃ¶z.isDamaged = true;
             }
         }
+        */
     }
 }
