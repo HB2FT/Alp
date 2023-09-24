@@ -5,6 +5,11 @@
 	- Attack 2 
 	- Attack 3
 * Attemp to make combo between 3 attack animation
+* ***
+# V0.7.12
+* New assets added
+* Bow mechanics fixed
+* New areas added
 ***
 # V0.7.11
 * Improved 'Player Attack Collider' damage system
