@@ -1,5 +1,8 @@
 # Alp
 ***
+# V0.8.0
+* Made transitions between attack combos
+***
 # V0.7.13
 * Added player animations:
 	- Attack 2 
