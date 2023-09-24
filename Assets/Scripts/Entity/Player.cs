@@ -77,11 +77,6 @@ public class Player : Entity
         if (!IsDead)
         {
             //
-            // D���k sa�l�k efektleri
-            //
-
-
-            //
             // Stop run animation on key up
             //
             if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
@@ -101,13 +96,13 @@ public class Player : Entity
 
             if (Input.GetKeyDown(KeyCode.F))
             {
-                rigidBody.AddForce(new Vector2(600, 50));
+                rigidBody.AddForce(new Vector2(-600, 50));
             }
 
             ///
 
             if (!bottomBar.activeSelf && isControllable)
-           {
+            {
                 if (Input.GetKey(KeyCode.D) && !bowHanded) // Yay Ku�an�lmam��sa
                 {
                     if (!isGrounded) // Havadaysa
@@ -121,7 +116,7 @@ public class Player : Entity
                     }
                     else // Yerseyse
                     {
-                        if (!isAttacking) // Sald�rm�yorsa
+                        if (!isAttacking) // Saldırmıyorsa
                         {
                             transform.position += transform.right * speed * Time.deltaTime;
 
@@ -194,14 +189,20 @@ public class Player : Entity
                 {
                     if (currentMouseScroll != 0)
                     {
-                        animator.SetBool("IsAttacking", true);
-                        isAttacking = true;
-                        
                         if (currentMouseScroll == 1) // Attack with sword
                         {
                             attackCollider.SetActive(true);
+                            currentAttackComboIndex = 0;
+
+                            if (isAttacking)
+                            {
+                                attackCombo = true;
+                            }
 
                         }
+
+                        animator.SetBool("IsAttacking", true);
+                        isAttacking = true;
                     }
                 }
 
@@ -289,29 +290,78 @@ public class Player : Entity
         }
     }
 
-    public void OnAttackAnimationEnd()
+    public void OnFirstAttackAnimationStart()
     {
+        attackCombo = false;
+        attackCollider.SetActive(true);
+    }
+
+    public void OnSecondAttackAnimationStart()
+    {
+        attackCombo = false;
+        attackCollider.SetActive(true);
+
+    }
+
+    public void OnThirdAttackAnimationStart()
+    {
+        attackCombo = false;
+        attackCollider.SetActive(true);
+    }
+
+    public void OnFirstAttackAnimationEnd()
+    {
+        attackCollider.SetActive(false);
+
         if (!attackCombo)
         {
             animator.SetBool("IsAttacking", false);
             isAttacking = false;
-            attackCollider.SetActive(false);
-        }
 
-        if (attackCombo && currentAttackComboIndex == attack1)
-        {
-            animator.SetInteger("AttackComboIndex", attack2);
+            currentAttackComboIndex = 0;
+            animator.SetInteger("AttackComboIndex", 0);
         }
+        else
+        {
+            animator.SetBool("IsAttackCombo", true);
+            currentAttackComboIndex++;
+            animator.SetInteger("AttackComboIndex", 1);
+        }
+    }
 
-        if (attackCombo && currentAttackComboIndex == attack2)
-        {
-            animator.SetInteger("AttackComboIndex", attack3);
-        }
+    public void OnSecondAttackAnimationEnd()
+    {
+        attackCollider.SetActive(false);
 
-        if (currentAttackComboIndex == attack3)
+        if (attackCombo)
         {
-            attackCombo = false;
+            animator.SetBool("IsAttackCombo", true);
+            currentAttackComboIndex++;
+            animator.SetInteger("AttackComboIndex", 2);
         }
+        else
+        {
+            animator.SetBool("IsAttackCombo", false);
+
+            isAttacking = false;
+            animator.SetBool("IsAttacking", false);
+
+            currentAttackComboIndex = 0;
+            animator.SetInteger("AttackComboIndex", 0);
+        }
+    }
+
+    public void OnThirdAttackAnimationEnd()
+    {
+        attackCombo = false;
+        animator.SetBool("IsAttackCombo", attackCombo);
+        animator.SetBool("IsAttacking", false);
+
+        isAttacking = false;
+        attackCollider.SetActive(false);
+
+        currentAttackComboIndex = 0;
+        animator.SetInteger("AttackComboIndex", 0);
     }
 
     protected override void OnDeath()
