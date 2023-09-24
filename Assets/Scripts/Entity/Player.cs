@@ -77,11 +77,6 @@ public class Player : Entity
         if (!IsDead)
         {
             //
-            // D���k sa�l�k efektleri
-            //
-
-
-            //
             // Stop run animation on key up
             //
             if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
@@ -101,13 +96,13 @@ public class Player : Entity
 
             if (Input.GetKeyDown(KeyCode.F))
             {
-                rigidBody.AddForce(new Vector2(600, 50));
+                rigidBody.AddForce(new Vector2(-600, 50));
             }
 
             ///
 
             if (!bottomBar.activeSelf && isControllable)
-           {
+            {
                 if (Input.GetKey(KeyCode.D) && !bowHanded) // Yay Ku�an�lmam��sa
                 {
                     if (!isGrounded) // Havadaysa
@@ -121,7 +116,7 @@ public class Player : Entity
                     }
                     else // Yerseyse
                     {
-                        if (!isAttacking) // Sald�rm�yorsa
+                        if (!isAttacking) // Saldırmıyorsa
                         {
                             transform.position += transform.right * speed * Time.deltaTime;
 

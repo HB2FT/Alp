@@ -1,5 +1,8 @@
 # Alp
 ***
+# V0.8.1
+* Fixed knockback bugs on Tepegöz's attack
+***
 # V0.8.0
 * Made transitions between attack combos
 ***

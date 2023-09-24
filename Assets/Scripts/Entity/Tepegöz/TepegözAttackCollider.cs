@@ -22,9 +22,10 @@ public class TepegözAttackCollider : MonoBehaviour
         if (collidedPlayer != null)
         {
             Rigidbody2D rbPlayer = collidedGameObject.GetComponent<Rigidbody2D>();
-            rbPlayer.AddForce(new Vector2(10000, 5), ForceMode2D.Impulse);
+            rbPlayer.AddForce(new Vector2(-10, 5), ForceMode2D.Impulse); Debug.Log("TepegözAttackCollider -> rbPLayer.AddForce");
             collidedPlayer.health -= tepegöz.damage;
 
+            gameObject.SetActive(false);
         }
     }
 }
