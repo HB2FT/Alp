@@ -1,5 +1,8 @@
 # Alp
 ***
+# V0.8.2
+* Some forest map designs
+***
 # V0.8.1
 * Fixed knockback bugs on Tepegöz's attack
 ***
