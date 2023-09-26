@@ -31,6 +31,7 @@ public class Player : Entity
     public float gravity;
     public static int Damage = 20;
     public int damage = Damage;
+    public bool jumpQuery;
 
     public const int MAX_MOUSE_SCROLL = 2;
     public const int MIN_MOUSE_SCROLL = 0;
@@ -160,11 +161,21 @@ public class Player : Entity
 
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    if (isGrounded)
+                    if (isGrounded && !jumpQuery)
                     {
-                        rigidBody.AddForce(new Vector2(0f, jumpForce));
+                        rigidBody.AddForce(new Vector2(0f, jumpForce)); // Jump
                         //rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpForce);
                     }
+                    else 
+                    {
+                        if (rigidBody.velocity.y < 0) jumpQuery = true;
+                    }
+                }
+
+                if (isGrounded && jumpQuery) 
+                {
+                    rigidBody.AddForce(new Vector2(0f, jumpForce));
+                    jumpQuery = false;
                 }
 
                 #region Hand Weapon
@@ -265,6 +276,15 @@ public class Player : Entity
         if (isDying)
         {
             
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name == "forestDown1") 
+        {
+            GameCamera gameCamera = mainCam.GetComponent<GameCamera>();
+            gameCamera.MoveDown(1); // Bir kat aşağı taşı
         }
     }
 
