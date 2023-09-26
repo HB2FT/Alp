@@ -279,15 +279,6 @@ public class Player : Entity
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.name == "forestDown1") 
-        {
-            GameCamera gameCamera = mainCam.GetComponent<GameCamera>();
-            gameCamera.MoveDown(1); // Bir kat aşağı taşı
-        }
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.name == "Terrain") // Zemine de�iyor mu
