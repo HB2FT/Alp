@@ -1,5 +1,25 @@
 # Alp
 ***
+# V0.8.2
+* Some forest map designs
+***
+# V0.8.1
+* Fixed knockback bugs on Tepegöz's attack
+***
+# V0.8.0
+* Made transitions between attack combos
+***
+# V0.7.13
+* Added player animations:
+	- Attack 2 
+	- Attack 3
+* Attemp to make combo between 3 attack animation
+* ***
+# V0.7.12
+* New assets added
+* Bow mechanics fixed
+* New areas added
+***
 # V0.7.11
 * Improved 'Player Attack Collider' damage system
 ***
