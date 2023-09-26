@@ -1,5 +1,12 @@
 # Alp
 ***
+# V0.8.3
+* Improved jump mechanics
+* Imporved GameCamera's following manchanic
+	- Added methods:
+		+ MoveDown
+		+ MoveUp
+***
 # V0.8.2
 * Some forest map designs
 ***
