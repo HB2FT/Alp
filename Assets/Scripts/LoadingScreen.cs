@@ -8,18 +8,26 @@ public class LoadingScreen : MonoBehaviour
 {
     public GameObject loadingScreen;
 
+    private AtomicBoolean atomicBoolean = new AtomicBoolean(true);
+
     public void LoadScene()
     {
         loadingScreen.SetActive(true);
-        Debug.Log("Set active");
 
         StartCoroutine(Load("MainMenu"));
 
-        
+
     }
 
     IEnumerator Load(string sceneName)
     {
         yield return SceneManager.LoadSceneAsync(sceneName);
+    }
+
+    IEnumerator ChangeTransparency()
+    {
+        yield return new WaitForSeconds(10);
+
+        StartCoroutine(ChangeTransparency());
     }
 }
