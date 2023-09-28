@@ -62,18 +62,7 @@ public class Player : Entity
 
     void Update()
     {
-        ///DEBUG
-        if (currentMouseScroll == 2)
-        {
-            speed = 0; 
-            bowHanded = true;
-        }
-        else
-        {
-            speed = 5;
-            bowHanded = false;
-        }
-        ///
+        
 
         if (!IsDead)
         {
@@ -104,7 +93,7 @@ public class Player : Entity
 
             if (!bottomBar.activeSelf && isControllable)
             {
-                if (Input.GetKey(KeyCode.D) && !bowHanded) // Yay Ku�an�lmam��sa
+                if (Input.GetKey(KeyCode.D)) // Yay Ku�an�lmam��sa
                 {
                     if (!isGrounded) // Havadaysa
                     {
@@ -131,7 +120,7 @@ public class Player : Entity
                     animator.SetBool("IsRunning", true);
                 }
 
-                if (Input.GetKey(KeyCode.A) && !bowHanded) // Yay ku�an�lmam��sa
+                if (Input.GetKey(KeyCode.A)) // Yay ku�an�lmam��sa
                 {
                     if (!isGrounded) // Havadaysa
                     {
@@ -276,15 +265,6 @@ public class Player : Entity
         if (isDying)
         {
             
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.name == "forestDown1") 
-        {
-            GameCamera gameCamera = mainCam.GetComponent<GameCamera>();
-            gameCamera.MoveDown(1); // Bir kat aşağı taşı
         }
     }
 

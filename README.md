@@ -1,5 +1,13 @@
 # Alp
 ***
+# V0.8.5
+* Added adventurer-bow-run sprites
+* Created player -> Run Bow animation
+***
+# V0.8.4
+* Improved camera following mechanics
+* Changed Loading Screen image
+***
 # V0.8.3
 * Improved jump mechanics
 * Imporved GameCamera's following manchanic

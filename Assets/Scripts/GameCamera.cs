@@ -12,7 +12,7 @@ public class GameCamera : MonoBehaviour
     public float smoothTime = 0.25f;
     public Vector3 velocity = Vector3.zero;
 
-    public float yOffset;
+    public int yOffset = 0;
     private const int yEkseniKatsayisi = 10;
 
     [SerializeField] public Transform target;
@@ -34,13 +34,13 @@ public class GameCamera : MonoBehaviour
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
     }
 
-    public void MoveDown(int amount) 
+    public void MoveDown() 
     {
-        yOffset = -amount;
+        yOffset--;
     }
 
-    public void MoveUp(int amount)
+    public void MoveUp()
     {
-        yOffset = amount;
+        yOffset++;
     }
 }
