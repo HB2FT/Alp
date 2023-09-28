@@ -181,6 +181,8 @@ public class Player : Entity
                     animator.SetInteger("MouseScroll", currentMouseScroll);
                 }
 
+                bowHanded = currentMouseScroll == 2; // currentMouseScroll değişkeninin 2'ye eşit olma durmu (Eşitse true değilse false olacak)
+
                 #endregion
 
                 #region Attack
@@ -215,14 +217,18 @@ public class Player : Entity
                         animator.SetBool("IsAttacking", false);
                     }
 
+                    Debug.Log("bowPrepared: " + bowPrepared + " bowHanded: " + bowHanded);
+
                     if (bowHanded && bowPrepared)
                     {
-                        animator.SetBool("ArrowThrowable", true);
+                        animator.SetBool("ArrowThrowable", true); Debug.Log("line 220");
                     }
+
+                    Debug.Log("Line 223");
                 }
 
                 #endregion
-           }
+            }
 
             #endregion
 

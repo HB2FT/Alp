@@ -1,5 +1,14 @@
 # Alp
 ***
+# V0.9.0
+* Added entity 'Hortlak'
+* Created animations: 
+	- Hortlak Idle
+	- Hortlak Walk
+	- Hortlak Attack
+	- Hortlak Hurt
+	- Hortlak Spawn
+***
 # V0.8.5
 * Added adventurer-bow-run sprites
 * Created player -> Run Bow animation
