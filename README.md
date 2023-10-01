@@ -1,5 +1,10 @@
 # Alp
 ***
+# V0.9.1
+* Hortlak mechanics improved
+* Bug in Tepegöz's attack mechanic fixed
+* Player's attack mechanic fized
+***
 # V0.9.0
 * Added entity 'Hortlak'
 * Created animations: 

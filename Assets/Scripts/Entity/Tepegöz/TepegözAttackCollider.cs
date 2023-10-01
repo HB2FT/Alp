@@ -14,15 +14,26 @@ public class TepegözAttackCollider : MonoBehaviour
         tepegöz = GetComponentInParent<Tepegöz>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject collidedGameObject = collision.gameObject;
         Player collidedPlayer = collidedGameObject.GetComponent<Player>();
 
+        int direction;
+
+        if ((collidedPlayer.transform.position.x - transform.position.x) > 0)
+        {
+            direction = -1;
+        }
+        else
+        {
+            direction = 1;
+        }
+
         if (collidedPlayer != null)
         {
-            Rigidbody2D rbPlayer = collidedGameObject.GetComponent<Rigidbody2D>();
-            rbPlayer.AddForce(new Vector2(-10, 5), ForceMode2D.Impulse); Debug.Log("TepegözAttackCollider -> rbPLayer.AddForce");
+            Rigidbody2D rbPlayer = collidedPlayer.GetComponent<Rigidbody2D>();
+            rbPlayer.AddForce(new Vector2(10 * direction, 5), ForceMode2D.Impulse); 
             collidedPlayer.health -= tepegöz.damage;
 
             gameObject.SetActive(false);

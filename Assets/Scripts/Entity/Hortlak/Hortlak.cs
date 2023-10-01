@@ -1,60 +1,81 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Hortlak : Entity
 {
-    private bool isAlive;
-    private bool isTriggered;
-    private bool isAttacking;
-    private bool isDamaged;
-    private bool isDead;
+    public bool isAlive;
+    public bool isTriggered;
+    public bool isAttacking;
+    public bool isDamaged;
+    public bool isDead;
+
+    private bool isAliveTemp;
+    private float speedTemp;
 
     public GameObject target; // Player
+    public Camera camera; // For get seen area
+    public BoxCollider2D boxCollider;
+    public GameObject attackCollider;
 
     public AtomicBoolean deathChecker = new AtomicBoolean(true);
+    private AtomicBoolean speedControllerDuringAttack = new AtomicBoolean(true);
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        boxCollider = GetComponent<BoxCollider2D>();
+        speedTemp = speed;
     }
 
     void Update()
     {
+        SetAnimationVariables();
+        CheckTrigger();
+
         #region Check health
 
-        isAlive = health > 0;
+        isAliveTemp = health > 0;
 
         #endregion
 
-        if (animator.GetBool("isAlive"))
+        if (isAliveTemp)
         {
-            ///
-            /// Debug
 
-            animator.SetBool("isTriggered", true);
+            if (isDead || !isAlive) speed = 0; else speed = speedTemp;
 
-            ///
-
-            if (isDead || !isAlive) speed = 0; else speed = 1;
-
-            #region Move codes
-
-            if (target.transform.position.x < transform.position.x) // Move left
+            if (animator.GetBool("isTriggered"))
             {
-                if (isRight) Rotate();
+                #region Move codes
 
-                transform.position += transform.right * speed * Time.deltaTime;
+                if (target.transform.position.x < transform.position.x) // Move left
+                {
+                    if (isRight) Rotate();
+
+                    transform.position += transform.right * speed * Time.deltaTime;
+                }
+
+                if (target.transform.position.x > transform.position.x) // Move right
+                {
+                    if (!isRight) Rotate();
+
+                    transform.position += transform.right * speed * Time.deltaTime;
+                }
+
+                #endregion
             }
 
-            if (target.transform.position.x > transform.position.x) // Move right
+            if (animator.GetBool("isAttacking"))
             {
-                if (!isRight) Rotate();
-
-                transform.position += transform.right * speed * Time.deltaTime;
+                if (speedControllerDuringAttack.Value) speed = 0;
             }
+            else
+            {
+                speedControllerDuringAttack.Value = true;
 
-            #endregion
+                speed = speedTemp;
+            }
         }
         else
         {
@@ -66,8 +87,34 @@ public class Hortlak : Entity
     {
         base.OnDeath();
 
-        animator.SetBool("isAlive", false);
-        animator.SetBool("isDead", true);
+        isAlive = false;
+        isDead = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Player player = collision.gameObject.GetComponent<Player>();
+
+        if (player != null)
+        {
+            isAttacking = true;
+        }
+    }
+
+    private void CheckTrigger()
+    {
+        Plane[] cameraPlanes = GeometryUtility.CalculateFrustumPlanes(camera);
+
+        isTriggered = GeometryUtility.TestPlanesAABB(cameraPlanes, boxCollider.bounds);
+    }
+
+    private void SetAnimationVariables()
+    {
+        animator.SetBool("isAlive", isAlive);
+        animator.SetBool("isTriggered", isTriggered);
+        animator.SetBool("isAttacking", isAttacking);
+        animator.SetBool("isDamaged", isDamaged);
+        animator.SetBool("isDead", isDead);
     }
 
     public void SetIsDamagedFalse()
@@ -77,6 +124,18 @@ public class Hortlak : Entity
 
     public void SetIsAliveTrue()
     {
-        animator.SetBool("isAlive", true);
+        isAlive = true;
+    }
+
+    public void OnAttackEnd()
+    {
+        isAttacking = false;
+
+        attackCollider.gameObject.SetActive(false);
+    }
+
+    public void SetAttackColliderActive()
+    {
+        attackCollider.gameObject.SetActive(true);
     }
 }
