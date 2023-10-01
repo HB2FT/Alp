@@ -10,19 +10,21 @@ public class HortlakAttackCollider : MonoBehaviour
 
         int direction;
 
-        if ((player.transform.position.x - transform.position.x) > 0)
-        {
-            direction = 1;
-        }
-        else
-        {
-            direction = -1;
-        }
-
         if (player != null)
         {
+            if ((player.transform.position.x - transform.position.x) > 0)
+            {
+                direction = 1;
+            }
+            else
+            {
+                direction = -1;
+            }
+
             player.health -= 15;
             player.GetComponent<Rigidbody2D>().AddForce(new Vector2(5 * direction, 0), ForceMode2D.Impulse);
+
+            GetComponentInParent<Hortlak>().isDamaged = true;
         }
     }
 }
