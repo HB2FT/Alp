@@ -49,6 +49,9 @@ TagManager:
   - name: Objects
     uniqueID: 3543990155
     locked: 0
+  - name: Entity
+    uniqueID: 1661351157
+    locked: 0
   - name: Terrain
     uniqueID: 2992198695
     locked: 0

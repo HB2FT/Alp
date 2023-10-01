@@ -81,7 +81,7 @@ public class Player : Entity
 
             if (Input.GetKeyDown(KeyCode.X))
             {
-                health -= 20;
+                health -= 20; attackCollider.SetActive(false);
             }
 
             if (Input.GetKeyDown(KeyCode.F))
@@ -181,6 +181,8 @@ public class Player : Entity
                     animator.SetInteger("MouseScroll", currentMouseScroll);
                 }
 
+                bowHanded = currentMouseScroll == 2; // currentMouseScroll değişkeninin 2'ye eşit olma durmu (Eşitse true değilse false olacak)
+
                 #endregion
 
                 #region Attack
@@ -191,7 +193,7 @@ public class Player : Entity
                     {
                         if (currentMouseScroll == 1) // Attack with sword
                         {
-                            attackCollider.SetActive(true);
+                            attackCollider.SetActive(true); Debug.Log("attack with sword");
                             currentAttackComboIndex = 0;
 
                             if (isAttacking)
@@ -222,7 +224,7 @@ public class Player : Entity
                 }
 
                 #endregion
-           }
+            }
 
             #endregion
 
@@ -316,7 +318,7 @@ public class Player : Entity
         if (!attackCombo)
         {
             animator.SetBool("IsAttacking", false);
-            isAttacking = false;
+            isAttacking = false; Debug.Log("on first attack animation end -> !attack combo");
 
             currentAttackComboIndex = 0;
             animator.SetInteger("AttackComboIndex", 0);
@@ -406,5 +408,10 @@ public class Player : Entity
 
         arrow.GetComponent<SpriteRenderer>().sprite = spr_Arrow;
         arrow.transform.position = bounds;
+    }
+
+    public void SetAttackColliderDeactive()
+    {
+        attackCollider.SetActive(false);
     }
 }
