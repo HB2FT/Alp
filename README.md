@@ -1,5 +1,8 @@
 # Alp
 ***
+# V0.9.2
+* Added walk with prepared bow animation (speed = speed / 4)
+***
 # V0.9.1
 * Hortlak mechanics improved
 * Bug in Tepegöz's attack mechanic fixed
