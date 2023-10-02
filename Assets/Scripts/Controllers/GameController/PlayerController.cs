@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour // Player'ın etkileşimlerini, ko
     public Player player;
     public StorySceneManager StorySceneManager;
 
+    public const float worldBorderY = -25f;
+
     private AtomicBoolean atomicBool = new AtomicBoolean(true);
 
     void Start()
@@ -19,6 +21,6 @@ public class PlayerController : MonoBehaviour // Player'ın etkileşimlerini, ko
 
     void Update()
     {
-        
+        if (player.gameObject.transform.position.y < worldBorderY) player.health = 0;
     }
 }

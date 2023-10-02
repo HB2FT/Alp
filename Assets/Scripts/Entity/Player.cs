@@ -288,10 +288,9 @@ public class Player : Entity
             isGrounded = true;
         }
 
-        if (collision.gameObject.name == "Öcü")
+        if (collision.gameObject.name == "DamagableObjects")
         {
-            Öcü collidedÖcü = collision.gameObject.GetComponent<Öcü>();
-            //collided�c�.health -= damage;
+            health = 0;
         }
     }
 
