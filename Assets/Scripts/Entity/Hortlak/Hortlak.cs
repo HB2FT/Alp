@@ -51,6 +51,7 @@ public class Hortlak : Entity
 
             if (animator.GetBool("isTriggered"))
             {
+                /*
                 #region Move codes
 
                 if (target.transform.position.x < transform.position.x) // Move left
@@ -68,6 +69,9 @@ public class Hortlak : Entity
                 }
 
                 #endregion
+                */
+
+                transform.position += transform.right * speed * Time.deltaTime;
             }
 
             if (animator.GetBool("isAttacking"))
@@ -94,7 +98,7 @@ public class Hortlak : Entity
         isAlive = false;
         isDead = true;
 
-        rigidBody.gravityScale = 0;
+        rigidBody.simulated = false;
         boxCollider.enabled = false;
     }
 
@@ -105,6 +109,14 @@ public class Hortlak : Entity
         if (player != null)
         {
             isAttacking = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("NPCBorder"))
+        {
+            Rotate();
         }
     }
 

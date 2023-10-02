@@ -424,4 +424,9 @@ public class Player : Entity
     {
         attackCollider.SetActive(false);
     }
+
+    public void FreezeAnimation()
+    {
+        animator.speed = 0f;
+    }
 }

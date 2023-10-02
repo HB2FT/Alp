@@ -1,10 +1,14 @@
 # Alp
 ***
-# V0.9.3.1
+# V0.9.3
 * Added sprites:
 	- Hortlak -> Die
 * Created animations:
 	- Hortlak -> Die
+* Öcü gives damage to player (damage = 15)
+* Fixed bug on transition to Player Die animation
+* Thorns kill player at once
+* Improved Hortlak's movement mechanic
 ***
 # V0.9.2.1
 * Missing changes
