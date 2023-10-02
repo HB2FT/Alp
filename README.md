@@ -1,5 +1,8 @@
 # Alp
 ***
+# V0.9.2.1
+* Missing changes
+***
 # V0.9.2
 * Added walk with prepared bow animation (speed = speed / 4)
 ***
