@@ -27,12 +27,15 @@ public class Hortlak : Entity
         animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
         speedTemp = speed;
+        animator.speed = 0;
     }
 
     void Update()
     {
         SetAnimationVariables();
         CheckTrigger();
+
+        if (isTriggered) animator.speed = 1;
 
         #region Check health
 
