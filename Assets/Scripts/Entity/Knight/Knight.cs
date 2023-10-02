@@ -32,6 +32,7 @@ public class Knight : Entity
         {
             if (isTriggered && !isAttacking)
             {
+                /*
                 if (target.transform.position.x > transform.position.x)
                 {
                     if (!isRight) Rotate();
@@ -45,6 +46,9 @@ public class Knight : Entity
 
                     transform.position -= speed * Time.deltaTime * transform.right;
                 }
+                */
+
+                transform.position -= speed * Time.deltaTime * transform.right;
 
                 animator.SetBool("isWalking", true);
             }
@@ -75,6 +79,14 @@ public class Knight : Entity
         GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 
         animator.SetBool("isDead", true);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("NPCBorder"))
+        {
+            Rotate();
+        }
     }
 
     public void EnableAttackCollider()
