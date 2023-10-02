@@ -8,6 +8,8 @@ public class Öcü : Entity
     public float range;
     public float border;
 
+    public int damage;
+
     public Player player; // Accessed for damage
 
     public AtomicBoolean isDead;
@@ -41,6 +43,17 @@ public class Öcü : Entity
             {
                 this.gameObject.SetActive(false);
             }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Player player = collision.gameObject.GetComponent<Player>();
+
+        if (player != null)
+        {
+            player.health -= damage;
+            player.Rigidbody.AddForce(new Vector2(3, 1));
         }
     }
 }

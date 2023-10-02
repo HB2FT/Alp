@@ -1,5 +1,11 @@
 # Alp
 ***
+# V0.9.3.1
+* Added sprites:
+	- Hortlak -> Die
+* Created animations:
+	- Hortlak -> Die
+***
 # V0.9.2.1
 * Missing changes
 ***
