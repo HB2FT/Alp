@@ -33,6 +33,8 @@ public class Player : Entity
     public int damage = Damage;
     public bool jumpQuery;
 
+    private float speedTemp;
+
     public const int MAX_MOUSE_SCROLL = 2;
     public const int MIN_MOUSE_SCROLL = 0;
     public int currentMouseScroll = 0;
@@ -58,12 +60,12 @@ public class Player : Entity
         volumeLowHealthEffect = postProcessVolumes[1];
 
         Time.timeScale = 1;
+
+        speedTemp = speed;
     }
 
     void Update()
     {
-        
-
         if (!IsDead)
         {
             //
@@ -81,7 +83,7 @@ public class Player : Entity
 
             if (Input.GetKeyDown(KeyCode.X))
             {
-                health -= 20;
+                health -= 20; attackCollider.SetActive(false);
             }
 
             if (Input.GetKeyDown(KeyCode.F))
@@ -106,7 +108,7 @@ public class Player : Entity
                     }
                     else // Yerseyse
                     {
-                        if (!isAttacking) // Saldırmıyorsa
+                        if (!isAttacking || bowHanded) // Saldırmıyorsa
                         {
                             transform.position += transform.right * speed * Time.deltaTime;
 
@@ -134,7 +136,7 @@ public class Player : Entity
                     }
                     else // Yerdeyse
                     {
-                        if (!isAttacking) // Sald�rm�yorsa
+                        if (!isAttacking || bowHanded) // Sald�rm�yorsa
                         {
                             transform.position -= -transform.right * speed * Time.deltaTime;
 
@@ -181,6 +183,17 @@ public class Player : Entity
                     animator.SetInteger("MouseScroll", currentMouseScroll);
                 }
 
+                bowHanded = currentMouseScroll == 2; // currentMouseScroll değişkeninin 2'ye eşit olma durmu (Eşitse true değilse false olacak)
+
+                if (bowHanded && isAttacking)
+                {
+                    speed = speedTemp / 4;
+                }
+                else
+                {
+                    speed = speedTemp;
+                }
+
                 #endregion
 
                 #region Attack
@@ -222,7 +235,7 @@ public class Player : Entity
                 }
 
                 #endregion
-           }
+            }
 
             #endregion
 
@@ -316,7 +329,7 @@ public class Player : Entity
         if (!attackCombo)
         {
             animator.SetBool("IsAttacking", false);
-            isAttacking = false;
+            isAttacking = false; Debug.Log("on first attack animation end -> !attack combo");
 
             currentAttackComboIndex = 0;
             animator.SetInteger("AttackComboIndex", 0);
@@ -406,5 +419,10 @@ public class Player : Entity
 
         arrow.GetComponent<SpriteRenderer>().sprite = spr_Arrow;
         arrow.transform.position = bounds;
+    }
+
+    public void SetAttackColliderDeactive()
+    {
+        attackCollider.SetActive(false);
     }
 }

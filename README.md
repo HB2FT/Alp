@@ -1,5 +1,22 @@
 # Alp
 ***
+# V0.9.2
+* Added walk with prepared bow animation (speed = speed / 4)
+***
+# V0.9.1
+* Hortlak mechanics improved
+* Bug in Tepegöz's attack mechanic fixed
+* Player's attack mechanic fized
+***
+# V0.9.0
+* Added entity 'Hortlak'
+* Created animations: 
+	- Hortlak Idle
+	- Hortlak Walk
+	- Hortlak Attack
+	- Hortlak Hurt
+	- Hortlak Spawn
+***
 # V0.8.5
 * Added adventurer-bow-run sprites
 * Created player -> Run Bow animation
