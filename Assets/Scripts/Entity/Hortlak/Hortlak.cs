@@ -24,6 +24,7 @@ public class Hortlak : Entity
 
     void Start()
     {
+        rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
         speedTemp = speed;
@@ -35,8 +36,6 @@ public class Hortlak : Entity
         SetAnimationVariables();
         CheckTrigger();
 
-        if (isTriggered) animator.speed = 1;
-
         #region Check health
 
         isAliveTemp = health > 0;
@@ -47,6 +46,8 @@ public class Hortlak : Entity
         {
 
             if (isDead || !isAlive) speed = 0; else speed = speedTemp;
+
+            if (isTriggered) animator.speed = 1;
 
             if (animator.GetBool("isTriggered"))
             {
@@ -92,6 +93,9 @@ public class Hortlak : Entity
 
         isAlive = false;
         isDead = true;
+
+        rigidBody.gravityScale = 0;
+        boxCollider.enabled = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -140,5 +144,10 @@ public class Hortlak : Entity
     public void SetAttackColliderActive()
     {
         attackCollider.gameObject.SetActive(true);
+    }
+
+    public void FreezeAnimation()
+    {
+        animator.speed = 0f;
     }
 }
