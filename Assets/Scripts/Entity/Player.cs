@@ -33,6 +33,9 @@ public class Player : Entity
     public int damage = Damage;
     public bool jumpQuery;
 
+    public bool isSliding;
+    public float slideForce;
+
     private float speedTemp;
 
     public const int MAX_MOUSE_SCROLL = 2;
@@ -88,12 +91,12 @@ public class Player : Entity
 
             if (Input.GetKeyDown(KeyCode.F))
             {
-                rigidBody.AddForce(new Vector2(-600, 50));
+                rigidBody.AddForce(new Vector2(slideForce, 0));
             }
 
             ///
 
-            if (!bottomBar.activeSelf && isControllable)
+            if (!bottomBar.activeSelf && isControllable && !IsSliding)
             {
                 if (Input.GetKey(KeyCode.D)) // Yay Ku�an�lmam��sa
                 {
@@ -150,11 +153,11 @@ public class Player : Entity
                     animator.SetBool("IsRunning", true);
                 }
 
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.Space)) // Jump
                 {
                     if (isGrounded && !jumpQuery)
                     {
-                        rigidBody.AddForce(new Vector2(0f, jumpForce)); // Jump
+                        rigidBody.AddForce(new Vector2(0f, jumpForce)); 
                         //rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpForce);
                     }
                     else 
@@ -169,32 +172,19 @@ public class Player : Entity
                     jumpQuery = false;
                 }
 
-                #region Hand Weapon
-
-                if (Input.mouseScrollDelta.y < 0 && currentMouseScroll < MAX_MOUSE_SCROLL)
+                /*
+                 * Must run to slide
+                 */
+                if (Input.GetKeyDown(KeyCode.K) && IsRunning) // Slide
                 {
-                    currentMouseScroll++;
-                    animator.SetInteger("MouseScroll", currentMouseScroll);
-                }
+                    int direction;
 
-                if (Input.mouseScrollDelta.y > 0 && currentMouseScroll > MIN_MOUSE_SCROLL)
-                {
-                    currentMouseScroll--;
-                    animator.SetInteger("MouseScroll", currentMouseScroll);
-                }
+                    if (isRight) direction = 1;
+                    else direction = -1;
 
-                bowHanded = currentMouseScroll == 2; // currentMouseScroll değişkeninin 2'ye eşit olma durmu (Eşitse true değilse false olacak)
-
-                if (bowHanded && isAttacking)
-                {
-                    speed = speedTemp / 4;
+                    IsSliding = true;
+                    rigidBody.AddForce(new Vector2(slideForce * direction, 0f));
                 }
-                else
-                {
-                    speed = speedTemp;
-                }
-
-                #endregion
 
                 #region Attack
 
@@ -235,6 +225,33 @@ public class Player : Entity
                 }
 
                 #endregion
+            }
+
+            #endregion
+
+            #region Hand Weapon
+
+            if (Input.mouseScrollDelta.y < 0 && currentMouseScroll < MAX_MOUSE_SCROLL)
+            {
+                currentMouseScroll++;
+                animator.SetInteger("MouseScroll", currentMouseScroll);
+            }
+
+            if (Input.mouseScrollDelta.y > 0 && currentMouseScroll > MIN_MOUSE_SCROLL)
+            {
+                currentMouseScroll--;
+                animator.SetInteger("MouseScroll", currentMouseScroll);
+            }
+
+            bowHanded = currentMouseScroll == 2; // currentMouseScroll değişkeninin 2'ye eşit olma durmu (Eşitse true değilse false olacak)
+
+            if (bowHanded && isAttacking)
+            {
+                speed = speedTemp / 4;
+            }
+            else
+            {
+                speed = speedTemp;
             }
 
             #endregion
@@ -428,5 +445,46 @@ public class Player : Entity
     public void FreezeAnimation()
     {
         animator.speed = 0f;
+    }
+
+    public void OnSlideEnd()
+    {
+        //IsSliding = false;
+    }
+
+    public void CheckSlide()
+    {
+        float velocityX = rigidBody.velocity.x;
+
+        if ((velocityX < 2f && velocityX >= 0) || (velocityX > -2 && velocityX <= 0))
+        {
+            IsSliding = false;
+        }
+    }
+
+    public bool IsSliding
+    {
+        get
+        {
+            isSliding = animator.GetBool("IsSliding");
+            return isSliding;
+        }
+        set
+        {
+            isSliding = value;
+            animator.SetBool("IsSliding", isSliding); 
+        }
+    }
+
+    public bool IsRunning
+    {
+        get
+        {
+            return animator.GetBool("IsRunning");
+        }
+        set
+        {
+            animator.SetBool("IsRunning", value);
+        }
     }
 }

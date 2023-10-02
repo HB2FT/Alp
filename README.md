@@ -7,11 +7,15 @@
 	- Player -> Stand
 * Created animations:
 	- Hortlak -> Die
+	- Player -> Slide
+	- Player -> Stand
 * Öcü gives damage to player (damage = 15)
 * Fixed bug on transition to Player Die animation
 * Thorns kill player at once
 * Improved Hortlak's movement mechanic
 * Improved Knight's movement mechanic
+* Added slide mechanic to Player:
+	- Run and press 'K'
 ***
 # V0.9.2.1
 * Missing changes
