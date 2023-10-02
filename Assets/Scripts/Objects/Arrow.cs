@@ -54,7 +54,11 @@ public class Arrow : MonoBehaviour
             collidedEntity.health -= damage;
         }
 
-        Destroy(gameObject);
+        boxCollider.enabled = false;
+        rigidbody.freezeRotation = true;  
+        rigidbody.gravityScale = 0f;
+
+        //Destroy(gameObject);
     }
 
     public void Rotate() 
