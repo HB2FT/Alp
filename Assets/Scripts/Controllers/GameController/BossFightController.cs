@@ -23,17 +23,25 @@ public class BossFightController : MonoBehaviour
 
     void Update()
     {
-        if (combatStarted && once1.Value)
+        if (combatStarted)
         {
-            music.Play(session, false);
-        }
+            if (once1.Value)
+            {
+                music.Play(session, false);
+            }
 
-        if (music.clipEnded && once3.Value)
-        {
-            music.PlayNext(false);
-        }
+            if (music.isEnded)
+            {
+                music.PlayNext(true);
+            }
 
-        if (tepegöz.health <= 0 && once2.Value) OnEndBossFight();
+            if (music.clipEnded && once3.Value)
+            {
+                music.PlayNext(false);
+            }
+
+            if (tepegöz.health <= 0 && once2.Value) OnEndBossFight();
+        }
     }
 
     public void OnEndBossFight()

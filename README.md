@@ -1,9 +1,17 @@
 # Alp
 ***
-# VAlpha
+# V Alpha
 * Changed slide key from 'K' to 'Left Shift'
 * Set Boss Fight Cut Scene 
 * Fixed bugs on Tepegöz's animation
+* Changed Health Bar
+* Changed Boss Fight Music
+* Added healing mechanic:
+	- Elixir icon and remaining elixir count on UI
+	- Press 'E' to use elixir
+* Changed Main Menu background animation
+* Added ambient sound mechanic
+* Added a mini tutorial
 ***
 # V0.9.3
 * Added sprites:
