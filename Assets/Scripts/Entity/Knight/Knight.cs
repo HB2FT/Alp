@@ -77,6 +77,7 @@ public class Knight : Entity
         GetComponent<BoxCollider2D>().isTrigger = true;
         GetComponent<Rigidbody2D>().gravityScale = 0;
         GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        attackCollider.SetActive(false);
 
         animator.SetBool("isDead", true);
     }

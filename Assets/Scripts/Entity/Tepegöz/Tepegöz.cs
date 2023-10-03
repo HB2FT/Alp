@@ -14,6 +14,9 @@ public class Tepegöz : Entity
     public int damage = 40;
     public float waitForAttack;
 
+    public bool isDamagable;
+    public float waitAfterDamage;
+
     int index = 0; // This is for setting isDead variable in animator
 
     public Player target;
@@ -27,6 +30,7 @@ public class Tepegöz : Entity
 
         deathChecker = new AtomicBoolean(true);
         triggered = false;
+        isDamagable = true;
     }
     void Update()
     {
@@ -46,7 +50,7 @@ public class Tepegöz : Entity
 
             #region Move Codes
 
-            if (triggered && !isAttacking && !collidedWithPlayer && !isDamaged)
+            if (triggered && !isAttacking && !collidedWithPlayer && !IsDamaged)
             {
                 if (target.transform.position.x > transform.position.x) // Move right
                 {
@@ -76,11 +80,6 @@ public class Tepegöz : Entity
         else
         {
             if (deathChecker.Value) OnDeath();
-
-            if (++index == 10)
-            {
-                animator.SetBool("isDead", false);
-            }
         }
     }
 
@@ -89,7 +88,7 @@ public class Tepegöz : Entity
         base.OnDeath();
 
         GetComponent<BoxCollider2D>().isTrigger = true;
-        GetComponent<Rigidbody2D>().gravityScale = 0;
+        GetComponent<Rigidbody2D>().simulated = false;
 
         animator.SetBool("isDead", true);
     }
@@ -150,5 +149,40 @@ public class Tepegöz : Entity
         {
             animator.SetBool("isAttacking", true);
         }
+    }
+
+    public void SetIsDamagedFalse()
+    {
+        IsDamaged = false;
+    }
+
+    public void SetAnimatorSpeedZero()
+    {
+        animator.speed = 0; 
+    }
+
+    public bool IsDamagable
+    {
+        get
+        {
+            return isDamagable;
+        }
+
+        set
+        {
+            isDamagable = value;
+
+            if (!value)
+            {
+                StartCoroutine(WaitAfterDamage());
+            }
+        }
+    }
+
+    IEnumerator WaitAfterDamage()
+    {
+        yield return new WaitForSeconds(waitAfterDamage);
+
+        isDamagable = true;
     }
 }
