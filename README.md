@@ -1,5 +1,10 @@
 # Alp
 ***
+# VAlpha
+* Changed slide key from 'K' to 'Left Shift'
+* Set Boss Fight Cut Scene 
+* Fixed bugs on Tepegöz's animation
+***
 # V0.9.3
 * Added sprites:
 	- Hortlak -> Die

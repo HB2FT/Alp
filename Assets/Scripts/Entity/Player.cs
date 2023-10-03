@@ -175,7 +175,7 @@ public class Player : Entity
                 /*
                  * Must run to slide
                  */
-                if (Input.GetKeyDown(KeyCode.K) && IsRunning) // Slide
+                if (Input.GetKeyDown(KeyCode.LeftShift) && IsRunning) // Slide
                 {
                     int direction;
 
@@ -240,6 +240,22 @@ public class Player : Entity
             if (Input.mouseScrollDelta.y > 0 && currentMouseScroll > MIN_MOUSE_SCROLL)
             {
                 currentMouseScroll--;
+                animator.SetInteger("MouseScroll", currentMouseScroll);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha1)) // No weapon on key 1
+            {
+                currentMouseScroll = 0;
+                animator.SetInteger("MouseScroll", currentMouseScroll);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2)) // Hand sword on key 2
+            {
+                currentMouseScroll = 1;
+                animator.SetInteger("MouseScroll", currentMouseScroll);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3)) // Hand bow on key 3
+            {
+                currentMouseScroll = 2;
                 animator.SetInteger("MouseScroll", currentMouseScroll);
             }
 
