@@ -45,7 +45,7 @@ public class Arrow : MonoBehaviour
         if (!isStuck) transform.Rotate(Vector3.forward * -rotationSpeed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         rigidbody.velocity = Vector2.zero;
 

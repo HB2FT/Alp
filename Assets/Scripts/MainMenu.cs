@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject LoadingScreen;
+    
+    public Animator Animator;
 
     public Music music;
     public MusicSession session;
@@ -15,6 +17,9 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
+        Animator = GetComponent<Animator>();
+        Animator.Play("Loop");
+
         music.Play(session, false);
     }
 
