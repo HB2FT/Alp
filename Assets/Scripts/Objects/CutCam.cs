@@ -42,7 +42,7 @@ public class CutCam : MonoBehaviour
 
         if (music.session.name == "BossFight")
         {
-            bottomBarController.PlayScene(bossFightStoryScene);
+            //bottomBarController.PlayScene(bossFightStoryScene);
         }
 
         cutCam.SetActive(false);

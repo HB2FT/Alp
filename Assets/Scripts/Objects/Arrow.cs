@@ -53,6 +53,7 @@ public class Arrow : MonoBehaviour
         if (collidedEntity != null)
         {
             collidedEntity.health -= damage;
+            collidedEntity.IsDamaged = true;
         }
 
         

@@ -33,4 +33,18 @@ public abstract class Entity : MonoBehaviour
             return health <= MIN_HEALTH;
         }
     }
+
+    public bool IsDamaged
+    {
+
+        get
+        {
+            return animator.GetBool("isDamaged");
+        }
+
+        set
+        {
+            animator.SetBool("isDamaged", value);
+        }
+    }
 }
