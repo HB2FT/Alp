@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BossFight
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: f6831881b1a6f5042a1a922a161510e1, type: 3}
-  - {fileID: 8300000, guid: 59915c79552297a469f1c15704f00e16, type: 3}
-  - {fileID: 8300000, guid: f2f7fe5af6b8bec4c8d635994c5cd285, type: 3}
+  - {fileID: 8300000, guid: 6a75034d8af938c488e35df1e7938d1c, type: 3}
+  - {fileID: 8300000, guid: bec66b8fb652f3244a2907246c78de18, type: 3}
+  - {fileID: 8300000, guid: a7358af77cb05cc4594dee25eb6e2c5b, type: 3}

@@ -65,6 +65,8 @@ public class Player : Entity
         Time.timeScale = 1;
 
         speedTemp = speed;
+
+        maxHealth = health;
     }
 
     void Update()
@@ -466,6 +468,12 @@ public class Player : Entity
     public void OnSlideEnd()
     {
         //IsSliding = false;
+    }
+
+    public void Heal()
+    {
+        health = maxHealth;
+        animator.SetBool("IsHealing", false);
     }
 
     public void CheckSlide()

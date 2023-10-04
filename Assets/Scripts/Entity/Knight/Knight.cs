@@ -20,6 +20,7 @@ public class Knight : Entity
     void Start()
     {
         animator = GetComponent<Animator>();
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -74,10 +75,16 @@ public class Knight : Entity
     {
         base.OnDeath();
 
-        GetComponent<BoxCollider2D>().isTrigger = true;
-        GetComponent<Rigidbody2D>().gravityScale = 0;
-        GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        GetComponent<BoxCollider2D>().enabled = false;
+        rigidBody.gravityScale = 0;
+        rigidBody.velocity = Vector3.zero;
         attackCollider.SetActive(false);
+
+        BoxCollider2D[] collidersInChildren = GetComponentsInChildren<BoxCollider2D>();
+        foreach (BoxCollider2D currentCollider in collidersInChildren)
+        {
+            currentCollider.enabled = false;
+        }
 
         animator.SetBool("isDead", true);
     }

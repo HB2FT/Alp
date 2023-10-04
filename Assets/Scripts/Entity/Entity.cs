@@ -10,6 +10,7 @@ public abstract class Entity : MonoBehaviour
     public bool isRight;
     public float speed;
     public int health;
+    public int maxHealth;
     public const int MIN_HEALTH = 0;
 
     public void Rotate()
