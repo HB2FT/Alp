@@ -18,6 +18,7 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         Animator = GetComponent<Animator>();
+        Animator.speed = 1.0f;
         Animator.Play("Loop");
 
         music.Play(session, false);
