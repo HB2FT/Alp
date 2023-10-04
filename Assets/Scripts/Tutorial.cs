@@ -11,38 +11,43 @@ public class Tutorial : MonoBehaviour
     public List<StoryScene> stories;
     public int index;
 
+    public bool isCompleted;
+
     AtomicBoolean once = new AtomicBoolean(true);
 
-    void Start()
+    public void StartTutorial()
     {
         index = 0;
 
-        bottomBarController.PlayScene(stories[index++]); // Index'i oynattýktan sonra 1 arttýr
+        if (!isCompleted) bottomBarController.PlayScene(stories[index++]); // Index'i oynattï¿½ktan sonra 1 arttï¿½r
     }
 
     void Update()
     {
-        if (!bottomBar.activeSelf)
+        if (!isCompleted)
         {
-            if (index == 1)
+            if (!bottomBar.activeSelf)
             {
-                if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+                if (index == 1)
                 {
-                    bottomBarController.PlayScene(stories[index++]); // Index'i oynattýktan sonra 1 arttýr
+                    if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+                    {
+                        bottomBarController.PlayScene(stories[index++]); // Index'i oynattï¿½ktan sonra 1 arttï¿½r
+                    }
                 }
-            }
 
-            if (index == 2)
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (index == 2)
                 {
-                    StartCoroutine(PlaySceneWithDelay(1f));
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        StartCoroutine(PlaySceneWithDelay(1f));
+                    }
                 }
-            }
 
-            if (index == 3)
-            {
-                if (once.Value) StartCoroutine(PlaySceneWithDelay(10f));
+                if (index == 3)
+                {
+                    if (once.Value) StartCoroutine(PlaySceneWithDelay(10f));
+                }
             }
         }
     }
@@ -51,6 +56,6 @@ public class Tutorial : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        bottomBarController.PlayScene(stories[index++]); // Index'i oynattýktan sonra 1 arttýr
+        bottomBarController.PlayScene(stories[index++]); // Index'i oynattï¿½ktan sonra 1 arttï¿½r
     }
 }

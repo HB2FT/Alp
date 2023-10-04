@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.Rendering.VirtualTexturing;
+using System.IO;
 
 public class Player : Entity
 {
@@ -52,6 +53,8 @@ public class Player : Entity
     private AtomicBoolean atomicBoolean_lowHealthSoundEffect1 = new AtomicBoolean(true);
     private AtomicBoolean atomicBoolean_lowHealthSoundEffect2 = new AtomicBoolean(true);
 
+    public Tutorial tutorial;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -67,6 +70,71 @@ public class Player : Entity
         speedTemp = speed;
 
         maxHealth = health;
+
+
+        //
+        // Load saves
+        //
+        string saveContent = File.ReadAllText("Save.alp");
+
+        if (File.Exists("Save.alp"))
+        {
+            transform.position = new Vector2(-305, transform.position.y);
+            tutorial.StartTutorial();
+        }
+
+/*
+        string[] saveContentEntries = saveContent.Split(':');
+
+        for (int i = 0; i != 9; i++)
+        {
+            string saveContentEntry = saveContentEntries[i];
+
+            Debug.Log(saveContentEntry);
+
+            
+        }
+
+        int index = 0;
+        foreach (string saveContentEntry in saveContentEntries)
+        {
+
+            if ((saveContentEntry + ":") == CheckPoint.LABEL_TUTORIAL) 
+            {
+                string entry = saveContentEntries[index + 1];
+
+                int tutorialCompleted = Convert.ToInt32(entry);
+
+                if (tutorialCompleted == 0) tutorial.isCompleted = false;
+                if (tutorialCompleted == 1) tutorial.isCompleted = true;
+            }
+
+            if ((saveContentEntry + ":") == CheckPoint.LABEL_PLAYERX) 
+            {
+                string entry = saveContentEntries[index + 1];
+
+                transform.position = new Vector2(Convert.ToSingle(entry), transform.position.y); 
+            }
+
+            if ((saveContentEntry + ":") == CheckPoint.LABEL_PLAYERY) 
+            {
+                string entry = saveContentEntries[index + 1];
+
+                transform.position = new Vector2(transform.position.x, Convert.ToSingle(entry)); 
+            }
+
+            if ((saveContentEntry + ":") == CheckPoint.LABEL_CAMERA_Y_AXIS_OFFSET) 
+            {
+                string entry = saveContentEntries[index + 1];
+
+                GameCamera gameCamera = mainCam.GetComponent<GameCamera>();
+                gameCamera.yOffset = Convert.ToInt32(entry);
+
+                tutorial.isCompleted = Convert.ToBoolean(entry);
+            }
+
+            index++;
+        }*/
     }
 
     void Update()
