@@ -1393,6 +1393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LoadingScreen: {fileID: 2142299794}
+  Animator: {fileID: 0}
   music: {fileID: 955308982}
   session: {fileID: 11400000, guid: c2a9279d87ee6c344a975c04111d8f33, type: 2}
 --- !u!1 &1164808467
@@ -1714,6 +1715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LoadingScreen: {fileID: 2142299794}
+  Animator: {fileID: 0}
   music: {fileID: 955308982}
   session: {fileID: 11400000, guid: c2a9279d87ee6c344a975c04111d8f33, type: 2}
 --- !u!1 &1333735454
@@ -2746,7 +2748,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bea32396b360d3742b1348547a20e824, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9670442b20055df4799c6539207bb26f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

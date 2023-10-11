@@ -37,6 +37,8 @@ public class Player : Entity
     public bool isSliding;
     public float slideForce;
 
+    public bool attackQuery;
+
     private float speedTemp;
 
     public const int MAX_MOUSE_SCROLL = 2;
@@ -275,6 +277,7 @@ public class Player : Entity
                         }
 
                         animator.SetBool("IsAttacking", true);
+                        animator.SetTrigger("Attack");
                         isAttacking = true;
                     }
                 }
