@@ -1,5 +1,10 @@
 # Alp
 ***
+# V 0.9.4
+* Product name changed to 'Mir'
+* Loading screen sprite changed to 'Mir'
+* Fixed bug on knights death
+***
 # V Alpha
 * Changed slide key from 'K' to 'Left Shift'
 * Set Boss Fight Cut Scene 

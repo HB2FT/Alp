@@ -26,6 +26,8 @@ public class MainMenu : MonoBehaviour
 
     void Update()
     {
+        Animator.speed = 1.0f;
+
         if (!music.isPaused && music.isEnded)
         {
             try
