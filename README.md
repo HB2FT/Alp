@@ -1,5 +1,8 @@
 # Alp
 ***
+# V0.9.8
+* Fixed arrow animation mechanics
+***
 # V0.9.7
 * Added arrow animation system to new animation controlling strucutre
 ***

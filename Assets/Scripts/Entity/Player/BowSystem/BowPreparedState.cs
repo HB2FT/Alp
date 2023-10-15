@@ -7,14 +7,17 @@ using UnityEngine;
 
 public class BowPreparedState : BowBaseState
 {
+    private Player player;
+
     public override void OnEnter(StateMachine _stateMachine)
     {
         base.OnEnter(_stateMachine);
 
         duration = .683f;
         bowStateName = "BowPrepared";
-        //animator.SetTrigger(bowStateName);
-        //Debug.Log(bowStateName);
+
+        player = GetComponent<Player>();
+        player.speed = player.speedTemp / 4;
     }
 
     public override void OnUpdate()
@@ -30,5 +33,7 @@ public class BowPreparedState : BowBaseState
     public override void OnExit()
     {
         base.OnExit();
+
+        player.speed = player.speedTemp;
     }
 }

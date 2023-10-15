@@ -39,7 +39,7 @@ public class Player : Entity
 
     public bool attackQuery;
 
-    private float speedTemp;
+    public float speedTemp { get; private set; }
 
     public const int MAX_MOUSE_SCROLL = 2;
     public const int MIN_MOUSE_SCROLL = 0;
@@ -320,14 +320,14 @@ public class Player : Entity
 
             //bowHanded = currentMouseScroll == 2; // currentMouseScroll değişkeninin 2'ye eşit olma durmu (Eşitse true değilse false olacak)
 
-            if (bowHanded && isAttacking)
-            {
-                speed = speedTemp / 4;
-            }
-            else
-            {
-                speed = speedTemp;
-            }
+            //if (bowHanded && isAttacking)
+            //{
+            //    speed = speedTemp / 4;
+            //}
+            //else
+            //{
+            //    speed = speedTemp;
+            //}
 
             #endregion
             
