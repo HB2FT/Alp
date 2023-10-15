@@ -1,5 +1,15 @@
 # Alp
 ***
+# V0.9.7
+* Added arrow animation system to new animation controlling strucutre
+***
+# V0.9.6
+* Fixed bugs o player attack combo system
+* Changed animation controlling structure
+***
+# V0.9.5
+* Changed player attack combo system (has bugs)
+***
 # V 0.9.4
 * Product name changed to 'Mir'
 * Loading screen sprite changed to 'Mir'

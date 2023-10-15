@@ -46,6 +46,11 @@ public abstract class Entity : MonoBehaviour
         set
         {
             animator.SetBool("isDamaged", value);
+
+            if (value)
+            {
+                animator.SetTrigger("Hurt");
+            }
         }
     }
 }
