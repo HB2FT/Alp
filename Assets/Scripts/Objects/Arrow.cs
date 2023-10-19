@@ -12,6 +12,7 @@ public class Arrow : MonoBehaviour
     public float rotationSpeed = 20f;
     public bool isRight;
     public int Direction = 1;
+    public bool isStuck;
 
     void Start()
     {
@@ -22,7 +23,7 @@ public class Arrow : MonoBehaviour
             Rotate();
             Direction *= -1;
         }
-
+        
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
@@ -36,15 +37,15 @@ public class Arrow : MonoBehaviour
         boxCollider.offset = new Vector2(-0.006f, -0.007f);
         boxCollider.size = new Vector2(0.17f, 0.05f);
 
-        rigidbody.AddForce(new Vector2(600 * Direction, 50)); //F rlat lma
+        rigidbody.AddForce(new Vector2(600 * Direction, 50)); //Fýrlatýlma
     }
 
     void Update()
     {
-        transform.Rotate(Vector3.forward * -rotationSpeed * Time.deltaTime);
+        if (!isStuck) transform.Rotate(Vector3.forward * -rotationSpeed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         rigidbody.velocity = Vector2.zero;
 
@@ -52,15 +53,22 @@ public class Arrow : MonoBehaviour
         if (collidedEntity != null)
         {
             collidedEntity.health -= damage;
+            collidedEntity.IsDamaged = true;
         }
 
-        boxCollider.enabled = false;
-        rigidbody.freezeRotation = true;  
-        rigidbody.gravityScale = 0f;
+        
 
-        //Destroy(gameObject);
+        transform.SetParent(collision.transform, false);
+
+        rigidbody.simulated = false;
+        isStuck = true; Debug.Log("arrow collision enter");
     }
 
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        rigidbody.simulated = false; Debug.Log("arrow collision exit");
+    }
     public void Rotate() 
     {
         isRight = !isRight;

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - triggerCombat
   - PlayerAttackCollider
+  - NPCBorder
+  - BottomBar
   layers:
   - Default
   - TransparentFX

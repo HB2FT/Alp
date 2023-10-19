@@ -1,5 +1,53 @@
 # Alp
 ***
+# V0.9.8
+* Fixed arrow animation mechanics
+***
+# V0.9.7
+* Added arrow animation system to new animation controlling strucutre
+***
+# V0.9.6
+* Fixed bugs o player attack combo system
+* Changed animation controlling structure
+***
+# V0.9.5
+* Changed player attack combo system (has bugs)
+***
+# V 0.9.4
+* Product name changed to 'Mir'
+* Loading screen sprite changed to 'Mir'
+* Fixed bug on knights death
+***
+# V Alpha
+* Changed slide key from 'K' to 'Left Shift'
+* Set Boss Fight Cut Scene 
+* Fixed bugs on Tepegöz's animation
+* Changed Health Bar
+* Changed Boss Fight Music
+* Added healing mechanic:
+	- Elixir icon and remaining elixir count on UI
+	- Press 'E' to use elixir
+* Changed Main Menu background animation
+* Added ambient sound mechanic
+* Added a mini tutorial
+***
+# V0.9.3
+* Added sprites:
+	- Hortlak -> Die
+	- Player -> Slide
+	- Player -> Stand
+* Created animations:
+	- Hortlak -> Die
+	- Player -> Slide
+	- Player -> Stand
+* Öcü gives damage to player (damage = 15)
+* Fixed bug on transition to Player Die animation
+* Thorns kill player at once
+* Improved Hortlak's movement mechanic
+* Improved Knight's movement mechanic
+* Added slide mechanic to Player:
+	- Run and press 'K'
+***
 # V0.9.2.1
 * Missing changes
 ***

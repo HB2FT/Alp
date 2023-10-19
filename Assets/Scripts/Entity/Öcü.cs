@@ -8,6 +8,10 @@ public class Öcü : Entity
     public float range;
     public float border;
 
+    public int damage;
+
+    private bool readyToAttac;
+
     public Player player; // Accessed for damage
 
     public AtomicBoolean isDead;
@@ -18,6 +22,7 @@ public class Öcü : Entity
         startPosX = transform.position.x;
         range = 10;
         border = startPosX + range;
+        readyToAttac = true;
 
         isDead = new AtomicBoolean(true);
     }
@@ -42,5 +47,30 @@ public class Öcü : Entity
                 this.gameObject.SetActive(false);
             }
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Player player = collision.gameObject.GetComponent<Player>();
+
+        if (player != null && readyToAttac)
+        {
+            int direction;
+
+            if (isRight) direction = -1;
+            else direction = 1;
+
+            player.health -= damage;
+            player.GetComponent<Rigidbody2D>().AddForce(new Vector2(3 * direction, 1), ForceMode2D.Impulse);
+
+            readyToAttac = false;
+            StartCoroutine(SetReadyToAttack());
+        }
+    }
+
+    IEnumerator SetReadyToAttack()
+    {
+        yield return new WaitForSeconds(1f);
+        readyToAttac = true;
     }
 }

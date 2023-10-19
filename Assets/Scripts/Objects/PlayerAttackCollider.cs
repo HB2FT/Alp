@@ -7,15 +7,37 @@ public class PlayerAttackCollider : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Entity collidedEntitiy = collision.gameObject.GetComponent<Entity>();
+        Entity collidedEntity = collision.gameObject.GetComponent<Entity>();
 
-        if (collidedEntitiy != null)
+        if (collidedEntity != null)
         {
-            collidedEntitiy.health -= 20;
-            collidedEntitiy.GetComponent<Rigidbody2D>().AddForce(new Vector2(5, 0), ForceMode2D.Impulse);
+            Player parent = GetComponentInParent<Player>();
+            int direction;
+
+            if (parent.isRight) direction = 1;
+            else direction = -1;
+
+            Tepegöz tepegöz = collidedEntity.GetComponent<Tepegöz>();
+            if (tepegöz != null)
+            {
+                if (!tepegöz.IsDamaged && tepegöz.IsDamagable)
+                {
+                    tepegöz.health -= 20;
+                    tepegöz.IsDamaged = true;
+                    tepegöz.IsDamagable = false;
+
+                }
+            }
+            else
+            {
+                collidedEntity.health -= 20;
+                collidedEntity.IsDamaged = true;
+            }
 
             Hortlak hortlak = GetComponentInParent<Hortlak>();
-            if (hortlak != null) hortlak.isDamaged = true;
+            //if (hortlak != null) hortlak.isDamaged = true;
+
+            gameObject.SetActive(false);
         }
     }
 }

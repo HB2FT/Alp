@@ -20,38 +20,46 @@ public class Knight : Entity
     void Start()
     {
         animator = GetComponent<Animator>();
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        CheckTrigger();
+        CheckTrigger();Debug.Log(CanMove);
 
         isAttacking = animator.GetBool("isAttacking");
 
         if (health > 0)
         {
-            if (isTriggered && !isAttacking)
+            if (CanMove)
             {
-                if (target.transform.position.x > transform.position.x)
+                if (isTriggered && !isAttacking)
                 {
-                    if (!isRight) Rotate();
+                    /*
+                    if (target.transform.position.x > transform.position.x)
+                    {
+                        if (!isRight) Rotate();
+
+                        transform.position -= speed * Time.deltaTime * transform.right;
+                    }
+
+                    if (target.transform.position.x < transform.position.x)
+                    {
+                        if (isRight) Rotate();
+
+                        transform.position -= speed * Time.deltaTime * transform.right;
+                    }
+                    */
 
                     transform.position -= speed * Time.deltaTime * transform.right;
+
+                    animator.SetBool("isWalking", true);
                 }
 
-                if (target.transform.position.x < transform.position.x)
+                else
                 {
-                    if (isRight) Rotate();
-
-                    transform.position -= speed * Time.deltaTime * transform.right;
+                    animator.SetBool("isWalking", false);
                 }
-
-                animator.SetBool("isWalking", true);
-            }
-
-            else
-            {
-                animator.SetBool("isWalking", false);
             }
         }
 
@@ -70,11 +78,26 @@ public class Knight : Entity
     {
         base.OnDeath();
 
-        GetComponent<BoxCollider2D>().isTrigger = true;
-        GetComponent<Rigidbody2D>().gravityScale = 0;
-        GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        GetComponent<BoxCollider2D>().enabled = false;
+        rigidBody.simulated = false;
+        attackCollider.SetActive(false);
 
-        animator.SetBool("isDead", true);
+        BoxCollider2D[] collidersInChildren = GetComponentsInChildren<BoxCollider2D>();
+        foreach (BoxCollider2D currentCollider in collidersInChildren)
+        {
+            currentCollider.enabled = false;
+        }
+
+        //animator.SetBool("isDead", true);
+        animator.SetTrigger("Died");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("NPCBorder"))
+        {
+            Rotate();
+        }
     }
 
     public void EnableAttackCollider()
@@ -84,7 +107,8 @@ public class Knight : Entity
 
     public void OnAttackEnd() 
     {
-        animator.SetBool("isAttacking", false);
+        //animator.SetBool("isAttacking", false);
+        //animator.SetTrigger("Attack");
         attackCollider.gameObject.SetActive(false);
     }
 
@@ -100,6 +124,14 @@ public class Knight : Entity
         else 
         {
             isTriggered = false;
+        }
+    }
+
+    public bool CanMove
+    {
+        get
+        {
+            return !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") || !animator.GetCurrentAnimatorStateInfo(0).IsName("Hurt");
         }
     }
 }

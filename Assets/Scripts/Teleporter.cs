@@ -9,7 +9,7 @@ public class Teleporter : MonoBehaviour
         if (collision.name == "Player")
         {
             Player player = collision.GetComponent<Player>();
-            player.transform.position = new Vector2(-2.5f, player.transform.position.y);
+            player.transform.position = new Vector2(-305f, player.transform.position.y);
         }
     }
 }
