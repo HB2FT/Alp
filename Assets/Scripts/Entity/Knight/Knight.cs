@@ -90,6 +90,15 @@ public class Knight : Entity
 
         //animator.SetBool("isDead", true);
         animator.SetTrigger("Died");
+
+        StartCoroutine(Disappear());
+    }
+
+    IEnumerator Disappear() 
+    {
+        yield return new WaitForSeconds(10f);
+
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

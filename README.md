@@ -1,5 +1,8 @@
 # Alp
 ***
+# V0.9.9
+* Knight disappears in 10 seconds after died
+***
 # V0.9.8
 * Fixed arrow animation mechanics
 ***
