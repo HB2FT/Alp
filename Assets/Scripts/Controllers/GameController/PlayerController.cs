@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour // Player'ın etkileşimlerini, ko
         {
             if (player.health < 100 && remainingElixir > 0)
             {
-                player.Animator.SetBool("IsHealing", true);
+                player.Animator.SetTrigger("Healing");
 
                 remainingElixir--;
             }
