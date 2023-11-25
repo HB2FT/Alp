@@ -23,12 +23,12 @@ public class Player : Entity
 
     public Sprite spr_Arrow;
 
-    public bool isGrounded;
+    //public bool isGrounded;
     public bool isAttacking = false;
     public bool isControllable = true;
     public bool isDying = false;
     public bool bowHanded = false;
-    public float jumpForce;
+    //public float jumpForce;
     public float gravity;
     public static int Damage = 20;
     public int damage = Damage;
@@ -55,9 +55,10 @@ public class Player : Entity
     private AtomicBoolean atomicBoolean_lowHealthSoundEffect1 = new AtomicBoolean(true);
     private AtomicBoolean atomicBoolean_lowHealthSoundEffect2 = new AtomicBoolean(true);
 
+    [Obsolete("Bu öge daha yapılandırılmadı")]
     public Tutorial tutorial;
 
-    void Start()
+    public override void Start()
     {
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
@@ -170,9 +171,11 @@ public class Player : Entity
 
             if (!bottomBar.activeSelf && isControllable && !IsSliding)
             {
+                Controller();
+
                 if (Input.GetKey(KeyCode.D)) // Yay Ku�an�lmam��sa
                 {
-                    if (!isGrounded) // Havadaysa
+                    if (!IsGrounded) // Havadaysa
                     {
                         transform.position += transform.right * speed * Time.deltaTime;
 
@@ -199,7 +202,7 @@ public class Player : Entity
 
                 if (Input.GetKey(KeyCode.A)) // Yay ku�an�lmam��sa
                 {
-                    if (!isGrounded) // Havadaysa
+                    if (!IsGrounded) // Havadaysa
                     {
                     
                         transform.position -= -transform.right * speed * Time.deltaTime;
@@ -227,7 +230,7 @@ public class Player : Entity
 
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) // Jump
                 {
-                    if (isGrounded && !jumpQuery)
+                    if (IsGrounded && !jumpQuery)
                     {
                         rigidBody.AddForce(new Vector2(0f, jumpForce)); 
                         //rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpForce);
@@ -238,7 +241,7 @@ public class Player : Entity
                     }
                 }
 
-                if (isGrounded && jumpQuery) 
+                if (IsGrounded && jumpQuery) 
                 {
                     rigidBody.AddForce(new Vector2(0f, jumpForce));
                     jumpQuery = false;
@@ -374,27 +377,6 @@ public class Player : Entity
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "Terrain") // Zemine de�iyor mu
-        {
-            isGrounded = true;
-        }
-
-        if (collision.gameObject.name == "DamagableObjects")
-        {
-            health = 0;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision) // Zemine de�miyor mu
-    {
-        if (collision.gameObject.name == "Terrain")
-        {
-            isGrounded = false;
-        }
-    }
-
     public void OnFirstAttackAnimationStart()
     {
         attackCombo = false;
@@ -491,10 +473,10 @@ public class Player : Entity
 
     protected void ArrowThrowed()
     {
-        animator.SetBool("IsAttacking", false);
+        //animator.SetBool("IsAttacking", false);
         isAttacking = false;
-        animator.SetBool("BowPrepared", false);
-        animator.SetBool("ArrowThrowable", false);
+        //animator.SetBool("BowPrepared", false);
+        //animator.SetBool("ArrowThrowable", false);
 
         CreateArrow();
     }
@@ -542,6 +524,11 @@ public class Player : Entity
         {
             IsSliding = false;
         }
+    }
+
+    private void Controller()
+    {
+
     }
 
     public bool IsSliding

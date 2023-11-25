@@ -9,9 +9,38 @@ public abstract class Entity : MonoBehaviour
 
     public bool isRight;
     public float speed;
+    public float jumpForce;
     public int health;
     public int maxHealth;
     public const int MIN_HEALTH = 0;
+    private bool isGrounded;
+
+    public virtual void Start()
+    {
+        animator = GetComponent<Animator>();
+        rigidBody = GetComponent<Rigidbody2D>();
+    }
+
+    public virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Terrain") // Zemine deðiyor mu
+        {
+            isGrounded = true;
+        }
+
+        if (collision.gameObject.name == "DamagableObjects")
+        {
+            health = 0;
+        }
+    }
+
+    public virtual void OnCollisionExit2D(Collision2D collision) // Zemine deðmiyor mu
+    {
+        if (collision.gameObject.name == "Terrain")
+        {
+            isGrounded = false;
+        }
+    }
 
     public void Rotate()
     {
@@ -52,5 +81,11 @@ public abstract class Entity : MonoBehaviour
                 animator.SetTrigger("Hurt");
             }
         }
+    }
+
+    public bool IsGrounded
+    {
+        get { return isGrounded; }
+        set { isGrounded = value; }
     }
 }

@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
 
 public partial class GameController : MonoBehaviour // Oyunu genel hatlarýyla kontrol eder
 {
     void Start()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
         //if (bottomBar.Enabled) BottomBarStart();
         HealthBarStart();
     }
@@ -19,6 +19,11 @@ public partial class GameController : MonoBehaviour // Oyunu genel hatlarýyla ko
         HealthBarUpdate();
         MenuUpdate();
 
+
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode loadMode)
+    {
 
     }
 }

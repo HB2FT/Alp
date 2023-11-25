@@ -9,6 +9,8 @@ public class Knight : Entity
     public Player target;
     public GameObject attackCollider;
     public bool isTriggered;
+
+    [Obsolete("Bu parametre animatörden kaldýrýldý")]
     public bool isAttacking;
 
     private AtomicBoolean deathChecker = new AtomicBoolean(true);
@@ -17,7 +19,7 @@ public class Knight : Entity
 
     private int index = 0; // This is for change isDead animator parameter after a while
 
-    void Start()
+    public override void Start()
     {
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
@@ -25,32 +27,14 @@ public class Knight : Entity
 
     void Update()
     {
-        CheckTrigger();Debug.Log(CanMove);
-
-        isAttacking = animator.GetBool("isAttacking");
+        CheckTrigger();
 
         if (health > 0)
         {
             if (CanMove)
             {
-                if (isTriggered && !isAttacking)
+                if (isTriggered)
                 {
-                    /*
-                    if (target.transform.position.x > transform.position.x)
-                    {
-                        if (!isRight) Rotate();
-
-                        transform.position -= speed * Time.deltaTime * transform.right;
-                    }
-
-                    if (target.transform.position.x < transform.position.x)
-                    {
-                        if (isRight) Rotate();
-
-                        transform.position -= speed * Time.deltaTime * transform.right;
-                    }
-                    */
-
                     transform.position -= speed * Time.deltaTime * transform.right;
 
                     animator.SetBool("isWalking", true);
