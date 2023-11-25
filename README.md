@@ -1,4 +1,12 @@
-# Alp
+# Mir
+***
+# V0.10
+* Integrated new Input System
+	- WASD controls
+	- Arrow controls
+	- Running (Shift) control
+	- Jump (Space, W, Upper Arrow) controls
+* Fixed warnings
 ***
 # V0.9.8
 * Fixed arrow animation mechanics

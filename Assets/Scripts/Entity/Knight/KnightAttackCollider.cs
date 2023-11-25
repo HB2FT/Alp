@@ -19,7 +19,7 @@ public class KnightAttackCollider : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Entity collidedEntity = collision.gameObject.GetComponent<Entity>();
+        Player collidedEntity = collision.gameObject.GetComponent<Player>();
 
         if (collidedEntity != null )
         {

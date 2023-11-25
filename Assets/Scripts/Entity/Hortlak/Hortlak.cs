@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Hortlak : Entity
@@ -15,14 +12,14 @@ public class Hortlak : Entity
     private float speedTemp;
 
     public GameObject target; // Player
-    public Camera camera; // For get seen area
+    public Camera camera_; // For get seen area
     public BoxCollider2D boxCollider;
     public GameObject attackCollider;
 
     public AtomicBoolean deathChecker = new AtomicBoolean(true);
     private AtomicBoolean speedControllerDuringAttack = new AtomicBoolean(true);
 
-    void Start()
+    public override void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -102,7 +99,7 @@ public class Hortlak : Entity
         boxCollider.enabled = false;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public override void OnCollisionEnter2D(Collision2D collision)
     {
         Player player = collision.gameObject.GetComponent<Player>();
 
@@ -122,7 +119,7 @@ public class Hortlak : Entity
 
     private void CheckTrigger()
     {
-        Plane[] cameraPlanes = GeometryUtility.CalculateFrustumPlanes(camera);
+        Plane[] cameraPlanes = GeometryUtility.CalculateFrustumPlanes(camera_);
 
         isTriggered = GeometryUtility.TestPlanesAABB(cameraPlanes, boxCollider.bounds);
     }

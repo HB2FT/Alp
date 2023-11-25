@@ -5,7 +5,7 @@ public class Arrow : MonoBehaviour
     public Player player;
     public SpriteRenderer spriteRenderer;
     public BoxCollider2D boxCollider;
-    public Rigidbody2D rigidbody;
+    public Rigidbody2D rigidBody;
     public Sprite spr_arrow;
 
     public int damage = 25;
@@ -26,7 +26,7 @@ public class Arrow : MonoBehaviour
         
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
-        rigidbody = gameObject.GetComponent<Rigidbody2D>();
+        rigidBody = gameObject.GetComponent<Rigidbody2D>();
 
         transform.position = transform.position + new Vector3(2f * Direction, 0, 0);
         transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
@@ -37,7 +37,7 @@ public class Arrow : MonoBehaviour
         boxCollider.offset = new Vector2(-0.006f, -0.007f);
         boxCollider.size = new Vector2(0.17f, 0.05f);
 
-        rigidbody.AddForce(new Vector2(600 * Direction, 50)); //Fýrlatýlma
+        rigidBody.AddForce(new Vector2(600 * Direction, 50)); //Fýrlatýlma
     }
 
     void Update()
@@ -47,7 +47,7 @@ public class Arrow : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        rigidbody.velocity = Vector2.zero;
+        rigidBody.velocity = Vector2.zero;
 
         Entity collidedEntity = collision.gameObject.GetComponent<Entity>();
         if (collidedEntity != null)
@@ -60,14 +60,14 @@ public class Arrow : MonoBehaviour
 
         transform.SetParent(collision.transform, false);
 
-        rigidbody.simulated = false;
+        rigidBody.simulated = false;
         isStuck = true; Debug.Log("arrow collision enter");
     }
 
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        rigidbody.simulated = false; Debug.Log("arrow collision exit");
+        rigidBody.simulated = false; Debug.Log("arrow collision exit");
     }
     public void Rotate() 
     {

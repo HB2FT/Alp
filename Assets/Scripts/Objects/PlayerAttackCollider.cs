@@ -11,12 +11,6 @@ public class PlayerAttackCollider : MonoBehaviour
 
         if (collidedEntity != null)
         {
-            Player parent = GetComponentInParent<Player>();
-            int direction;
-
-            if (parent.isRight) direction = 1;
-            else direction = -1;
-
             Tepegöz tepegöz = collidedEntity.GetComponent<Tepegöz>();
             if (tepegöz != null)
             {

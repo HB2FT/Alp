@@ -14,7 +14,9 @@ public class LoadingScreen : MonoBehaviour
     {
         loadingScreen.SetActive(true);
 
-        StartCoroutine(Load("MainMenu"));
+        SceneManager.LoadScene("MainMenu");
+
+       // StartCoroutine(Load("MainMenu"));
 
 
     }

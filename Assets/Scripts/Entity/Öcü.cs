@@ -17,8 +17,10 @@ public class Öcü : Entity
     public AtomicBoolean isDead;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
+        base.Start();
+
         startPosX = transform.position.x;
         range = 10;
         border = startPosX + range;

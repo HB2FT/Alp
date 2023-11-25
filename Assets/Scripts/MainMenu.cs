@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,11 +16,13 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        Animator = GetComponent<Animator>();
+        //Animator = GetComponent<Animator>();
         Animator.speed = 1.0f;
-        Animator.Play("Loop");
+        Animator.Play("Loop", 0, 1f);
 
         music.Play(session, false);
+
+        Debug.Log("MainMenu Started");
     }
 
     void Update()
@@ -33,15 +34,20 @@ public class MainMenu : MonoBehaviour
             try
             {
                 music.PlayNext(false);
-            }
 
-            catch (IndexOutOfRangeException e)
+            }
+            catch (IndexOutOfRangeException)
             {
                 Debug.Log("Oynatýlacak müzik kalmadý. Baþa sarýlýyor.");
 
                 music.Play(session, false);
             }
         }
+    }
+
+    private void OnDisable()
+    {
+        
     }
 
     public void StartGame()
