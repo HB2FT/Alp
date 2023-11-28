@@ -12,6 +12,8 @@ public class Player : Entity
     public GameObject attackCollider;
     public GameObject deathMenu;
 
+    public GameCamera gameCamera;
+
     public List<PostProcessVolume> postProcessVolumes = new List<PostProcessVolume>();
     public GameObject mainCam;
 
@@ -70,7 +72,7 @@ public class Player : Entity
 
         Time.timeScale = 1;
 
-        speedTemp = speed;
+        speedTemp = Speed;
 
         maxHealth = health;
 
@@ -78,6 +80,7 @@ public class Player : Entity
         //
         // Load saves
         //
+        LoadSavedGame();
         string saveContent = File.ReadAllText("Save.alp");
 
         if (File.Exists("Save.alp"))
@@ -177,7 +180,7 @@ public class Player : Entity
                 {
                     if (!IsGrounded) // Havadaysa
                     {
-                        transform.position += transform.right * speed * Time.deltaTime;
+                        transform.position += transform.right * Speed * Time.deltaTime;
 
                         if (!isRight)
                         {
@@ -188,7 +191,7 @@ public class Player : Entity
                     {
                         if (!isAttacking || bowHanded) // Saldırmıyorsa
                         {
-                            transform.position += transform.right * speed * Time.deltaTime;
+                            transform.position += transform.right * Speed * Time.deltaTime;
 
                             if (!isRight)
                             {
@@ -205,7 +208,7 @@ public class Player : Entity
                     if (!IsGrounded) // Havadaysa
                     {
                     
-                        transform.position -= -transform.right * speed * Time.deltaTime;
+                        transform.position -= -transform.right * Speed * Time.deltaTime;
 
                         if (isRight)
                         {
@@ -216,7 +219,7 @@ public class Player : Entity
                     {
                         if (!isAttacking || bowHanded) // Sald�rm�yorsa
                         {
-                            transform.position -= -transform.right * speed * Time.deltaTime;
+                            transform.position -= -transform.right * Speed * Time.deltaTime;
 
                             if (isRight)
                             {
@@ -375,6 +378,15 @@ public class Player : Entity
         {
             
         }
+    }
+
+    private void LoadSavedGame()
+    {
+        CheckPoint.SavedState savedState = CheckPoint.Load();
+
+        transform.position = new Vector3(savedState.playerX, savedState.playerY, 0);
+        gameCamera.yOffset = savedState.cameraYAxisOffset;
+        
     }
 
     public void OnFirstAttackAnimationStart()

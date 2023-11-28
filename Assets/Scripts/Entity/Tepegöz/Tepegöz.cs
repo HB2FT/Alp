@@ -54,14 +54,14 @@ public class Tepegöz : Entity
                 {
                     if (!isRight) Rotate(); //Debug.Log("player x > x");
 
-                    transform.position -= speed * Time.deltaTime * transform.right;
+                    transform.position -= Speed * Time.deltaTime * transform.right;
                 }
 
                 if (target.transform.position.x < transform.position.x)
                 {
                     if (isRight) Rotate(); //Debug.Log("player x < x");
 
-                    transform.position -= speed * Time.deltaTime * transform.right;
+                    transform.position -= Speed * Time.deltaTime * transform.right;
                 }
 
                 animator.SetBool("isRunning", true);

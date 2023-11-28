@@ -24,7 +24,7 @@ public class Hortlak : Entity
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
-        speedTemp = speed;
+        speedTemp = Speed;
         animator.speed = 0;
     }
 
@@ -42,7 +42,7 @@ public class Hortlak : Entity
         if (isAliveTemp)
         {
 
-            if (isDead || !isAlive) speed = 0; else speed = speedTemp;
+            if (isDead || !isAlive) Speed = 0; else Speed = speedTemp;
 
             if (isTriggered) animator.speed = 1;
 
@@ -68,18 +68,18 @@ public class Hortlak : Entity
                 #endregion
                 */
 
-                transform.position += transform.right * speed * Time.deltaTime;
+                transform.position += transform.right * Speed * Time.deltaTime;
             }
 
             if (animator.GetBool("isAttacking"))
             {
-                if (speedControllerDuringAttack.Value) speed = 0;
+                if (speedControllerDuringAttack.Value) Speed = 0;
             }
             else
             {
                 speedControllerDuringAttack.Value = true;
 
-                speed = speedTemp;
+                Speed = speedTemp;
             }
         }
         else

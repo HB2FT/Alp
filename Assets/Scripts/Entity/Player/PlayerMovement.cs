@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
-public class PlayerMovement : Entity
+public class PlayerMovement : MonoBehaviour
 {
+    public _Player player;
+
     private PlayerInput playerInput;
     private StateMachine stateMachine;
 
@@ -20,26 +23,31 @@ public class PlayerMovement : Entity
     [SerializeField]
     float runSpeed;
 
+    [SerializeField]
+    int itemIndex;
+    const int MAX_ITEM_INDEX = 2;
+    
+
     private void FixedUpdate()
     {
-        if (!IsDead)
+        if (!player.IsDead)
         {
             bool isRunning = movementInput == Vector2.left || movementInput == Vector2.right;
-            animator.SetBool("IsRunning", isRunning); // Set animation
+            player.Animator.SetBool("IsRunning", isRunning); // Set animation
 
             #region Movement
 
-            if (movementInput == Vector2.right && !isRight)
+            if (movementInput == Vector2.right && !player.isRight)
             {
-                Rotate();
+                player.Rotate();
             }
 
-            if (movementInput == Vector2.left && isRight)
+            if (movementInput == Vector2.left && player.isRight)
             {
-                Rotate();
+                player.Rotate();
             }
 
-            MovePlayer(speed); // Move player
+            MovePlayer(player.Speed); // Move player
 
             #endregion
 
@@ -48,11 +56,11 @@ public class PlayerMovement : Entity
             //
             if (isJumpPressed)
             {
-                if (IsGrounded)
+                if (player.IsGrounded)
                 {
                     jumpQuery = true;
                 }
-                else if(rigidBody.velocity.y < 0)
+                else if(player.Rigidbody.velocity.y < 0)
                 {
                     //jumpQuery = true;
                 }
@@ -61,15 +69,15 @@ public class PlayerMovement : Entity
             //
             // Jump
             //
-            if (IsGrounded && jumpQuery)
+            if (player.IsGrounded && jumpQuery)
             {
-                rigidBody.AddForce(new Vector2(0f, jumpForce));
+                player.Rigidbody.AddForce(new Vector2(0f, player.jumpForce));
                 jumpQuery = false;
             }
 
             if (jumpQuery)
             {
-                rigidBody.AddForce(new Vector2(0f, jumpForce * Time.deltaTime));
+                player.Rigidbody.AddForce(new Vector2(0f, player.jumpForce * Time.deltaTime));
                 jumpQuery = false;
             }
 
@@ -83,7 +91,7 @@ public class PlayerMovement : Entity
                     stateMachine.SetNextState(new SlideState());
 
                     int rotation;
-                    if (isRight)
+                    if (player.isRight)
                     {
                         rotation = 1;
                     }
@@ -91,7 +99,7 @@ public class PlayerMovement : Entity
                     {
                         rotation = -1;
                     }
-                    rigidBody.AddForce(new Vector2(speed * 50 * rotation, 0));
+                    player.Rigidbody.AddForce(new Vector2(player.Speed * 50 * rotation, 0));
                 }
 
                 isSlidePressed = false;
@@ -122,6 +130,29 @@ public class PlayerMovement : Entity
         playerInput.Player.Jump.started += Jump; // On Jump
         playerInput.Player.Jump.performed += Jump; // While Jumping
         playerInput.Player.Jump.canceled += Jump; // End Jump
+
+        playerInput.Player.ItemIndex.performed += OnItemChanged; // On item change
+    }
+
+    void OnItemChanged(InputAction.CallbackContext context)
+    {
+        Vector2 vector = context.ReadValue<Vector2>();
+
+        int i = (int) vector.y;
+
+        ChangeIndex(i);
+    }
+
+    void ChangeIndex(int i)
+    {
+        if (itemIndex >= 0 && itemIndex <= MAX_ITEM_INDEX)
+        {
+            itemIndex += i;
+            player.ItemIndex = itemIndex;
+        }
+
+        if (itemIndex > MAX_ITEM_INDEX) itemIndex = MAX_ITEM_INDEX;
+        if (itemIndex < 0) itemIndex = 0;
     }
 
     void Attack(InputAction.CallbackContext context)
@@ -164,11 +195,12 @@ public class PlayerMovement : Entity
         isJumpPressed = context.ReadValueAsButton();
     }
 
-    public override void Start()
+    public void Start()
     {
-        base.Start();
-
+        player = GetComponent<_Player>();
         stateMachine = GetComponent<StateMachine>();
+
+        itemIndex = 0;
     }
 
     private void OnEnable()
@@ -179,15 +211,5 @@ public class PlayerMovement : Entity
     private void OnDisable()
     {
         playerInput.Player.Disable();
-    }
-
-    public override void OnCollisionEnter2D(Collision2D collision)
-    {
-        base.OnCollisionEnter2D(collision);
-    }
-
-    public override void OnCollisionExit2D(Collision2D collision)
-    {
-        base.OnCollisionExit2D(collision);
     }
 }

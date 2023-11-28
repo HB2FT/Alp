@@ -8,7 +8,7 @@ public abstract class Entity : MonoBehaviour
     protected Rigidbody2D rigidBody;
 
     public bool isRight;
-    public float speed;
+    private float speed;
     public float jumpForce;
     public int health;
     public int maxHealth;
@@ -87,5 +87,15 @@ public abstract class Entity : MonoBehaviour
     {
         get { return isGrounded; }
         set { isGrounded = value; }
+    }
+
+    public float Speed
+    {
+        get
+        {
+            return speed;
+        }
+
+        set { speed = value; }
     }
 }

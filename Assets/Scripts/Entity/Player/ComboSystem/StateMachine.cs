@@ -11,7 +11,9 @@ public class StateMachine : MonoBehaviour
     public const int MAX_MOUSE_SCROLL = 2;
     public const int MIN_MOUSE_SCROLL = 0;
 
-    private State mainStateType;
+    public _Player player;
+
+    public State mainStateType;
 
     public State CurrentState { get; private set; }
     private State nextState;
@@ -30,7 +32,7 @@ public class StateMachine : MonoBehaviour
         float delta;
         if ((delta = Input.mouseScrollDelta.y) != 0)
         {
-            ControlMouseScroll(delta);
+            //ControlMouseScroll(delta);
         }
 
         

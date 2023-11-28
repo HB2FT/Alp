@@ -35,7 +35,7 @@ public class Knight : Entity
             {
                 if (isTriggered)
                 {
-                    transform.position -= speed * Time.deltaTime * transform.right;
+                    transform.position -= Speed * Time.deltaTime * transform.right;
 
                     animator.SetBool("isWalking", true);
                 }
