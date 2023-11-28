@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject LoadingScreen;
-    
-    public Animator Animator;
 
     public Music music;
     public MusicSession session;
@@ -16,9 +14,7 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        //Animator = GetComponent<Animator>();
-        Animator.speed = 1.0f;
-        Animator.Play("Loop", 0, 1f);
+        Time.timeScale = 1.0f;
 
         music.Play(session, false);
 
@@ -27,7 +23,6 @@ public class MainMenu : MonoBehaviour
 
     void Update()
     {
-        Animator.speed = 1.0f;
 
         if (!music.isPaused && music.isEnded)
         {
@@ -54,12 +49,20 @@ public class MainMenu : MonoBehaviour
     {
         LoadingScreen.SetActive(true);
 
-        StartCoroutine(LoadAsync());
+        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+
+        //StartCoroutine(LoadAsync());
     }
 
     IEnumerator LoadAsync()
     {
         yield return SceneManager.LoadSceneAsync("SampleScene");
+        StartCoroutine(UnloadSceneAsync(SceneManager.GetActiveScene().name));
+    }
+
+    IEnumerator UnloadSceneAsync(string sceneName)
+    {
+        yield return SceneManager.UnloadSceneAsync(sceneName);
     }
 
     public void Quit()

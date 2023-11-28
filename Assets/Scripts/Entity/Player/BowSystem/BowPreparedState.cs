@@ -17,7 +17,7 @@ public class BowPreparedState : BowBaseState
         bowStateName = "BowPrepared";
 
         player = GetComponent<Player>();
-        player.speed = player.speedTemp / 4;
+        player.Speed = player.speedTemp / 4;
     }
 
     public override void OnUpdate()
@@ -34,6 +34,6 @@ public class BowPreparedState : BowBaseState
     {
         base.OnExit();
 
-        player.speed = player.speedTemp;
+        player.Speed = player.speedTemp;
     }
 }

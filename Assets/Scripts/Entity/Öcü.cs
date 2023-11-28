@@ -34,7 +34,7 @@ public class Öcü : Entity
     {
         if (health > 0)
         {
-            transform.position += transform.right * speed * Time.deltaTime;
+            transform.position += transform.right * Speed * Time.deltaTime;
 
             if (transform.position.x > startPosX + 10 || transform.position.x < startPosX - 10)
             {

@@ -15,15 +15,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Mouse Delta",
-                    "type": "Value",
-                    "id": "09c0f089-e8df-48db-8dbc-3723c6eeaba0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Slide",
                     "type": "Button",
                     "id": "cf65217f-2382-435e-8950-4ae8f87b81c7",
@@ -49,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ItemIndex",
+                    "type": "Value",
+                    "id": "0d5d40e3-8983-4aa2-83fe-3c09934f0593",
+                    "expectedControlType": "Vector2",
+                    "processors": "NormalizeVector2",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -174,39 +174,6 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Increase",
-                    "id": "c3054f09-f679-45a1-9f4e-a6a6b08e3a4e",
-                    "path": "ButtonWithTwoModifiers",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Mouse Delta",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "button",
-                    "id": "bd99b7ba-2563-4dbb-8dc0-12183531df7d",
-                    "path": "<Mouse>/scroll/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Mouse Delta",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "button",
-                    "id": "fb3ed327-92ed-40d8-8e58-c23e8ca71a30",
-                    "path": "<Mouse>/scroll/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Mouse Delta",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "",
                     "id": "4b429384-ab10-40cb-991f-14456547e5a0",
                     "path": "<Keyboard>/shift",
@@ -291,6 +258,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "20e643d6-0688-48fd-99c6-40bc4a6ad2b1",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ItemIndex",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
