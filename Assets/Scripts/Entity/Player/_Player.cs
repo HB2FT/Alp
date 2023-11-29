@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class _Player : Entity
 {
@@ -16,6 +17,16 @@ public class _Player : Entity
         stateMachine = GetComponent<StateMachine>();
 
         itemIndex = 0;
+    }
+
+    public override void Update()
+    {
+        base.Update();
+
+        if (!IsDead)
+        {
+            
+        }
     }
 
     public int ItemIndex
@@ -43,7 +54,7 @@ public class _Player : Entity
         {
             if (stateMachine.mainStateType.GetType() != typeof(IdleCombatState))
             {
-                stateMachine.SetNextState(new IdleCombatState());
+                stateMachine.mainStateType = new IdleCombatState();
             }
         }
 

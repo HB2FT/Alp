@@ -21,9 +21,6 @@ public class PlayerMovement : MonoBehaviour
     bool isAttackPressed;
 
     [SerializeField]
-    float runSpeed;
-
-    [SerializeField]
     int itemIndex;
     const int MAX_ITEM_INDEX = 2;
     
@@ -60,10 +57,12 @@ public class PlayerMovement : MonoBehaviour
                 {
                     jumpQuery = true;
                 }
-                else if(player.Rigidbody.velocity.y < 0)
+                else if(player.Rigidbody.velocity.y < -5)
                 {
-                    //jumpQuery = true;
+                    jumpQuery = true;
                 }
+
+                isJumpPressed = false;
             }
 
             //
@@ -72,12 +71,6 @@ public class PlayerMovement : MonoBehaviour
             if (player.IsGrounded && jumpQuery)
             {
                 player.Rigidbody.AddForce(new Vector2(0f, player.jumpForce));
-                jumpQuery = false;
-            }
-
-            if (jumpQuery)
-            {
-                player.Rigidbody.AddForce(new Vector2(0f, player.jumpForce * Time.deltaTime));
                 jumpQuery = false;
             }
 
@@ -128,10 +121,9 @@ public class PlayerMovement : MonoBehaviour
         playerInput.Player.Slide.canceled += Slide; // End slide
 
         playerInput.Player.Jump.started += Jump; // On Jump
-        playerInput.Player.Jump.performed += Jump; // While Jumping
         playerInput.Player.Jump.canceled += Jump; // End Jump
 
-        playerInput.Player.ItemIndex.performed += OnItemChanged; // On item change
+        playerInput.Player.ItemIndex.started += OnItemChanged; // On item change
     }
 
     void OnItemChanged(InputAction.CallbackContext context)
@@ -172,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        transform.position += Time.deltaTime * _speed * currentMovement;
+        player.transform.position += Time.deltaTime * _speed * currentMovement;
     }
 
     void Move(InputAction.CallbackContext context)
