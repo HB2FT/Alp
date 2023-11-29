@@ -1,9 +1,15 @@
 # Mir
 ***
+# V0.10.3
+* Fixed bug on player movement
+* Integrated gamepad for item changing 
+* Removed `playerInput.Player.Jump.performed` from `PlayerMovement`
+* Changed Main Menu background
+***
 # V0.10.2
 * Fixed bug on attack animation system
-* Created custom button with focused effect
-* Added new fonr `alaard.ttf`
+* Created custom button with focus effect
+* Added new font `alaard.ttf`
 * Created scene `Debug` for testing components
 ***
 # V0.10.1
