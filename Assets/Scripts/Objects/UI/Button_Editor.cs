@@ -11,8 +11,6 @@ public class Button_Editor : Editor
     TextMeshPro text;
     ButtonOverlay overlay;
 
-
-
     private void OnEnable()
     {
         _target = (Button)target;

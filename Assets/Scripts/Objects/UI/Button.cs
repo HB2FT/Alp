@@ -8,16 +8,17 @@ using UnityEngine.EventSystems;
 public class Button : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public ButtonOverlay overlay;
+    
 
     void Start()
     {
-        overlay = FindObjectOfType<ButtonOverlay>();
         overlay.gameObject.SetActive(false);
     }
 
     void Update()
     {
         
+
     }
 
     public void OnPointerEnter(PointerEventData eventData)
