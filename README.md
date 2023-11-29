@@ -1,4 +1,41 @@
-# Alp
+# Mir
+***
+# V0.10.2
+* Fixed bug on attack animation system
+* Created custom button with focused effect
+* Added new fonr `alaard.ttf`
+* Created scene `Debug` for testing components
+***
+# V0.10.1
+* Changed scene loading type from `SceneManager.LoadSceneSync()` to `SceneManager.LoadScene()`
+> Scene loading brought to main thread. This changes up to MainMenu and SampleScene.
+* Fixed bug on MainMenu Stucked animations
+***
+# V0.10
+* Integrated new Input System
+	- WASD controls
+	- Arrow controls
+	- Running (Shift) control
+	- Jump (Space, W, Upper Arrow) controls
+* Fixed warnings
+***
+# V0.9.8
+* Fixed arrow animation mechanics
+***
+# V0.9.7
+* Added arrow animation system to new animation controlling strucutre
+***
+# V0.9.6
+* Fixed bugs o player attack combo system
+* Changed animation controlling structure
+***
+# V0.9.5
+* Changed player attack combo system (has bugs)
+***
+# V 0.9.4
+* Product name changed to 'Mir'
+* Loading screen sprite changed to 'Mir'
+* Fixed bug on knights death
 ***
 # V Alpha
 * Changed slide key from 'K' to 'Left Shift'

@@ -1,14 +1,11 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
     public GameObject LoadingScreen;
-    
-    public Animator Animator;
 
     public Music music;
     public MusicSession session;
@@ -17,23 +14,24 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        Animator = GetComponent<Animator>();
-        Animator.speed = 1.0f;
-        Animator.Play("Loop");
+        Time.timeScale = 1.0f;
 
         music.Play(session, false);
+
+        Debug.Log("MainMenu Started");
     }
 
     void Update()
     {
+
         if (!music.isPaused && music.isEnded)
         {
             try
             {
                 music.PlayNext(false);
-            }
 
-            catch (IndexOutOfRangeException e)
+            }
+            catch (IndexOutOfRangeException)
             {
                 Debug.Log("Oynatýlacak müzik kalmadý. Baþa sarýlýyor.");
 
@@ -42,16 +40,29 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        
+    }
+
     public void StartGame()
     {
         LoadingScreen.SetActive(true);
 
-        StartCoroutine(LoadAsync());
+        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+
+        //StartCoroutine(LoadAsync());
     }
 
     IEnumerator LoadAsync()
     {
         yield return SceneManager.LoadSceneAsync("SampleScene");
+        StartCoroutine(UnloadSceneAsync(SceneManager.GetActiveScene().name));
+    }
+
+    IEnumerator UnloadSceneAsync(string sceneName)
+    {
+        yield return SceneManager.UnloadSceneAsync(sceneName);
     }
 
     public void Quit()

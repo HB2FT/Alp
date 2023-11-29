@@ -17,13 +17,11 @@ public class Tepegöz : Entity
     public bool isDamagable;
     public float waitAfterDamage;
 
-    int index = 0; // This is for setting isDead variable in animator
-
     public Player target;
     public GameObject attackCollider;
-    
 
-    void Start()
+
+    public override void Start()
     {
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
@@ -56,14 +54,14 @@ public class Tepegöz : Entity
                 {
                     if (!isRight) Rotate(); //Debug.Log("player x > x");
 
-                    transform.position -= speed * Time.deltaTime * transform.right;
+                    transform.position -= Speed * Time.deltaTime * transform.right;
                 }
 
                 if (target.transform.position.x < transform.position.x)
                 {
                     if (isRight) Rotate(); //Debug.Log("player x < x");
 
-                    transform.position -= speed * Time.deltaTime * transform.right;
+                    transform.position -= Speed * Time.deltaTime * transform.right;
                 }
 
                 animator.SetBool("isRunning", true);
@@ -93,7 +91,7 @@ public class Tepegöz : Entity
         animator.SetBool("isDead", true);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public override void OnCollisionEnter2D(Collision2D collision)
     {
         if (!IsDead)
         {
@@ -106,7 +104,7 @@ public class Tepegöz : Entity
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    public override void OnCollisionExit2D(Collision2D collision)
     {
         if (!IsDead)
         {

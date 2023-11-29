@@ -12,6 +12,8 @@ public class Player : Entity
     public GameObject attackCollider;
     public GameObject deathMenu;
 
+    public GameCamera gameCamera;
+
     public List<PostProcessVolume> postProcessVolumes = new List<PostProcessVolume>();
     public GameObject mainCam;
 
@@ -23,12 +25,12 @@ public class Player : Entity
 
     public Sprite spr_Arrow;
 
-    public bool isGrounded;
+    //public bool isGrounded;
     public bool isAttacking = false;
     public bool isControllable = true;
     public bool isDying = false;
     public bool bowHanded = false;
-    public float jumpForce;
+    //public float jumpForce;
     public float gravity;
     public static int Damage = 20;
     public int damage = Damage;
@@ -37,7 +39,9 @@ public class Player : Entity
     public bool isSliding;
     public float slideForce;
 
-    private float speedTemp;
+    public bool attackQuery;
+
+    public float speedTemp { get; private set; }
 
     public const int MAX_MOUSE_SCROLL = 2;
     public const int MIN_MOUSE_SCROLL = 0;
@@ -53,9 +57,10 @@ public class Player : Entity
     private AtomicBoolean atomicBoolean_lowHealthSoundEffect1 = new AtomicBoolean(true);
     private AtomicBoolean atomicBoolean_lowHealthSoundEffect2 = new AtomicBoolean(true);
 
+    [Obsolete("Bu öge daha yapılandırılmadı")]
     public Tutorial tutorial;
 
-    void Start()
+    public override void Start()
     {
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
@@ -67,7 +72,7 @@ public class Player : Entity
 
         Time.timeScale = 1;
 
-        speedTemp = speed;
+        speedTemp = Speed;
 
         maxHealth = health;
 
@@ -75,6 +80,7 @@ public class Player : Entity
         //
         // Load saves
         //
+        LoadSavedGame();
         string saveContent = File.ReadAllText("Save.alp");
 
         if (File.Exists("Save.alp"))
@@ -168,11 +174,13 @@ public class Player : Entity
 
             if (!bottomBar.activeSelf && isControllable && !IsSliding)
             {
+                Controller();
+
                 if (Input.GetKey(KeyCode.D)) // Yay Ku�an�lmam��sa
                 {
-                    if (!isGrounded) // Havadaysa
+                    if (!IsGrounded) // Havadaysa
                     {
-                        transform.position += transform.right * speed * Time.deltaTime;
+                        transform.position += transform.right * Speed * Time.deltaTime;
 
                         if (!isRight)
                         {
@@ -183,7 +191,7 @@ public class Player : Entity
                     {
                         if (!isAttacking || bowHanded) // Saldırmıyorsa
                         {
-                            transform.position += transform.right * speed * Time.deltaTime;
+                            transform.position += transform.right * Speed * Time.deltaTime;
 
                             if (!isRight)
                             {
@@ -197,10 +205,10 @@ public class Player : Entity
 
                 if (Input.GetKey(KeyCode.A)) // Yay ku�an�lmam��sa
                 {
-                    if (!isGrounded) // Havadaysa
+                    if (!IsGrounded) // Havadaysa
                     {
                     
-                        transform.position -= -transform.right * speed * Time.deltaTime;
+                        transform.position -= -transform.right * Speed * Time.deltaTime;
 
                         if (isRight)
                         {
@@ -211,7 +219,7 @@ public class Player : Entity
                     {
                         if (!isAttacking || bowHanded) // Sald�rm�yorsa
                         {
-                            transform.position -= -transform.right * speed * Time.deltaTime;
+                            transform.position -= -transform.right * Speed * Time.deltaTime;
 
                             if (isRight)
                             {
@@ -223,9 +231,9 @@ public class Player : Entity
                     animator.SetBool("IsRunning", true);
                 }
 
-                if (Input.GetKeyDown(KeyCode.Space)) // Jump
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) // Jump
                 {
-                    if (isGrounded && !jumpQuery)
+                    if (IsGrounded && !jumpQuery)
                     {
                         rigidBody.AddForce(new Vector2(0f, jumpForce)); 
                         //rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpForce);
@@ -236,7 +244,7 @@ public class Player : Entity
                     }
                 }
 
-                if (isGrounded && jumpQuery) 
+                if (IsGrounded && jumpQuery) 
                 {
                     rigidBody.AddForce(new Vector2(0f, jumpForce));
                     jumpQuery = false;
@@ -275,72 +283,60 @@ public class Player : Entity
                         }
 
                         animator.SetBool("IsAttacking", true);
+                        animator.SetTrigger("Attack");
                         isAttacking = true;
                     }
                 }
 
-                if (Input.GetMouseButtonUp(0))
-                {
-                    bool bowPrepared = animator.GetBool("BowPrepared");
-                    if (bowHanded && !bowPrepared)
-                    {
-                        isAttacking = false;
-                        animator.SetBool("IsAttacking", false);
-                    }
+                //if (Input.GetMouseButtonUp(0))
+                //{
+                //    bool bowPrepared = animator.GetBool("BowPrepared");
+                //    if (bowHanded && !bowPrepared)
+                //    {
+                //        isAttacking = false;
+                //        animator.SetBool("IsAttacking", false);
+                //    }
 
-                    if (bowHanded && bowPrepared)
-                    {
-                        animator.SetBool("ArrowThrowable", true);
-                    }
-                }
+                //    if (bowHanded && bowPrepared)
+                //    {
+                //        animator.SetBool("ArrowThrowable", true);
+                //    }
+                //}
 
                 #endregion
             }
 
             #endregion
+            
 
             #region Hand Weapon
 
-            if (Input.mouseScrollDelta.y < 0 && currentMouseScroll < MAX_MOUSE_SCROLL)
-            {
-                currentMouseScroll++;
-                animator.SetInteger("MouseScroll", currentMouseScroll);
-            }
-
-            if (Input.mouseScrollDelta.y > 0 && currentMouseScroll > MIN_MOUSE_SCROLL)
-            {
-                currentMouseScroll--;
-                animator.SetInteger("MouseScroll", currentMouseScroll);
-            }
-
             if (Input.GetKeyDown(KeyCode.Alpha1)) // No weapon on key 1
             {
-                currentMouseScroll = 0;
-                animator.SetInteger("MouseScroll", currentMouseScroll);
+                animator.SetInteger("MouseScroll", 0);
             }
             if (Input.GetKeyDown(KeyCode.Alpha2)) // Hand sword on key 2
             {
-                currentMouseScroll = 1;
-                animator.SetInteger("MouseScroll", currentMouseScroll);
+                animator.SetInteger("MouseScroll", 1);
             }
             if (Input.GetKeyDown(KeyCode.Alpha3)) // Hand bow on key 3
             {
-                currentMouseScroll = 2;
-                animator.SetInteger("MouseScroll", currentMouseScroll);
+                animator.SetInteger("MouseScroll", 2);
             }
 
-            bowHanded = currentMouseScroll == 2; // currentMouseScroll değişkeninin 2'ye eşit olma durmu (Eşitse true değilse false olacak)
+            //bowHanded = currentMouseScroll == 2; // currentMouseScroll değişkeninin 2'ye eşit olma durmu (Eşitse true değilse false olacak)
 
-            if (bowHanded && isAttacking)
-            {
-                speed = speedTemp / 4;
-            }
-            else
-            {
-                speed = speedTemp;
-            }
+            //if (bowHanded && isAttacking)
+            //{
+            //    speed = speedTemp / 4;
+            //}
+            //else
+            //{
+            //    speed = speedTemp;
+            //}
 
             #endregion
+            
 
             #region check low health
 
@@ -384,25 +380,13 @@ public class Player : Entity
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void LoadSavedGame()
     {
-        if (collision.gameObject.name == "Terrain") // Zemine de�iyor mu
-        {
-            isGrounded = true;
-        }
+        CheckPoint.SavedState savedState = CheckPoint.Load();
 
-        if (collision.gameObject.name == "DamagableObjects")
-        {
-            health = 0;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision) // Zemine de�miyor mu
-    {
-        if (collision.gameObject.name == "Terrain")
-        {
-            isGrounded = false;
-        }
+        transform.position = new Vector3(savedState.playerX, savedState.playerY, 0);
+        gameCamera.yOffset = savedState.cameraYAxisOffset;
+        
     }
 
     public void OnFirstAttackAnimationStart()
@@ -496,15 +480,15 @@ public class Player : Entity
 
     protected void BowPrepared()
     {
-        animator.SetBool("BowPrepared", true);
+        //animator.SetBool("BowPrepared", true);
     }   
 
     protected void ArrowThrowed()
     {
-        animator.SetBool("IsAttacking", false);
+        //animator.SetBool("IsAttacking", false);
         isAttacking = false;
-        animator.SetBool("BowPrepared", false);
-        animator.SetBool("ArrowThrowable", false);
+        //animator.SetBool("BowPrepared", false);
+        //animator.SetBool("ArrowThrowable", false);
 
         CreateArrow();
     }
@@ -552,6 +536,11 @@ public class Player : Entity
         {
             IsSliding = false;
         }
+    }
+
+    private void Controller()
+    {
+
     }
 
     public bool IsSliding

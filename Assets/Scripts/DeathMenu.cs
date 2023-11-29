@@ -12,7 +12,7 @@ public class DeathMenu : MonoBehaviour
 
     public void btn_Retry()
     {
-        //SceneManager.LoadScene("SampleScene");
-        Application.LoadLevel(Application.loadedLevel);
+        SceneManager.LoadScene("SampleScene");
+        // Application.LoadLevel(Application.loadedLevel);
     }
 }

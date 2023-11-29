@@ -19,7 +19,9 @@ public class PauseMenu : MonoBehaviour
     {
         loadingScreen.SetActive(true);
 
-        StartCoroutine(Load("MainMenu"));
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+
+        //StartCoroutine(Load("MainMenu"));
     }
 
     IEnumerator Load(string sceneName)
