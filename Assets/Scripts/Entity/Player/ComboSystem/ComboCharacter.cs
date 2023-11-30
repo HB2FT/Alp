@@ -1,3 +1,4 @@
+using Mir.Objects.Items;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,14 +13,11 @@ public class ComboCharacter : MonoBehaviour
 
     private bool isAttackPressed;
 
-    // Start is called before the first frame update
     void Start()
     {
         stateMachine = GetComponent<StateMachine>();
-        
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isAttackPressed && stateMachine.CurrentState.GetType() == typeof(IdleCombatState))
@@ -33,8 +31,6 @@ public class ComboCharacter : MonoBehaviour
             stateMachine.SetNextState(new BowPreparingState());
             isAttackPressed = false;
         }
-
-
     }
 
     private void Awake()
@@ -47,7 +43,8 @@ public class ComboCharacter : MonoBehaviour
 
     void Attack(InputAction.CallbackContext context)
     {
-        isAttackPressed = context.ReadValueAsButton();
+        //isAttackPressed = context.ReadValueAsButton();
+        isAttackPressed = false;
     }
 
     private void OnEnable()

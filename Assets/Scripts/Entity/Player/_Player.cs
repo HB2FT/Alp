@@ -1,3 +1,6 @@
+using Mir.Entity.Player;
+using Mir.Objects.Items;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,8 +10,11 @@ using UnityEngine.InputSystem;
 public class _Player : Entity
 {
     public StateMachine stateMachine;
+    public ItemSystem ItemSystem;
 
+    [Obsolete]
     private int itemIndex;
+    private int _itemIndex; // Temp variable for InputSystem.currentItemIndex
 
     public override void Start()
     {
@@ -16,7 +22,7 @@ public class _Player : Entity
 
         stateMachine = GetComponent<StateMachine>();
 
-        itemIndex = 0;
+        _itemIndex = 0;
     }
 
     public override void Update()
@@ -25,10 +31,16 @@ public class _Player : Entity
 
         if (!IsDead)
         {
-            
+            if (_itemIndex != ItemSystem.currentItemIndex)
+            {
+                ChangeState();
+            }
+
+            _itemIndex = ItemSystem.currentItemIndex;
         }
     }
 
+    [Obsolete]
     public int ItemIndex
     {
         get { return itemIndex; }
@@ -42,7 +54,7 @@ public class _Player : Entity
 
     private void ChangeState()
     {
-        if (itemIndex == 0)
+        if (ItemSystem.currentItemIndex == 0)
         {
             if (stateMachine.mainStateType.GetType() != typeof(IdleState))
             {
@@ -50,7 +62,7 @@ public class _Player : Entity
             }
         }
 
-        if (itemIndex == 1)
+        if (ItemSystem.currentItemIndex == 1)
         {
             if (stateMachine.mainStateType.GetType() != typeof(IdleCombatState))
             {
@@ -58,7 +70,7 @@ public class _Player : Entity
             }
         }
 
-        if (itemIndex == 2)
+        if (ItemSystem.currentItemIndex == 2)
         {
             if (stateMachine.mainStateType.GetType() != typeof(IdleBowState))
             {

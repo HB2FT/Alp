@@ -1,4 +1,12 @@
 # Mir
+**
+# V0.10.4
+* Added tilesets:
+	- Bozkır
+	- Dağ
+	- Yeraltı
+	- Orman
+* Created new scene `Oba` 
 ***
 # V0.10.3
 * Fixed bug on player movement
