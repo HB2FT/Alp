@@ -123,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
         playerInput.Player.Jump.started += Jump; // On Jump
         playerInput.Player.Jump.canceled += Jump; // End Jump
 
-        playerInput.Player.ItemIndex.started += OnItemChanged; // On item change
+        //playerInput.Player.ItemIndex.started += OnItemChanged; // On item change
     }
 
     void OnItemChanged(InputAction.CallbackContext context)
