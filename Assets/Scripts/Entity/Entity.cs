@@ -81,16 +81,8 @@ public abstract class Entity : MonoBehaviour
 
     public bool IsDamaged
     {
-
-        get
-        {
-            return animator.GetBool("isDamaged");
-        }
-
         set
         {
-            animator.SetBool("isDamaged", value);
-
             if (value)
             {
                 animator.SetTrigger("Hurt");

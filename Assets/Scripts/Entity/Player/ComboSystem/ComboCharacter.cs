@@ -43,8 +43,7 @@ public class ComboCharacter : MonoBehaviour
 
     void Attack(InputAction.CallbackContext context)
     {
-        //isAttackPressed = context.ReadValueAsButton();
-        isAttackPressed = false;
+        isAttackPressed = context.ReadValueAsButton();
     }
 
     private void OnEnable()

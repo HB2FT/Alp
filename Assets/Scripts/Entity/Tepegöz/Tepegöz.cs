@@ -23,6 +23,8 @@ public class Tepegöz : Entity
 
     public override void Start()
     {
+        base.Start();
+
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
 
@@ -30,8 +32,10 @@ public class Tepegöz : Entity
         triggered = false;
         isDamagable = true;
     }
-    void Update()
+    public override void Update()
     {
+        base.Update();
+
         if (!IsDead)
         {
             if (target.transform.position.x - transform.position.x > triggerArea[0] 
@@ -48,7 +52,7 @@ public class Tepegöz : Entity
 
             #region Move Codes
 
-            if (triggered && !isAttacking && !collidedWithPlayer && !IsDamaged)
+            if (triggered && !isAttacking && !collidedWithPlayer)
             {
                 if (target.transform.position.x > transform.position.x) // Move right
                 {

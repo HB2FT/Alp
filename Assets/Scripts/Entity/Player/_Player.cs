@@ -1,3 +1,6 @@
+using FMOD;
+using FMOD.Studio;
+using Mir.Audio.Oba;
 using Mir.Entity.Player;
 using Mir.Objects.Items;
 using System;
@@ -12,9 +15,13 @@ public class _Player : Entity
     public StateMachine stateMachine;
     public ItemSystem ItemSystem;
 
-    [Obsolete]
-    private int itemIndex;
+    [Obsolete] private int itemIndex;
     private int _itemIndex; // Temp variable for InputSystem.currentItemIndex
+    [SerializeField] private int criticalHealth;
+
+    // audio
+    private EventInstance lowHealth;
+    private EventInstance deathSound;
 
     public override void Start()
     {
@@ -23,6 +30,9 @@ public class _Player : Entity
         stateMachine = GetComponent<StateMachine>();
 
         _itemIndex = 0;
+
+        lowHealth = AudioManager.instance.CreateEventInstance(MusicEvents.instance.playerLowHealth);
+        //deathSound = AudioManager.instance.CreateEventInstance(MusicEvents.instance.playerDeath);
     }
 
     public override void Update()
@@ -37,6 +47,40 @@ public class _Player : Entity
             }
 
             _itemIndex = ItemSystem.currentItemIndex;
+
+            HandleLowHealth();
+        }
+    }
+
+    protected override void OnDeath()
+    {
+        base.OnDeath();
+
+        GameEventsManager.instance.OnPlayerDeath();
+
+        UnityEngine.Debug.Log("player died");
+    }
+
+    private void HandleLowHealth()
+    {
+        PLAYBACK_STATE playbackstate;
+        lowHealth.getPlaybackState(out playbackstate);
+
+        // if health under critical health
+        if (health <= criticalHealth)
+        {
+            // if low health effect does not playing
+            if (playbackstate.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                // play sound effect
+                lowHealth.start();
+            }
+        }
+        // otherwise health over citical health
+        else
+        {
+            // stop sound effect
+            lowHealth.stop(STOP_MODE.ALLOWFADEOUT);
         }
     }
 
