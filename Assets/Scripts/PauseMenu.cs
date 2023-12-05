@@ -1,3 +1,4 @@
+using Mir.Input;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,15 +9,56 @@ public class PauseMenu : MonoBehaviour
     public GameController menuController;
     public GameObject loadingScreen;
 
-    private AtomicBoolean once = new AtomicBoolean(true);
+    [SerializeField] private GameObject menu;
+
+    private void Update()
+    {
+        if (InputManager.instance.GetBackPressed())
+        {
+            ToggleMenu();
+        }
+    }
+
+    private void ToggleMenu()
+    {
+        // menu ON
+        if(menu.gameObject.activeInHierarchy)
+        {
+            Hide();
+        }
+        // menu OFF
+        else
+        {
+            Show();
+        }
+    }
+
+    private void Show()
+    {
+        VisualEffectsManager.instance.SetCurrentProfile(VisualEffects.instance.pauseMenuVisualEffect);
+        VisualEffectsManager.instance.weight = 1;
+
+        menu.gameObject.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    private void Hide()
+    {
+        VisualEffectsManager.instance.weight = 0;
+
+        menu.gameObject.SetActive(false);
+        Time.timeScale = 1.0f;
+    }
 
     public void btn_Resume()
     {
-        menuController.HideMenu();
+        Hide();
     }
 
     public void btn_MainMenu()
     {
+        Hide();
+
         loadingScreen.SetActive(true);
 
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);

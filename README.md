@@ -1,5 +1,14 @@
 # Mir
-**
+***
+# V0.10.7
+* Created `Input Manager`, ``VisualEffectsManager`, `AudioManager` objects and scripts
+***
+# V0.10.6
+* Started integration audio system with FMOD
+***
+# V0.10.5
+* Changed Pause Menu bakcground and button sytyles
+***
 # V0.10.4
 * Added tilesets:
 	- Bozkır
