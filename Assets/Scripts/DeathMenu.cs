@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class DeathMenu : MonoBehaviour
-{
+{ 
     public void btn_MainMenu()
     {
         SceneManager.LoadScene("MainMenu");

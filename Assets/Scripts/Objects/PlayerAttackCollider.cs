@@ -14,7 +14,7 @@ public class PlayerAttackCollider : MonoBehaviour
             Tepegöz tepegöz = collidedEntity.GetComponent<Tepegöz>();
             if (tepegöz != null)
             {
-                if (!tepegöz.IsDamaged && tepegöz.IsDamagable)
+                if (tepegöz.IsDamagable)
                 {
                     tepegöz.health -= 20;
                     tepegöz.IsDamaged = true;
@@ -24,7 +24,10 @@ public class PlayerAttackCollider : MonoBehaviour
             }
             else
             {
+                int Direction;
+                if (GetComponentInParent<_Player>().isRight) Direction = 1; else Direction = -1;
                 collidedEntity.health -= 20;
+                collidedEntity.Rigidbody.AddForce(new Vector2(6 * Direction, 0), ForceMode2D.Impulse);
                 collidedEntity.IsDamaged = true;
             }
 

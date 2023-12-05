@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     const int MAX_ITEM_INDEX = 2;
     
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (!player.IsDead)
         {
@@ -36,12 +36,12 @@ public class PlayerMovement : MonoBehaviour
 
             if (movementInput == Vector2.right && !player.isRight)
             {
-                player.Rotate();
+                player.Rotate();Debug.Log("Rotate right");
             }
 
             if (movementInput == Vector2.left && player.isRight)
             {
-                player.Rotate();
+                player.Rotate(); Debug.Log("Rotate right");
             }
 
             MovePlayer(player.Speed); // Move player
@@ -164,7 +164,9 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        player.transform.position += Time.deltaTime * _speed * currentMovement;
+        player.transform.position += currentMovement * _speed * Time.deltaTime;
+
+        //player.Rigidbody.velocity = new Vector3(_speed * currentMovement.x, player.Rigidbody.velocity.y);
     }
 
     void Move(InputAction.CallbackContext context)

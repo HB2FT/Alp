@@ -18,15 +18,17 @@ public class Knight : Entity
     public readonly float[] triggerArea = {-10f, 10f };
 
     private int index = 0; // This is for change isDead animator parameter after a while
+    private float dissapearTime = 5f;
 
     public override void Start()
     {
-        animator = GetComponent<Animator>();
-        rigidBody = GetComponent<Rigidbody2D>();
+        base.Start();
     }
 
-    void Update()
+    public override void Update()
     {
+        base.Update();
+
         CheckTrigger();
 
         if (health > 0)
@@ -47,15 +49,15 @@ public class Knight : Entity
             }
         }
 
-        else
-        {
-            if (deathChecker.Value) OnDeath();
+        //else
+        //{
+        //    if (deathChecker.Value) OnDeath();
 
-            if (++index == 10)
-            {
-                animator.SetBool("isDead", false);
-            }
-        }
+        //    if (++index == 10)
+        //    {
+        //        animator.SetBool("isDead", false);
+        //    }
+        //}
     }
 
     protected override void OnDeath() 
@@ -64,16 +66,17 @@ public class Knight : Entity
 
         GetComponent<BoxCollider2D>().enabled = false;
         rigidBody.simulated = false;
-        attackCollider.SetActive(false);
 
-        BoxCollider2D[] collidersInChildren = GetComponentsInChildren<BoxCollider2D>();
-        foreach (BoxCollider2D currentCollider in collidersInChildren)
-        {
-            currentCollider.enabled = false;
-        }
-
-        //animator.SetBool("isDead", true);
         animator.SetTrigger("Died");
+
+        Destroy(gameObject, dissapearTime);
+    }
+
+    IEnumerator Disappear()
+    {
+        yield return new WaitForSeconds(dissapearTime);
+
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -93,7 +96,7 @@ public class Knight : Entity
     {
         //animator.SetBool("isAttacking", false);
         //animator.SetTrigger("Attack");
-        attackCollider.gameObject.SetActive(false);
+        //attackCollider.gameObject.SetActive(false);
     }
 
     public void CheckTrigger() 

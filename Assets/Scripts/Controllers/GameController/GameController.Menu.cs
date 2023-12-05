@@ -26,13 +26,13 @@ partial class GameController
         {
             if (!IsMenuOpen) // Esc basıldığında manü açık değilse (menü açılır)
             {
-                ShowMenu();
+                //ShowMenu();
                 
             }
 
             else // Esc basıldığında menü açıksa (menü kapatılır)
             {
-                HideMenu();
+                //HideMenu();
 
                 
             }
@@ -42,10 +42,8 @@ partial class GameController
     public void ShowMenu()
     {
         pauseMenu.SetActive(true);
-        postProcessVolume.profile = pauseMenuProfile;
-        postProcessVolume.enabled = true;
-        player.isControllable = false;
-        music.Pause();
+
+        VisualEffectsManager.instance.SetCurrentProfile(VisualEffects.instance.pauseMenuVisualEffect);
 
         Time.timeScale = 0f;
 

@@ -8,7 +8,7 @@ namespace Mir.Entity.Player
     {
         private PlayerInput playerInput;
         private Item currentItem;
-        private readonly Item[] items = { new Hand(), new Sword() };
+        private readonly Item[] items = { new Hand(), new Sword(), new Bow() };
 
         public int currentItemIndex;
 
