@@ -1,7 +1,7 @@
 # Mir
 ***
 # V0.10.7
-* Created `Input Manager`, ``VisualEffectsManager`, `AudioManager` objects and scripts
+* Created `Input Manager`, `VisualEffectsManager`, `AudioManager` objects and scripts
 ***
 # V0.10.6
 * Started integration audio system with FMOD
