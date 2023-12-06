@@ -21,7 +21,7 @@ public class GroundComboState : SwordBaseState
 
         if (fixedtime >= duration)
         {
-            if (shouldCombo)
+            if (shouldCombo.Value)
             {
                 stateMachine.SetNextState(new GroundFinisherState());
             }

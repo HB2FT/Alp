@@ -4,9 +4,11 @@ namespace Mir.Objects.Items
 {
     public class Hand : Item
     {
+        public static Hand instance {  get; private set; }
+
         public Hand()
         {
-            index = 0;
+            instance = this;
         }
 
         public override void OnUse()

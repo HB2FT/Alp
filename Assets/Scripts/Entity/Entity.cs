@@ -22,6 +22,12 @@ public abstract class Entity : MonoBehaviour
     public virtual void Start()
     {
         animator = GetComponent<Animator>();
+
+        if (animator == null)
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
+
         rigidBody = GetComponent<Rigidbody2D>();
 
         health = maxHealth;

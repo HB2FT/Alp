@@ -7,7 +7,10 @@ using UnityEngine;
 
 public class BowPreparedState : BowBaseState
 {
+    [Obsolete("Use _Player class")]
     private Player player;
+
+    public float decreasingAmountForPlayerSpeed;
 
     public override void OnEnter(StateMachine _stateMachine)
     {
@@ -16,8 +19,12 @@ public class BowPreparedState : BowBaseState
         duration = .683f;
         bowStateName = "BowPrepared";
 
-        player = GetComponent<Player>();
-        player.Speed = player.speedTemp / 4;
+        decreasingAmountForPlayerSpeed = 5;
+
+        DecreasePlayerSpeed();
+
+        //player = GetComponent<Player>();
+        //player.Speed = player.speedTemp / 4;
     }
 
     public override void OnUpdate()
@@ -34,6 +41,18 @@ public class BowPreparedState : BowBaseState
     {
         base.OnExit();
 
-        player.Speed = player.speedTemp;
+        IncreasePlayerSpeed();
+
+        //player.Speed = player.speedTemp;
+    }
+
+    private void DecreasePlayerSpeed()
+    {
+        _Player.instance.Speed = _Player.instance.Speed / decreasingAmountForPlayerSpeed;
+    }
+
+    private void IncreasePlayerSpeed()
+    {
+        _Player.instance.Speed = _Player.instance.Speed * decreasingAmountForPlayerSpeed;
     }
 }

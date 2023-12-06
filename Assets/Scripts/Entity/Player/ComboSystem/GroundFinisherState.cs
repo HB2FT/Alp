@@ -21,9 +21,9 @@ public class GroundFinisherState : SwordBaseState
 
         if (fixedtime >= duration)
         {
-            if (shouldCombo)
+            if (shouldCombo.Value)
             {
-                stateMachine.SetNextState(new GroundEntryState());
+                stateMachine.SetNextState(new GroundEntryState()); Debug.Log("Finisher to Entry");
             }
 
             else

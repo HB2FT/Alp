@@ -5,6 +5,17 @@ using static UnityEngine.GraphicsBuffer;
 
 public class PlayerAttackCollider : MonoBehaviour
 {
+    public static PlayerAttackCollider instance {  get; private set; }
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.Log("Found more than one Player Attack Collider in the scene.");
+        }
+        instance = this;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Entity collidedEntity = collision.gameObject.GetComponent<Entity>();

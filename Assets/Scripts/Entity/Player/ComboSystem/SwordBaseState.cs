@@ -1,13 +1,17 @@
+using Mir.Objects.Items;
+using System;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class SwordBaseState : State
 {
+    [Obsolete]
     private PlayerInput playerInput;
 
     public float duration;
     protected Animator animator;
-    protected bool shouldCombo;
+    protected AtomicBoolean shouldCombo;
     protected int attackIndex;
     protected bool isAttackPressed;
 
@@ -17,12 +21,26 @@ public class SwordBaseState : State
 
         animator = GetComponent<Animator>();
 
-        playerInput = new PlayerInput();
+        shouldCombo = new AtomicBoolean(false);
 
-        playerInput.Enable();
+        SetPlayerAttackColliderState(true);
 
-        playerInput.Player.Attack.started += Attack;
+        //playerInput = new PlayerInput();
 
+        //playerInput.Enable();
+
+        //playerInput.Player.Attack.started += Attack;
+
+        Sword.instance.onUse += UseSword;
+
+    }
+
+    void SetPlayerAttackColliderState(bool state)
+    {
+        if (StateMachine.instance.CurrentState.GetType() != typeof(IdleCombatState))
+        {
+            PlayerAttackCollider.instance.gameObject.SetActive(state);
+        }
     }
 
     void Attack(InputAction.CallbackContext context)
@@ -30,21 +48,28 @@ public class SwordBaseState : State
         isAttackPressed = context.ReadValueAsButton();
     }
 
+    void UseSword()
+    {
+        shouldCombo.Value = true;
+    }
+
     public override void OnUpdate()
     {
         base.OnUpdate();
 
-        if (isAttackPressed)
-        {
-            shouldCombo = true;
-            isAttackPressed = false;
-        }
+        //if (isAttackPressed)
+        //{
+        //    shouldCombo = true;
+        //    isAttackPressed = false;
+        //}
     }
 
     public override void OnExit()
     {
         base.OnExit();
 
-        playerInput.Disable();
+        SetPlayerAttackColliderState(false);
+
+        //playerInput.Disable();
     }
 }
