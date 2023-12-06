@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,15 +9,18 @@ namespace Mir.Objects.Items
     {
         public float damage = 25;
 
+        public static Sword instance { get; private set; }
+
         public Sword()
         {
-            index = 1;
+            instance = this;
         }
 
+        public event Action onUse;
         public override void OnUse()
         {
 
-            Debug.Log("Use Sword");
+            if (onUse != null) onUse();
         }
     }
 

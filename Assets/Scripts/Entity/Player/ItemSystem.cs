@@ -60,6 +60,8 @@ namespace Mir.Entity.Player
         {
             //isAttackPressed = context.ReadValueAsButton();
 
+            Debug.Log("ItemSystem use item");
+
             currentItem.OnUse();
         }
 

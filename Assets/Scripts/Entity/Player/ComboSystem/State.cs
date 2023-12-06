@@ -32,7 +32,9 @@ public abstract class State
 
     public virtual void OnExit()
     {
-
+        time = 0;
+        latetime = 0;
+        fixedtime = 0;
     }
 
     #region Passthrough Methods

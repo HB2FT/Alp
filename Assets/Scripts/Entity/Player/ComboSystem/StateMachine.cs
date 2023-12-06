@@ -15,6 +15,8 @@ public class StateMachine : MonoBehaviour
     public State CurrentState { get; private set; }
     private State nextState;
 
+    public static StateMachine instance { get; private set; }
+
     void Update()
     {
         if (nextState != null)
@@ -23,7 +25,7 @@ public class StateMachine : MonoBehaviour
         }
 
         if (CurrentState != null)
-            CurrentState.OnUpdate();  
+            CurrentState.OnUpdate();
     }
 
     private void SetState(State _newState)
@@ -64,8 +66,13 @@ public class StateMachine : MonoBehaviour
 
     private void Awake()
     {
-        SetNextStateToMain();
+        if (instance != null)
+        {
+            Debug.LogError("Found more than one State Machine in the scene");
+        }
+        instance = this;
 
+        SetNextStateToMain();
     }
 
 
