@@ -1,5 +1,9 @@
 # Mir
 ***
+# V0.10.8
+* Removed field `index` from  `Item` class
+* Fixed stuck on Sword Animation System
+***
 # V0.10.7
 * Created `Input Manager`, ``VisualEffectsManager`, `AudioManager` objects and scripts
 ***

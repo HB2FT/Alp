@@ -13,4 +13,15 @@ public class IdleCombatState : SwordBaseState
 
         animator.SetTrigger("HandSword");
     }
+
+    public override void OnUpdate()
+    {
+        base.OnUpdate();
+
+        if (shouldCombo.Value)
+        {
+            stateMachine.SetNextState(new GroundEntryState());
+            shouldCombo.Value = false;
+        }
+    }
 }

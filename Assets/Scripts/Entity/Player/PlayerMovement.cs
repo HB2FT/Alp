@@ -1,10 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public _Player player;
+    [SerializeField] private _Player player;
 
     private PlayerInput playerInput;
     private StateMachine stateMachine;
@@ -13,100 +13,150 @@ public class PlayerMovement : MonoBehaviour
     Vector3 currentMovement;
 
     bool isMovementPressed;
-    [SerializeField]
-    bool jumpQuery;
-    [SerializeField]
-    bool isJumpPressed;
+    [SerializeField] bool jumpQuery;
+    [SerializeField] bool isJumpPressed;
     bool isSlidePressed;
     bool isAttackPressed;
+    bool isRunning;
 
-    [SerializeField]
-    int itemIndex;
+    [SerializeField] int itemIndex;
     const int MAX_ITEM_INDEX = 2;
-    
+
+    public void Start()
+    {
+        player = GetComponentInParent<_Player>();
+        stateMachine = GetComponent<StateMachine>();
+
+        itemIndex = 0;
+    }
 
     private void Update()
     {
         if (!player.IsDead)
         {
-            bool isRunning = movementInput == Vector2.left || movementInput == Vector2.right;
-            player.Animator.SetBool("IsRunning", isRunning); // Set animation
+            //bool isRunning = movementInput == Vector2.left || movementInput == Vector2.right;
+            
 
-            #region Movement
 
-            if (movementInput == Vector2.right && !player.isRight)
+
+
+            HandleMovement();
+
+            HandleJump();
+
+            HandleSlide();
+
+            HandleAttak();
+
+            UpdateAnimator();
+        }
+    }
+
+    private void UpdateAnimator()
+    {
+        player.Animator.SetBool("IsRunning", isRunning); // Set animation
+    }
+
+    private void HandleAttak()
+    {
+        //
+        // Attack
+        //
+        if (isAttackPressed)
+        {
+            //stateMachine.SetNextState(new GroundEntryState());
+            isAttackPressed = false;
+        }
+    }
+
+    private void HandleSlide()
+    {
+        //
+        // Slide
+        //
+        if (isSlidePressed && isMovementPressed) // Pressed slide while moving
+        {
+            if (stateMachine.CurrentState.GetType() != typeof(SlideState))
             {
-                player.Rotate();Debug.Log("Rotate right");
-            }
+                stateMachine.SetNextState(new SlideState());
 
-            if (movementInput == Vector2.left && player.isRight)
-            {
-                player.Rotate(); Debug.Log("Rotate right");
-            }
-
-            MovePlayer(player.Speed); // Move player
-
-            #endregion
-
-            //
-            // Jump
-            //
-            if (isJumpPressed)
-            {
-                if (player.IsGrounded)
+                int rotation;
+                if (player.isRight)
                 {
-                    jumpQuery = true;
+                    rotation = 1;
                 }
-                else if(player.Rigidbody.velocity.y < -5)
+                else
                 {
-                    jumpQuery = true;
+                    rotation = -1;
                 }
-
-                isJumpPressed = false;
+                player.Rigidbody.AddForce(new Vector2(player.Speed * 50 * rotation, 0));
             }
 
-            //
-            // Jump
-            //
-            if (player.IsGrounded && jumpQuery)
+            isSlidePressed = false;
+        }
+    }
+
+    private void HandleJump()
+    {
+        //
+        // Jump
+        //
+        if (isJumpPressed)
+        {
+            if (player.IsGrounded)
             {
-                player.Rigidbody.AddForce(new Vector2(0f, player.jumpForce));
-                jumpQuery = false;
+                jumpQuery = true;
+            }
+            else if (player.Rigidbody.velocity.y < -5)
+            {
+                jumpQuery = true;
             }
 
-            //
-            // Slide
-            //
-            if (isSlidePressed && isMovementPressed) // Pressed slide while moving
+            isJumpPressed = false;
+        }
+
+        //
+        // Jump
+        //
+        if (player.IsGrounded && jumpQuery)
+        {
+            player.Rigidbody.AddForce(new Vector2(0f, player.jumpForce));
+            jumpQuery = false;
+        }
+    }
+
+    private void HandleMovement()
+    {
+        #region rotation
+        if (movementInput == Vector2.right && !player.isRight)
+        {
+            player.Rotate(); Debug.Log("Rotate right");
+        }
+
+        if (movementInput == Vector2.left && player.isRight)
+        {
+            player.Rotate(); Debug.Log("Rotate right");
+        }
+        #endregion
+
+        isRunning = currentMovement != Vector3.zero;// handle is running
+
+        float _speed = player.Speed;
+
+        if (Gamepad.current != null)
+        {
+            if (Gamepad.current.leftStick.magnitude > 0.3f)
             {
-                if (stateMachine.CurrentState.GetType() != typeof(SlideState))
-                {
-                    stateMachine.SetNextState(new SlideState());
-
-                    int rotation;
-                    if (player.isRight)
-                    {
-                        rotation = 1;
-                    }
-                    else
-                    {
-                        rotation = -1;
-                    }
-                    player.Rigidbody.AddForce(new Vector2(player.Speed * 50 * rotation, 0));
-                }
-
-                isSlidePressed = false;
-            }
-
-            //
-            // Attack
-            //
-            if (isAttackPressed)
-            {
-                //stateMachine.SetNextState(new GroundEntryState());
-                isAttackPressed = false;
+                _speed *= Gamepad.current.leftStick.magnitude;
             }
         }
+
+        if (player.canMove)
+        {
+            player.transform.position += currentMovement * _speed * Time.deltaTime;
+        }
+
+        //player.Rigidbody.velocity = new Vector3(_speed * currentMovement.x, player.Rigidbody.velocity.y);
     }
 
     private void Awake()
@@ -152,21 +202,10 @@ public class PlayerMovement : MonoBehaviour
         isAttackPressed = context.ReadValueAsButton();
     }
 
+    [Obsolete("Codes moved to HandleInput method")]
     private void MovePlayer(float speed)
     {
-        float _speed = speed;
-
-        if (Gamepad.current != null)
-        {
-            if (Gamepad.current.leftStick.magnitude > 0.3f)
-            {
-                _speed *= Gamepad.current.leftStick.magnitude;
-            }
-        }
-
-        player.transform.position += currentMovement * _speed * Time.deltaTime;
-
-        //player.Rigidbody.velocity = new Vector3(_speed * currentMovement.x, player.Rigidbody.velocity.y);
+        
     }
 
     void Move(InputAction.CallbackContext context)
@@ -187,14 +226,6 @@ public class PlayerMovement : MonoBehaviour
     void Jump(InputAction.CallbackContext context)
     {
         isJumpPressed = context.ReadValueAsButton();
-    }
-
-    public void Start()
-    {
-        player = GetComponent<_Player>();
-        stateMachine = GetComponent<StateMachine>();
-
-        itemIndex = 0;
     }
 
     private void OnEnable()

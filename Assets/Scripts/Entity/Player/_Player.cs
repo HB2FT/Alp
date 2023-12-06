@@ -1,14 +1,8 @@
-using FMOD;
 using FMOD.Studio;
 using Mir.Audio.Oba;
 using Mir.Entity.Player;
-using Mir.Objects.Items;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class _Player : Entity
 {
@@ -19,15 +13,30 @@ public class _Player : Entity
     private int _itemIndex; // Temp variable for InputSystem.currentItemIndex
     [SerializeField] private int criticalHealth;
 
+    // movement
+    public bool canMove;
+
     // audio
     private EventInstance lowHealth;
     private EventInstance deathSound;
+
+    public static _Player instance { get; private set; }
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.Log("Found more than one player in the scene.");
+        }
+        instance = this;
+    }
 
     public override void Start()
     {
         base.Start();
 
-        stateMachine = GetComponent<StateMachine>();
+        ItemSystem = GetComponentInChildren<ItemSystem>();
+        stateMachine = GetComponentInChildren<StateMachine>();
 
         _itemIndex = 0;
 
@@ -49,6 +58,8 @@ public class _Player : Entity
             _itemIndex = ItemSystem.currentItemIndex;
 
             HandleLowHealth();
+
+            HandleCanMove();
         }
     }
 
@@ -59,6 +70,12 @@ public class _Player : Entity
         GameEventsManager.instance.OnPlayerDeath();
 
         UnityEngine.Debug.Log("player died");
+    }
+
+    private void HandleCanMove()
+    {
+        // disable move on bow preparing state, otherwise enable move
+            canMove = StateMachine.instance.CurrentState.GetType() != typeof(BowPreparingState);
     }
 
     private void HandleLowHealth()
