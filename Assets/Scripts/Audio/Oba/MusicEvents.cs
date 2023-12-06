@@ -9,6 +9,9 @@ namespace Mir.Audio.Oba
         [field: SerializeField] public EventReference playerLowHealth { get; private set; }
         [field: SerializeField] public EventReference playerDeath { get; private set; }
 
+        [field: Header("Music")]
+        [field: SerializeField] public EventReference bossFightMusic { get; private set; }
+
         public static MusicEvents instance {  get; private set; }
 
         private void Awake()

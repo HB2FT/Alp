@@ -16,6 +16,11 @@ public class PlayerAttackCollider : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        gameObject.SetActive(false);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Entity collidedEntity = collision.gameObject.GetComponent<Entity>();

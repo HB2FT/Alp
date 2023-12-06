@@ -1,52 +1,46 @@
+using FMOD.Studio;
+using FMODUnity;
+using Mir.Managers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CutCam : MonoBehaviour
+namespace Mir.Objects
 {
-    public GameObject cutCam, mainCam;
-    public Player player;
-
-    public Music music;
-
-    public BottomBarController bottomBarController;
-    public StoryScene bossFightStoryScene;
-
-    // Start is called before the first frame update
-    void Start()
+    public class CutCam : MonoBehaviour
     {
-        
-    }
+        public GameObject cutCam, mainCam;
+        public Player player;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        public Music music;
 
-    IEnumerator OnEndCutScene()
-    {
-        yield return new WaitForSeconds(2f);
+        public BottomBarController bottomBarController;
+        public StoryScene bossFightStoryScene;
 
-        if (music.index == 0 && music.session.name == "FirstCombat")
+        private Animator animator;
+
+        public static CutCam instance { get; private set; }
+
+        private void Awake()
         {
-            try
+            if (instance != null)
             {
-                music.PlayNext(true);
+                Debug.LogError("Found more than one Cut Cam in the scene.");
             }
-            catch (System.Exception e)
-            {
-                Debug.Log(e);
-            }
+            instance = this;
         }
 
-        if (music.session.name == "BossFight")
+        private void Start()
         {
-            //bottomBarController.PlayScene(bossFightStoryScene);
+            animator = GetComponent<Animator>();
+
+            gameObject.SetActive(false);
         }
 
-        cutCam.SetActive(false);
-        mainCam.SetActive(true);
-        player.isControllable = true;
+        public void PlayAnimation(AnimationClip cutSceneClip)
+        {
+            animator.Play(cutSceneClip.name);
+        }
     }
 }

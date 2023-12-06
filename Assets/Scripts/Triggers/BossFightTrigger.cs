@@ -1,47 +1,54 @@
+using Mir.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossFightTrigger : MonoBehaviour
+namespace Mir.Triggers
 {
-    private AtomicBoolean once = new AtomicBoolean(true);
-
-    public Animator animator;
-
-    public BossFightController bossFightController;
-
-    public GameObject cutCam, mainCam;
-    public Player player;
-    
-    void Start()
+    public class BossFightTrigger : MonoBehaviour
     {
-        
-    }
+        private AtomicBoolean once = new AtomicBoolean(true);
 
-    void Update()
-    {
-        
-    }
+        public Animator animator;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.name == "Player")
+        public BossFightController bossFightController;
+
+        public GameObject cutCam, mainCam;
+        public Player player;
+
+        void Start()
         {
-            if (once.Value)
+
+        }
+
+        void Update()
+        {
+
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.name == "Player")
             {
-                cutCam.GetComponent<Animator>().SetBool("bossFight", true);
-                bossFightController.combatStarted = true;
-                StartCutScene();
+                if (once.Value)
+                {
+                    //cutCam.GetComponent<Animator>().SetBool("bossFight", true);
+                    //bossFightController.combatStarted = true;
+                    //StartCutScene();
+
+                    CutSceneManager.instance.PlayScene(new Objects.BossFightCutScene());
+                }
             }
+        }
+
+        private void StartCutScene()
+        {
+            cutCam.SetActive(true);
+            mainCam.SetActive(false);
+            player.isControllable = false;
+            player.Animator.SetBool("IsRunning", false);
+            animator.SetBool("bossFight", true);
         }
     }
 
-    private void StartCutScene()
-    {
-        cutCam.SetActive(true);
-        mainCam.SetActive(false);
-        player.isControllable = false;
-        player.Animator.SetBool("IsRunning", false);
-        animator.SetBool("bossFight", true);
-    }
 }

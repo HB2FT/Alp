@@ -1,5 +1,9 @@
 # Mir
 ***
+# V0.10.9
+* Fixed bug on direction of Arrow
+* Deleted `First Combat Scene Manager`, `Boss Fight Manager`
+***
 # V0.10.8
 * Removed field `index` from  `Item` class
 * Fixed stuck on Sword Animation System

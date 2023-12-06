@@ -16,13 +16,10 @@ public class Arrow : MonoBehaviour
 
     void Start()
     {
+        gameObject.name = "Arrow";
         player = GameObject.Find("Player").GetComponent<Player>();
 
-        if (!player.isRight) 
-        {
-            Rotate();
-            Direction *= -1;
-        }
+        if (!_Player.instance.isRight) Direction = -1;
         
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         boxCollider = gameObject.GetComponent<BoxCollider2D>();
@@ -42,10 +39,24 @@ public class Arrow : MonoBehaviour
 
     void Update()
     {
-        if (!isStuck) transform.Rotate(Vector3.forward * -rotationSpeed * Time.deltaTime);
+        //if (!isStuck) transform.Rotate(Vector3.forward * -rotationSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+
+        
+
+        //transform.SetParent(collision.transform, false);
+
+        //rigidBody.simulated = false;
+        //isStuck = true; Debug.Log("arrow collision enter");
+
+        //Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         rigidBody.velocity = Vector2.zero;
 
@@ -56,14 +67,11 @@ public class Arrow : MonoBehaviour
             collidedEntity.IsDamaged = true;
         }
 
-        
+        //rigidBody.simulated = false;
+        //transform.SetParent(collision.transform, false);
 
-        transform.SetParent(collision.transform, false);
-
-        rigidBody.simulated = false;
-        isStuck = true; Debug.Log("arrow collision enter");
+        Destroy(gameObject);
     }
-
 
     private void OnCollisionExit2D(Collision2D collision)
     {
