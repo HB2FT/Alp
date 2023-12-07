@@ -15,7 +15,7 @@ public abstract class Entity : MonoBehaviour
     public int health;
     public int maxHealth;
     public const int MIN_HEALTH = 0;
-    private bool isGrounded;
+    public bool isGrounded;
 
     private AtomicBoolean onDeathChecker;
 
@@ -46,7 +46,7 @@ public abstract class Entity : MonoBehaviour
     {
         if (collision.gameObject.name == "Terrain") // Zemine deðiyor mu
         {
-            isGrounded = true;
+            //isGrounded = true;
         }
 
         if (collision.gameObject.name == "DamagableObjects")
@@ -59,7 +59,7 @@ public abstract class Entity : MonoBehaviour
     {
         if (collision.gameObject.name == "Terrain")
         {
-            isGrounded = false;
+            //isGrounded = false;
         }
     }
 

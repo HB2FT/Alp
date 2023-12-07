@@ -1,3 +1,4 @@
+using Mir.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -16,6 +17,17 @@ public class GameCamera : MonoBehaviour
     private const int yEkseniKatsayisi = 10;
 
     [SerializeField] public Transform target;
+
+    public static GameCamera instance { get; private set; }
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogError("Found more than one Game Camera in the scene.");
+        }
+        instance = this;
+    }
 
     private void Start()
     {
