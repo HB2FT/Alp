@@ -1621,11 +1621,15 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 99d3ea8ff98984643bcaf241af122af6, type: 2}
   - m_RefCount: 70
     m_Data: {fileID: 11400000, guid: c9967ecde8846c84798919f6279fa98f, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 70
     m_Data: {fileID: 196716932, guid: b4e5b6a2d3b3b144e9cb63c8d01b7194, type: 3}
   - m_RefCount: 70
     m_Data: {fileID: -1068476392, guid: b4e5b6a2d3b3b144e9cb63c8d01b7194, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 140
     m_Data:
