@@ -20,6 +20,16 @@ public class Tepegöz : Entity
     public Player target;
     public GameObject attackCollider;
 
+    public static Tepegöz instance {  get; private set; }
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.Log("Found more than one Tepegöz in the scene.");
+        }
+        instance = this;
+    }
 
     public override void Start()
     {

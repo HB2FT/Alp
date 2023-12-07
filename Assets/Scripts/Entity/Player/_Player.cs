@@ -9,6 +9,12 @@ public class _Player : Entity
     public StateMachine stateMachine;
     public ItemSystem ItemSystem;
 
+    [Header("Ground Layer")]
+    [SerializeField] private LayerMask groundLayers;
+
+    // Components
+    [SerializeField] private BoxCollider2D boxCollider;
+
     [Obsolete] private int itemIndex;
     private int _itemIndex; // Temp variable for InputSystem.currentItemIndex
     [SerializeField] private int criticalHealth;
@@ -37,6 +43,7 @@ public class _Player : Entity
 
         ItemSystem = GetComponentInChildren<ItemSystem>();
         stateMachine = GetComponentInChildren<StateMachine>();
+        boxCollider = GetComponent<BoxCollider2D>();
 
         _itemIndex = 0;
 
@@ -60,6 +67,8 @@ public class _Player : Entity
             HandleLowHealth();
 
             HandleCanMove();
+
+            UpdateIsGrounded();
         }
     }
 
@@ -70,6 +79,28 @@ public class _Player : Entity
         GameEventsManager.instance.OnPlayerDeath();
 
         UnityEngine.Debug.Log("player died");
+    }
+
+    private void UpdateIsGrounded()
+    {
+        Bounds colliderBounds = boxCollider.bounds;
+        float colliderRadius = boxCollider.size.x * 0.4f * Mathf.Abs(transform.localScale.x);
+        Vector3 groundCheckPos = colliderBounds.min + new Vector3(colliderBounds.size.x * 0.5f, colliderRadius * 0.9f, 0);
+        // Check if player is grounded
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckPos, colliderRadius, groundLayers);
+        // Check if any of the overlapping colliders are not player collider, if so, set isGrounded to true
+        isGrounded = false;
+        if (colliders.Length > 0)
+        {
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if (colliders[i] != boxCollider)
+                {
+                    this.isGrounded = true;
+                    break;
+                }
+            }
+        }
     }
 
     private void HandleCanMove()
