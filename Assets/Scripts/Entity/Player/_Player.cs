@@ -2,6 +2,7 @@ using FMOD.Studio;
 using Mir.Audio.Oba;
 using Mir.Entity.Player;
 using System;
+using System.IO;
 using UnityEngine;
 
 public class _Player : Entity
@@ -26,6 +27,10 @@ public class _Player : Entity
     private EventInstance lowHealth;
     private EventInstance deathSound;
 
+    // checkpoints
+    public Transform latestCheckPoint;
+
+    [Obsolete]
     public static _Player instance { get; private set; }
 
     private void Awake()
@@ -47,8 +52,26 @@ public class _Player : Entity
 
         _itemIndex = 0;
 
+
         lowHealth = AudioManager.instance.CreateEventInstance(MusicEvents.instance.playerLowHealth);
         //deathSound = AudioManager.instance.CreateEventInstance(MusicEvents.instance.playerDeath);
+
+        // load saved game
+        try
+        {
+            string[] loadedConstents = File.ReadAllLines("saved.game");
+
+            float x = (float) Convert.ToDouble(loadedConstents[0]);
+            float y = (float) Convert.ToDouble(loadedConstents[1]);
+
+            latestCheckPoint.position = new Vector3(x, y, 0);
+
+            transform.position = latestCheckPoint.position;
+        }
+        catch (Exception e)
+        {
+            Debug.Log("No saved game found.");
+        }
     }
 
     public override void Update()
@@ -78,6 +101,8 @@ public class _Player : Entity
 
         GameEventsManager.instance.OnPlayerDeath();
 
+        Animator.SetTrigger("isDead");
+
         UnityEngine.Debug.Log("player died");
     }
 
@@ -106,7 +131,7 @@ public class _Player : Entity
     private void HandleCanMove()
     {
         // disable move on bow preparing state, otherwise enable move
-            canMove = StateMachine.instance.CurrentState.GetType() != typeof(BowPreparingState);
+            //canMove = StateMachine.instance.CurrentState.GetType() != typeof(BowPreparingState);
     }
 
     private void HandleLowHealth()

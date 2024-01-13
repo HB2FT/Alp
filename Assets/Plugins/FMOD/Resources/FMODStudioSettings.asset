@@ -318,6 +318,7 @@ MonoBehaviour:
   - Master
   Banks:
   - Dag
+  - FirstStory
   - MainMenu
   - Oba
   - SFX
