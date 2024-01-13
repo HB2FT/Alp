@@ -1,0 +1,338 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8721302685738765826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../../Documents/FMOD Studio/Mir/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638375875063812772
+  FileSizes:
+  - Name: Desktop
+    Value: 1036
+  Exists: 1
+--- !u!114 &-6700609398012836806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Dag/Tepegoz
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Dag/Tepegoz
+  Guid:
+    Data1: 1984377401
+    Data2: 1242275040
+    Data3: -1426366276
+    Data4: 153814030
+  Banks:
+  - {fileID: 4962242217325905919}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 151000
+--- !u!114 &-6569223699549305975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/FirstStory.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../../Documents/FMOD Studio/Mir/Build/Desktop/FirstStory.bank
+  Name: FirstStory
+  StudioPath: bank:/FirstStory
+  lastModified: 638375875083536555
+  FileSizes:
+  - Name: Desktop
+    Value: 1072160
+  Exists: 1
+--- !u!114 &-6554782704755443722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Death
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Death
+  Guid:
+    Data1: -1012054639
+    Data2: 1172819783
+    Data3: 377690812
+    Data4: -1880353838
+  Banks:
+  - {fileID: 1665289349647612685}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 9300
+--- !u!114 &-6130183094282315078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/MainMenu.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../../Documents/FMOD Studio/Mir/Build/Desktop/MainMenu.bank
+  Name: MainMenu
+  StudioPath: bank:/MainMenu
+  lastModified: 638372376927253046
+  FileSizes:
+  - Name: Desktop
+    Value: 7057024
+  Exists: 1
+--- !u!114 &-5981299616568289611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/MainMenu/Ambience
+  m_EditorClassIdentifier: 
+  Path: event:/Music/MainMenu/Ambience
+  Guid:
+    Data1: -315525809
+    Data2: 1176701428
+    Data3: 2009098934
+    Data4: 759536107
+  Banks:
+  - {fileID: -6130183094282315078}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 357493
+--- !u!114 &-4927341923888680139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../../Documents/FMOD Studio/Mir/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638375875063832703
+  FileSizes:
+  - Name: Desktop
+    Value: 1252
+  Exists: 1
+--- !u!114 &-4598731061276584867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/LowHealt
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/LowHealt
+  Guid:
+    Data1: -1548992750
+    Data2: 1281272281
+    Data3: 640506044
+    Data4: 1480043633
+  Banks:
+  - {fileID: 1665289349647612685}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1409
+--- !u!114 &-1620049593787835400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/FirstStoryCutScene/FirstStoryCutScene
+  m_EditorClassIdentifier: 
+  Path: event:/Music/FirstStoryCutScene/FirstStoryCutScene
+  Guid:
+    Data1: 577714270
+    Data2: 1277861873
+    Data3: -222380637
+    Data4: -1707220610
+  Banks:
+  - {fileID: -6569223699549305975}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 89803
+--- !u!114 &-1536935216904200614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Oba.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../../Documents/FMOD Studio/Mir/Build/Desktop/Oba.bank
+  Name: Oba
+  StudioPath: bank:/Oba
+  lastModified: 638372193730675393
+  FileSizes:
+  - Name: Desktop
+    Value: 1692032
+  Exists: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: -4927341923888680139}
+  - {fileID: 4962242217325905919}
+  - {fileID: -6130183094282315078}
+  - {fileID: -8721302685738765826}
+  - {fileID: -1536935216904200614}
+  - {fileID: 1665289349647612685}
+  - {fileID: -6569223699549305975}
+  EditorEvents:
+  - {fileID: -6700609398012836806}
+  - {fileID: -5981299616568289611}
+  - {fileID: 7348499011625558215}
+  - {fileID: -4598731061276584867}
+  - {fileID: -6554782704755443722}
+  - {fileID: -1620049593787835400}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: -8721302685738765826}
+  StringsBanks:
+  - {fileID: -4927341923888680139}
+  cacheTime: 638375875083536555
+  cacheVersion: 131607
+--- !u!114 &1665289349647612685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SFX.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../../Documents/FMOD Studio/Mir/Build/Desktop/SFX.bank
+  Name: SFX
+  StudioPath: bank:/SFX
+  lastModified: 638372287430174005
+  FileSizes:
+  - Name: Desktop
+    Value: 242080
+  Exists: 1
+--- !u!114 &4962242217325905919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Dag.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../../Documents/FMOD Studio/Mir/Build/Desktop/Dag.bank
+  Name: Dag
+  StudioPath: bank:/Dag
+  lastModified: 638375050853764616
+  FileSizes:
+  - Name: Desktop
+    Value: 1854176
+  Exists: 1
+--- !u!114 &7348499011625558215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Oba/Ambience
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Oba/Ambience
+  Guid:
+    Data1: -134878441
+    Data2: 1207764413
+    Data3: 886614146
+    Data4: -71886476
+  Banks:
+  - {fileID: -1536935216904200614}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 77647
