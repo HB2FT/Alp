@@ -89,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     rotation = -1;
                 }
-                player.Rigidbody.AddForce(new Vector2(player.Speed * 50 * rotation, 0));
+                player.Rigidbody.AddForce(new Vector2(player.Speed * rotation, 0), ForceMode2D.Impulse);
             }
 
             isSlidePressed = false;
@@ -151,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (player.canMove)
+        if (player.canMove || true)
         {
             player.transform.position += currentMovement * _speed * Time.deltaTime;
         }
