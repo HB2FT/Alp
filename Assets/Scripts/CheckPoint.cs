@@ -16,6 +16,8 @@ public class CheckPoint : MonoBehaviour
     public static string LABEL_CAMERA_Y_AXIS_OFFSET = "cameraYAxisOffset:";
 
     public GameCamera gameCamera;
+    public BottomBarController bottomBarController;
+    public StoryScene checkpointSetDialog;
 
     void Update()
     {
@@ -25,11 +27,22 @@ public class CheckPoint : MonoBehaviour
     protected void OnTriggerEnter2D(Collider2D collision)
     {
         Player player = collision.GetComponent<Player>();
+        _Player _player = collision.GetComponent<_Player>();
 
-        if (player != null)
+        if (_player != null)
         {
-            SetCheckPoint(player);
+            //SetCheckPoint(player);
+
+            if (_player.latestCheckPoint != transform)
+                ShowDialog();
+
+            _player.latestCheckPoint = transform;
         }
+    }
+
+    void ShowDialog()
+    {
+        bottomBarController.PlayScene(checkpointSetDialog);
     }
 
     private void SetCheckPoint(Player player) 

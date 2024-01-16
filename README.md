@@ -1,5 +1,10 @@
 # Mir
 ***
+# V0.10.10
+* Fixed `State Machine bug`. (At last)
+	+ In State Machine, Main State Stype inits defaultly
+> Spent time only for find the reason is almost 4-6 weeks
+***
 # V0.10.9
 * Fixed bug on direction of Arrow
 * Deleted `First Combat Scene Manager`, `Boss Fight Manager`

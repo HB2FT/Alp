@@ -11,16 +11,16 @@ public class Settings : MonoBehaviour
 
     void Start()
     {
-        SavedState savedState = Load();
+        //SavedState savedState = Load();
 
-        audioSource.volume = savedState.volume;
+        //audioSource.volume = savedState.volume;
 
-        SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
+        //SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
     }
 
     private void SceneManager_activeSceneChanged(Scene arg0, Scene arg1)
     {
-        Save();
+        //Save();
     }
 
     void Update()
@@ -42,6 +42,10 @@ public class Settings : MonoBehaviour
             }
         }
         catch (SerializationException e)
+        {
+            Debug.LogException(e);
+        }
+        catch (FileNotFoundException e)
         {
             Debug.LogException(e);
         }

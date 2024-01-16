@@ -5,7 +5,7 @@ public class StateMachine : MonoBehaviour
 
     public _Player player;
 
-    public State mainStateType;
+    public State mainStateType = new IdleState();
 
     public State CurrentState { get; private set; }
     private State nextState;
