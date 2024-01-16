@@ -99,15 +99,11 @@ public class PlayerMovement : MonoBehaviour
     private void HandleJump()
     {
         //
-        // Jump
+        // Jump query
         //
         if (isJumpPressed)
         {
-            if (player.IsGrounded)
-            {
-                jumpQuery = true;
-            }
-            else if (player.Rigidbody.velocity.y < -5)
+            if (player.IsGrounded || player.Rigidbody.velocity.y < -5)
             {
                 jumpQuery = true;
             }

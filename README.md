@@ -1,5 +1,9 @@
 # Mir
 ***
+V0.10.11
+* Simplified assigning Jump Query
+> This version is editted with Unity's newer version. Be carefull.
+***
 # V0.10.10
 * Fixed `State Machine bug`. (At last)
 	+ In State Machine, Main State Stype inits defaultly

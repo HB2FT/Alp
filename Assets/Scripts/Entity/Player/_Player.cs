@@ -4,6 +4,7 @@ using Mir.Entity.Player;
 using System;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class _Player : Entity
 {
@@ -106,6 +107,7 @@ public class _Player : Entity
         UnityEngine.Debug.Log("player died");
     }
 
+    // This funcion's source is from Shaped by Rain Studios - How to make an Audio System in Unity | Unity + FMOD Tutorial (https://youtube.com/watch?v=rcBHIOjZDpk)
     private void UpdateIsGrounded()
     {
         Bounds colliderBounds = boxCollider.bounds;
