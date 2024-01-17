@@ -71,6 +71,7 @@ public abstract class Entity : MonoBehaviour
 
     protected virtual void OnDeath()
     {
+        health = 0;
         speed = 0f;
     }
 

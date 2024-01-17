@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     bool isMovementPressed;
     [SerializeField] bool jumpQuery;
     [SerializeField] bool isJumpPressed;
-    bool isSlidePressed;
+    [SerializeField] bool isSlidePressed;
     bool isAttackPressed;
     bool isRunning;
 
@@ -40,13 +40,16 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-            HandleMovement();
+            if (_Player.instance.CanMove)
+            {
+                HandleMovement();
 
-            HandleJump();
+                HandleJump();
 
-            HandleSlide();
+                HandleSlide();
 
-            HandleAttak();
+                HandleAttak();
+            }
 
             UpdateAnimator();
         }
@@ -74,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
         //
         // Slide
         //
-        if (isSlidePressed && isMovementPressed) // Pressed slide while moving
+        if (isSlidePressed && isMovementPressed && _Player.instance.IsGrounded) // Pressed slide while moving, and must be grounded
         {
             if (stateMachine.CurrentState.GetType() != typeof(SlideState))
             {
@@ -89,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     rotation = -1;
                 }
-                player.Rigidbody.AddForce(new Vector2(player.Speed * rotation, 0), ForceMode2D.Impulse);
+                player.Rigidbody.AddForce(new Vector2(player.Speed * rotation * 2, 0), ForceMode2D.Impulse);
             }
 
             isSlidePressed = false;
@@ -147,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (player.canMove || true)
+        if (player.CanMove || true)
         {
             player.transform.position += currentMovement * _speed * Time.deltaTime;
         }

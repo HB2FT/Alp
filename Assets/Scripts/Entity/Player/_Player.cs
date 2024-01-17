@@ -3,6 +3,7 @@ using Mir.Audio.Oba;
 using Mir.Entity.Player;
 using System;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
@@ -21,8 +22,9 @@ public class _Player : Entity
     private int _itemIndex; // Temp variable for InputSystem.currentItemIndex
     [SerializeField] private int criticalHealth;
 
-    // movement
-    public bool canMove;
+    // variables
+    private bool canMove;
+    private bool isOutOfScene;
 
     // audio
     private EventInstance lowHealth;
@@ -31,7 +33,6 @@ public class _Player : Entity
     // checkpoints
     public Transform latestCheckPoint;
 
-    [Obsolete]
     public static _Player instance { get; private set; }
 
     private void Awake()
@@ -52,7 +53,7 @@ public class _Player : Entity
         boxCollider = GetComponent<BoxCollider2D>();
 
         _itemIndex = 0;
-
+        canMove = true;
 
         lowHealth = AudioManager.instance.CreateEventInstance(MusicEvents.instance.playerLowHealth);
         //deathSound = AudioManager.instance.CreateEventInstance(MusicEvents.instance.playerDeath);
@@ -93,7 +94,11 @@ public class _Player : Entity
             HandleCanMove();
 
             UpdateIsGrounded();
+
+            HandleIsOutOfScene();
         }
+
+        UpdateIsOutOfScene();
     }
 
     protected override void OnDeath()
@@ -105,6 +110,22 @@ public class _Player : Entity
         Animator.SetTrigger("isDead");
 
         UnityEngine.Debug.Log("player died");
+    }
+
+    private void UpdateIsOutOfScene()
+    {
+        if (transform.position.y < -6)
+        {
+            isOutOfScene = true;
+        }
+    }
+
+    private void HandleIsOutOfScene()
+    {
+        if (isOutOfScene)
+        {
+            OnDeath();
+        }
     }
 
     // This funcion's source is from Shaped by Rain Studios - How to make an Audio System in Unity | Unity + FMOD Tutorial (https://youtube.com/watch?v=rcBHIOjZDpk)
@@ -198,5 +219,18 @@ public class _Player : Entity
         }
 
         stateMachine.SetNextStateToMain();
+    }
+
+    public bool CanMove
+    {
+        get
+        {
+            return canMove;
+        }
+
+        set
+        {
+            canMove = value;
+        }
     }
 }

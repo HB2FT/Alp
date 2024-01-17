@@ -19,6 +19,9 @@ public class StandState : SlideBaseState
         if (fixedtime >= duration)
         {
             stateMachine.SetNextStateToMain();
+
+            // Enable player input (ALL movements)
+            _Player.instance.CanMove = true;
         }
     }
 }

@@ -1,9 +1,14 @@
 # Mir
 ***
-V0.10.12
-* Created 'Terrain' layer
+# V0.10.12
+* Created `Terrain` layer
+* Added `HandleIsOutOfScene` and `UpdateOutOfScene` methods to "_Player" class
+* Fixed bugs on Sliding Mechanic:
+	+ Player stops moving when released derction buttons (A,D) [Fixed]
+	+ Player was able to sliding on air [Fixed]
+* Completed Death Menu's design 
 ***
-V0.10.11
+# V0.10.11
 * Simplified assigning Jump Query
 > This version is editted with Unity's newer version. Be carefull.
 ***
