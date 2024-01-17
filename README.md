@@ -1,5 +1,8 @@
 # Mir
 ***
+V0.10.12
+* Created 'Terrain' layer
+***
 V0.10.11
 * Simplified assigning Jump Query
 > This version is editted with Unity's newer version. Be carefull.
