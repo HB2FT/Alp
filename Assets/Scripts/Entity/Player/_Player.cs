@@ -23,7 +23,7 @@ public class _Player : Entity
     [SerializeField] private int criticalHealth;
 
     // variables
-    private bool canMove;
+    [Obsolete] private bool canMove;
     private bool isOutOfScene;
 
     // audio
@@ -153,8 +153,13 @@ public class _Player : Entity
 
     private void HandleCanMove()
     {
+        
+    }
+
+    private void UpdateCanMove()
+    {
         // disable move on bow preparing state, otherwise enable move
-            //canMove = StateMachine.instance.CurrentState.GetType() != typeof(BowPreparingState);
+        //canMove = StateMachine.instance.CurrentState.GetType() != typeof(BowPreparingState);
     }
 
     private void HandleLowHealth()
@@ -221,6 +226,7 @@ public class _Player : Entity
         stateMachine.SetNextStateToMain();
     }
 
+    [Obsolete]
     public bool CanMove
     {
         get

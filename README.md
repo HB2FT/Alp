@@ -1,5 +1,9 @@
 # Mir
 ***
+# V0.10.13
+* Moved variable `canMove` from `_Player` to `PlayerMovement` as static
+* Added `Kam` as a square (yes, a square) to scene for develope interraction mechanics
+***
 # V0.10.12
 * Created `Terrain` layer
 * Added `HandleIsOutOfScene` and `UpdateOutOfScene` methods to "_Player" class

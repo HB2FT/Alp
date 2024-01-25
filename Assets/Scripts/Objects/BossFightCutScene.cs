@@ -22,7 +22,7 @@ namespace Mir.Objects
             music = Audio.Oba.AudioManager.instance.CreateEventInstance(Audio.Oba.MusicEvents.instance.bossFightMusic);
             music.start();
 
-            _Player.instance.CanMove = false;
+            PlayerMovement.CanMove = false;
         }
 
         public override void OnUpdate()
@@ -42,7 +42,7 @@ namespace Mir.Objects
             GameCamera.instance.gameObject.SetActive(true);
             CutCam.instance.gameObject.SetActive(false);
 
-            _Player.instance.CanMove = true;
+            PlayerMovement.CanMove = true;
         }
     }
 }

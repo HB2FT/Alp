@@ -21,7 +21,7 @@ public class StandState : SlideBaseState
             stateMachine.SetNextStateToMain();
 
             // Enable player input (ALL movements)
-            _Player.instance.CanMove = true;
+            PlayerMovement.CanMove = true;
         }
     }
 }

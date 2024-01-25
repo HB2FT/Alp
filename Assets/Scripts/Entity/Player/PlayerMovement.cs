@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool isSlidePressed;
     bool isAttackPressed;
     bool isRunning;
+    static bool canMove;
 
     [SerializeField] int itemIndex;
     const int MAX_ITEM_INDEX = 2;
@@ -28,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
         stateMachine = GetComponent<StateMachine>();
 
         itemIndex = 0;
+
+        canMove = true;
     }
 
     private void Update()
@@ -40,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-            if (_Player.instance.CanMove)
+            if (CanMove)
             {
                 HandleMovement();
 
@@ -57,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateAnimator()
     {
-        player.Animator.SetBool("IsRunning", isRunning); // Set animation
+        player.Animator.SetBool("IsRunning", isRunning && canMove); // Set animation
     }
 
     private void HandleAttak()
@@ -150,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (player.CanMove || true)
+        if (CanMove || true)
         {
             player.transform.position += currentMovement * _speed * Time.deltaTime;
         }
@@ -235,5 +238,18 @@ public class PlayerMovement : MonoBehaviour
     private void OnDisable()
     {
         playerInput.Player.Disable();
+    }
+
+    public static bool CanMove
+    {
+        get
+        {
+            return canMove;
+        }
+
+        set
+        {
+            canMove = value;
+        }
     }
 }

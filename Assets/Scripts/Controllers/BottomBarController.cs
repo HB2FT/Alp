@@ -16,6 +16,16 @@ public class BottomBarController : MonoBehaviour
 
     private AtomicBoolean startOnce = new AtomicBoolean(false);
 
+    public static BottomBarController Instance;
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("Found more than one Bottom Bar Controller in the scene!");
+        }
+        Instance = this;
+    }
+
     public bool StartOnce
     {
         get
@@ -39,6 +49,7 @@ public class BottomBarController : MonoBehaviour
         set
         {
             BottomBar.SetActive(value);
+            PlayerMovement.CanMove = !value;
         }
     }
 
@@ -65,7 +76,7 @@ public class BottomBarController : MonoBehaviour
         }
         catch
         {
-            BottomBar.SetActive(false);
+            Enabled = false;
         }
     }
 
