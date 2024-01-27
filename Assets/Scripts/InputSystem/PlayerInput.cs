@@ -80,6 +80,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interracion"",
+                    ""type"": ""Button"",
+                    ""id"": ""6dc2e22c-e27d-40f8-8fa1-31b5bebb0131"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -346,6 +355,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Back"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4f5b67b8-d37d-4d1c-9a87-7fffdaf20126"",
+                    ""path"": ""<Keyboard>/#(X)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interracion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -360,6 +380,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_ItemIndex = m_Player.FindAction("ItemIndex", throwIfNotFound: true);
         m_Player_Back = m_Player.FindAction("Back", throwIfNotFound: true);
+        m_Player_Interracion = m_Player.FindAction("Interracion", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -427,6 +448,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_ItemIndex;
     private readonly InputAction m_Player_Back;
+    private readonly InputAction m_Player_Interracion;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -437,6 +459,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @ItemIndex => m_Wrapper.m_Player_ItemIndex;
         public InputAction @Back => m_Wrapper.m_Player_Back;
+        public InputAction @Interracion => m_Wrapper.m_Player_Interracion;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -464,6 +487,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Back.started += instance.OnBack;
             @Back.performed += instance.OnBack;
             @Back.canceled += instance.OnBack;
+            @Interracion.started += instance.OnInterracion;
+            @Interracion.performed += instance.OnInterracion;
+            @Interracion.canceled += instance.OnInterracion;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -486,6 +512,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Back.started -= instance.OnBack;
             @Back.performed -= instance.OnBack;
             @Back.canceled -= instance.OnBack;
+            @Interracion.started -= instance.OnInterracion;
+            @Interracion.performed -= instance.OnInterracion;
+            @Interracion.canceled -= instance.OnInterracion;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -511,5 +540,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnItemIndex(InputAction.CallbackContext context);
         void OnBack(InputAction.CallbackContext context);
+        void OnInterracion(InputAction.CallbackContext context);
     }
 }

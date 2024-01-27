@@ -1,5 +1,16 @@
 # Mir
 ***
+# V0.11.1
+* Created abstract class `Interactable`
+ - > This class contains only `OnInterract` function
+* Kam inherited from Interactable class
+* Input Manager handles interraction input (Keyboard: X, Gamepad: X) now
+* Created `InteractionButton` object
+ - Properties:
+	- Text
+	- Image
+> When player triggers an Interactable, Interaction options (just an image and a text) appears.
+***
 # V0.10.13
 * Moved variable `canMove` from `_Player` to `PlayerMovement` as static
 * Added `Kam` as a square (yes, a square) to scene for develope interraction mechanics

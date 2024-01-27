@@ -10,6 +10,7 @@ namespace Mir.Input
 
         // movement variables
         private bool isBackPressed = false;
+        private bool isInterractionPressed;
 
         public static InputManager instance { get; private set; }
 
@@ -44,9 +45,17 @@ namespace Mir.Input
         private void RegisterToEvents()
         {
             playerInput.Player.Back.started += BackPressed;
+
+            playerInput.Player.Interracion.started += InterractionPressed;
+            playerInput.Player.Interracion.canceled += InterractionPressed;
         }
 
-        public void BackPressed(InputAction.CallbackContext context)
+        private void InterractionPressed(InputAction.CallbackContext context)
+        {
+            isInterractionPressed = context.ReadValueAsButton();
+        }
+
+        private void BackPressed(InputAction.CallbackContext context)
         {
             isBackPressed = context.ReadValueAsButton();
         }
@@ -59,6 +68,13 @@ namespace Mir.Input
         {
             bool result = isBackPressed;
             isBackPressed = false;
+            return result;
+        }
+
+        public bool GetInterractionPressed()
+        {
+            bool result = isInterractionPressed;
+            isInterractionPressed = false;
             return result;
         }
     }
