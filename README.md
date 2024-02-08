@@ -1,5 +1,16 @@
 # Mir
 ***
+# V0.12.0
+* Created event & methods `On Game Pause` and `On Game Resume` in Game Events Manager
+* Created `Game Manager` object
+> Game pause mechanics is started to change.
+* Input Manager enables when game resumed, disables when game paused.
+* Input methods in Player Movement posted to Input Manager.
+	- movementInput variable is removed (from Player Movement)
+	- isMovmentPressed variable is removed (from Player Movement)
+	- currentMovement variable is removed (from Player Movement)
+	- isSlidePressed variable is removed (from Player Movement)
+***
 # V0.11.1
 * Created abstract class `Interactable`
  - > This class contains only `OnInterract` function

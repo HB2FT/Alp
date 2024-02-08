@@ -24,4 +24,22 @@ public class GameEventsManager : MonoBehaviour
             onPlayerDeath();
         }
     }
+
+    public event Action onGamePause;
+    public void OnGamePause()
+    {
+        if (onGamePause != null)
+        {
+            onGamePause();
+        }
+    }
+
+    public event Action onGameResume;
+    public void OnGameResume()
+    {
+        if (onGameResume != null)
+        {
+            onGameResume();
+        }
+    }
 }

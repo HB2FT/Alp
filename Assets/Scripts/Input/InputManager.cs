@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,9 +9,13 @@ namespace Mir.Input
         // input handling
         private PlayerInput playerInput;
 
-        // movement variables
         private bool isBackPressed = false;
-        private bool isInterractionPressed;
+        private bool isInteractionPressed;
+
+        // Player movement variables
+        private bool isMovementPressed;
+        private Vector3 movement;
+        private bool isSlidePressed;
 
         public static InputManager instance { get; private set; }
 
@@ -25,11 +30,14 @@ namespace Mir.Input
             playerInput = new PlayerInput();
 
             RegisterToEvents();
+
+            playerInput.Player.Back.started += BackPressed; // This event subscribed here because detecteing back pressed must always stay subscirbed.
         }
 
         private void Start()
         {
-
+            GameEventsManager.instance.onGamePause += UnregisterToEvetns;
+            GameEventsManager.instance.onGameResume += RegisterToEvents;
         }
 
         private void OnEnable()
@@ -44,20 +52,59 @@ namespace Mir.Input
 
         private void RegisterToEvents()
         {
-            playerInput.Player.Back.started += BackPressed;
+            /// playerInput.Player.Back.started is excepted.
 
-            playerInput.Player.Interracion.started += InterractionPressed;
-            playerInput.Player.Interracion.canceled += InterractionPressed;
+            playerInput.Player.Interracion.started += InteractionPressed;
+            playerInput.Player.Interracion.canceled += InteractionPressed;
+
+            #region Player Movement
+            playerInput.Player.Movement.started += MovementPressed; // On press
+            playerInput.Player.Movement.performed += MovementPressed; // While pressing
+            playerInput.Player.Movement.canceled += MovementPressed; // End press
+
+            playerInput.Player.Slide.started += SlidePressed; // On slide
+            playerInput.Player.Slide.canceled += SlidePressed; // End slide
+            #endregion
         }
 
-        private void InterractionPressed(InputAction.CallbackContext context)
+        private void UnregisterToEvetns()
         {
-            isInterractionPressed = context.ReadValueAsButton();
+            /// playerInput.Player.Back.started is excepted.
+
+            playerInput.Player.Interracion.started -= InteractionPressed;
+            playerInput.Player.Interracion.canceled -= InteractionPressed;
+
+            playerInput.Player.Movement.started -= MovementPressed; // On press
+            playerInput.Player.Movement.performed -= MovementPressed; // While pressing
+            playerInput.Player.Movement.canceled -= MovementPressed; // End press
+
+            playerInput.Player.Slide.started -= SlidePressed; // On slide
+            playerInput.Player.Slide.canceled -= SlidePressed; // End slide
+        }
+
+        private void InteractionPressed(InputAction.CallbackContext context)
+        {
+            isInteractionPressed = context.ReadValueAsButton();
         }
 
         private void BackPressed(InputAction.CallbackContext context)
         {
             isBackPressed = context.ReadValueAsButton();
+        }
+
+        private void MovementPressed(InputAction.CallbackContext context)
+        {
+            Vector2 movementInput = context.ReadValue<Vector2>();
+
+            movement.x = movementInput.x;
+            movement.y = movementInput.y;
+
+            isMovementPressed = movementInput != Vector2.zero;
+        }
+
+        private void SlidePressed(InputAction.CallbackContext context)
+        {
+            isSlidePressed = context.ReadValueAsButton();
         }
 
         // for any of the below 'Get' methods, if we're getting it then we're also using it,
@@ -73,9 +120,36 @@ namespace Mir.Input
 
         public bool GetInterractionPressed()
         {
-            bool result = isInterractionPressed;
-            isInterractionPressed = false;
+            bool result = isInteractionPressed;
+            isInteractionPressed = false;
             return result;
         }
+
+        public bool GetMovementPressed()
+        {
+            bool result = isMovementPressed;
+            isMovementPressed = false;
+            return result;
+        }
+
+        public bool GetSlidePressed()
+        {
+            bool result = isSlidePressed;
+            isSlidePressed = false;
+            return result;
+        }
+
+        #region Properties
+
+        public Vector3 Movement
+        {
+            get
+            {
+                return movement;
+            }
+        }
+
+        #endregion
+
     }
 }
