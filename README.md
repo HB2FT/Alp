@@ -5,11 +5,18 @@
 * Created `Game Manager` object
 > Game pause mechanics is started to change.
 * Input Manager enables when game resumed, disables when game paused.
-* Input methods in Player Movement posted to Input Manager.
+* Input actions in Player Movement posted to Input Manager.
 	- movementInput variable is removed (from Player Movement)
 	- isMovmentPressed variable is removed (from Player Movement)
 	- currentMovement variable is removed (from Player Movement)
 	- isSlidePressed variable is removed (from Player Movement)
+	- isJumpPressed variable is removed (from Player Movement)
+* Input actions in GameController.BottomBarController posted to Input Manager.
+* Dialogs cen bi skipped now.
+* Added `PAUSED` and `NONE` states to BottomBarController.State
+* Bottom Bar Controller moved to Mir.Controllers namespace
+* Dialog view stops writing down when game paused.
+* Created `Kam` prefab.
 ***
 # V0.11.1
 * Created abstract class `Interactable`

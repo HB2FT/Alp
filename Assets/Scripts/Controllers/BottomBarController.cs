@@ -1,111 +1,173 @@
+using Mir.Input;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class BottomBarController : MonoBehaviour
+namespace Mir.Controllers
 {
-    public GameObject BottomBar;
-
-    public TextMeshProUGUI barText;
-    public TextMeshProUGUI personNameText;
-
-    private int sentenceIndex = -1;
-    public StoryScene currentScene;
-    private State state = State.COMPLETED;
-
-    private AtomicBoolean startOnce = new AtomicBoolean(false);
-
-    public static BottomBarController Instance;
-    private void Awake()
+    public class BottomBarController : MonoBehaviour
     {
-        if (Instance != null)
+        public GameObject BottomBar;
+
+        public TextMeshProUGUI barText;
+        public TextMeshProUGUI personNameText;
+
+        private int sentenceIndex = -1;
+        public StoryScene currentScene;
+        [SerializeField] private State state = State.NONE;
+
+        private AtomicBoolean startOnce = new AtomicBoolean(false);
+
+        public static BottomBarController Instance;
+        private void Awake()
         {
-            Debug.LogError("Found more than one Bottom Bar Controller in the scene!");
-        }
-        Instance = this;
-    }
-
-    public bool StartOnce
-    {
-        get
-        {
-            return startOnce.Value;
-        }
-
-        set
-        {
-            startOnce.Value = value;
-        }
-    }
-
-    public bool Enabled
-    {
-        get
-        {
-            return BottomBar.activeSelf;
-        }
-
-        set
-        {
-            BottomBar.SetActive(value);
-            PlayerMovement.CanMove = !value;
-        }
-    }
-
-    private enum State
-    {
-        COMPLETED, PLAYING
-    }
-
-    public void PlayScene(StoryScene scene)
-    {
-        Enabled = true;
-        currentScene = scene;
-        sentenceIndex = -1;
-        PlayNextScene();
-    }
-
-    public void PlayNextScene()
-    {
-        try
-        {
-            StartCoroutine(TypeText(currentScene.sentences[++sentenceIndex].text));
-            personNameText.text = currentScene.sentences[sentenceIndex].speaker.speakerName;
-            personNameText.color = currentScene.sentences[sentenceIndex].speaker.textColor;
-        }
-        catch
-        {
-            Enabled = false;
-        }
-    }
-
-    public bool IsCompleted()
-    {
-        return state == State.COMPLETED;
-    }
-
-    public bool IsLastSentence()
-    {
-        return sentenceIndex + 1 == currentScene.sentences.Count;
-    }
-
-    private IEnumerator TypeText(string text)
-    {
-        barText.text = "";
-        state = State.PLAYING;
-        int wordIndex = 0;
-
-        while (state != State.COMPLETED)
-        {
-            barText.text += text[wordIndex];
-            yield return new WaitForSeconds(0.05f);
-
-            if (++wordIndex == text.Length)
+            if (Instance != null)
             {
-                state = State.COMPLETED;
-                break;
+                Debug.LogError("Found more than one Bottom Bar Controller in the scene!");
+            }
+            Instance = this;
+        }
+
+        private void Start()
+        {
+            GameEventsManager.instance.onGamePause += Pause;
+            GameEventsManager.instance.onGameResume += Resume;
+        }
+
+        private void Update()
+        {
+            if (InputManager.instance.GetNextPressed() && state != State.NONE)
+            {
+                StopAllCoroutines();
+
+                if (IsLastSentence())
+                {
+                    PlayScene(currentScene.nextScene);
+                }
+
+                else
+                {
+                    PlayNextScene();
+                }
+            }
+        }
+
+        public bool StartOnce
+        {
+            get
+            {
+                return startOnce.Value;
+            }
+
+            set
+            {
+                startOnce.Value = value;
+            }
+        }
+
+        public bool Enabled
+        {
+            get
+            {
+                return BottomBar.activeSelf;
+            }
+
+            set
+            {
+                BottomBar.SetActive(value);
+                PlayerMovement.CanMove = !value;
+                if (!value)
+                {
+                    state = State.NONE;
+                }
+            }
+        }
+
+        private enum State
+        {
+            COMPLETED, // Sentence is completed
+            PLAYING, // Sentence is playing
+            PAUSED, // Game is paused
+            NONE // No active dialog
+        }
+
+        public void PlayScene(StoryScene scene)
+        {
+            Enabled = true;
+            currentScene = scene;
+            sentenceIndex = -1;
+            PlayNextScene();
+        }
+
+        public void PlayNextScene()
+        {
+            try
+            {
+                StartCoroutine(TypeText(currentScene.sentences[++sentenceIndex].text));
+                personNameText.text = currentScene.sentences[sentenceIndex].speaker.speakerName;
+                personNameText.color = currentScene.sentences[sentenceIndex].speaker.textColor;
+            }
+            catch
+            {
+                Enabled = false;
+            }
+        }
+
+        public bool IsCompleted()
+        {
+            return state == State.COMPLETED;
+        }
+
+        public bool IsLastSentence()
+        {
+            return sentenceIndex + 1 == currentScene.sentences.Count;
+        }
+
+        private void Pause()
+        {
+            if (state == State.PLAYING)
+            {
+                state = State.PAUSED;
+            }
+        }
+
+        private void Resume()
+        {
+            if (state == State.PAUSED)
+            {
+                state = State.PLAYING;
+            }
+        }
+
+        private bool IsResumed()
+        {
+            return state == State.PLAYING;
+        }
+
+        private IEnumerator TypeText(string text)
+        {
+            barText.text = "";
+            state = State.PLAYING;
+            int wordIndex = 0;
+
+            while (state != State.COMPLETED)
+            {
+                // Wait if paused
+                if (state == State.PAUSED)
+                {
+                    yield return new WaitUntil(IsResumed);
+                }
+
+                barText.text += text[wordIndex];
+                yield return new WaitForSeconds(0.05f);
+
+                if (++wordIndex == text.Length)
+                {
+                    state = State.COMPLETED;
+                    break;
+                }
             }
         }
     }
+
 }

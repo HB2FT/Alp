@@ -16,6 +16,10 @@ namespace Mir.Input
         private bool isMovementPressed;
         private Vector3 movement;
         private bool isSlidePressed;
+        private bool isJumpPressed;
+
+        // Bottombar variables
+        private bool isNextPressed;
 
         public static InputManager instance { get; private set; }
 
@@ -64,6 +68,13 @@ namespace Mir.Input
 
             playerInput.Player.Slide.started += SlidePressed; // On slide
             playerInput.Player.Slide.canceled += SlidePressed; // End slide
+
+            playerInput.Player.Jump.started += JumpPressed; // On Jump
+            playerInput.Player.Jump.canceled += JumpPressed; // End Jump
+            #endregion
+
+            #region Bottom Bar
+            playerInput.Player.Jump.started += NextPressed;
             #endregion
         }
 
@@ -80,6 +91,11 @@ namespace Mir.Input
 
             playerInput.Player.Slide.started -= SlidePressed; // On slide
             playerInput.Player.Slide.canceled -= SlidePressed; // End slide
+
+            playerInput.Player.Jump.started -= JumpPressed; // On Jump
+            playerInput.Player.Jump.canceled -= JumpPressed; // End Jump
+
+            playerInput.Player.Jump.started -= NextPressed;
         }
 
         private void InteractionPressed(InputAction.CallbackContext context)
@@ -105,6 +121,16 @@ namespace Mir.Input
         private void SlidePressed(InputAction.CallbackContext context)
         {
             isSlidePressed = context.ReadValueAsButton();
+        }
+
+        private void JumpPressed(InputAction.CallbackContext context)
+        {
+            isJumpPressed = context.ReadValueAsButton();
+        }
+
+        private void NextPressed(InputAction.CallbackContext context)
+        {
+            isNextPressed = context.ReadValueAsButton();
         }
 
         // for any of the below 'Get' methods, if we're getting it then we're also using it,
@@ -136,6 +162,20 @@ namespace Mir.Input
         {
             bool result = isSlidePressed;
             isSlidePressed = false;
+            return result;
+        }
+
+        public bool GetJumpPressed()
+        {
+            bool result = isJumpPressed;
+            isJumpPressed = false;
+            return result;
+        }
+
+        public bool GetNextPressed()
+        {
+            bool result = isNextPressed;
+            isNextPressed = false;
             return result;
         }
 

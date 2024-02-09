@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     private StateMachine stateMachine;
 
     [SerializeField] bool jumpQuery;
-    [SerializeField] bool isJumpPressed;
     bool isAttackPressed;
     bool isRunning;
     static bool canMove;
@@ -101,14 +100,12 @@ public class PlayerMovement : MonoBehaviour
         //
         // Jump query
         //
-        if (isJumpPressed)
+        if (InputManager.instance.GetJumpPressed())
         {
             if (player.IsGrounded || player.Rigidbody.velocity.y < -5)
             {
                 jumpQuery = true;
             }
-
-            isJumpPressed = false;
         }
 
         //
@@ -162,8 +159,8 @@ public class PlayerMovement : MonoBehaviour
         //playerInput.Player.Slide.started += Slide; // On slide
         //playerInput.Player.Slide.canceled += Slide; // End slide
 
-        playerInput.Player.Jump.started += Jump; // On Jump
-        playerInput.Player.Jump.canceled += Jump; // End Jump
+        //playerInput.Player.Jump.started += Jump; // On Jump
+        //playerInput.Player.Jump.canceled += Jump; // End Jump
 
         //playerInput.Player.ItemIndex.started += OnItemChanged; // On item change
     }
@@ -217,7 +214,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump(InputAction.CallbackContext context)
     {
-        isJumpPressed = context.ReadValueAsButton();
+        //isJumpPressed = context.ReadValueAsButton();
     }
 
     private void OnEnable()
