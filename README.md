@@ -1,5 +1,10 @@
 # Mir
 ***
+# V0.12.1
+* Game sounds stops and resumes with game.
+* Created `BottomBar` layer.
+* FMODStudioSettings.asset added to .gitignore
+***
 # V0.12.0
 * Created event & methods `On Game Pause` and `On Game Resume` in Game Events Manager
 * Created `Game Manager` object

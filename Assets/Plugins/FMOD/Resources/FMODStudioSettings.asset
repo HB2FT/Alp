@@ -292,8 +292,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../../../Documents/FMOD Studio/Mir/Mir.fspro
-  sourceBankPath: ../../../../Documents/FMOD Studio/Mir/Build
+  sourceProjectPath: ../Mir-FMOD/Mir.fspro
+  sourceBankPath: ../Mir-FMOD/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1

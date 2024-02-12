@@ -1,3 +1,5 @@
+using FMOD.Studio;
+using Mir.Audio.Oba;
 using Mir.Input;
 using UnityEngine;
 
@@ -9,7 +11,9 @@ namespace Mir.Managers
 
         void Start()
         {
-
+            //
+            // Temporary codes. Usually for testing new features.
+            //
         }
 
         void Update()
