@@ -36,7 +36,7 @@ namespace Mir.Controllers
 
         private void Update()
         {
-            if (InputManager.instance.GetNextPressed() && state != State.NONE)
+            if (state != State.NONE && InputManager.instance.GetNextPressed())
             {
                 StopAllCoroutines();
 

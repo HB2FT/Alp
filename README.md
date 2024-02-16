@@ -1,5 +1,10 @@
 # Mir
 ***
+# V0.13.0
+* Created `Asseblies` folser. This folder contains libraries (dll).
+* Mir.Serialization.dll imported.
+* Created Debug Object.
+***
 # V0.12.1
 * Game sounds stops and resumes with game.
 * Created `BottomBar` layer.

@@ -58,22 +58,6 @@ public class _Player : Entity
         lowHealth = AudioManager.instance.CreateEventInstance(MusicEvents.instance.playerLowHealth);
         //deathSound = AudioManager.instance.CreateEventInstance(MusicEvents.instance.playerDeath);
 
-        // load saved game
-        try
-        {
-            string[] loadedConstents = File.ReadAllLines("saved.game");
-
-            float x = (float) Convert.ToDouble(loadedConstents[0]);
-            float y = (float) Convert.ToDouble(loadedConstents[1]);
-
-            latestCheckPoint.position = new Vector3(x, y, 0);
-
-            transform.position = latestCheckPoint.position;
-        }
-        catch (Exception e)
-        {
-            Debug.Log("No saved game found.");
-        }
     }
 
     public override void Update()
