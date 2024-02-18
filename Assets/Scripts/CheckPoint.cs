@@ -48,21 +48,21 @@ public class CheckPoint : MonoBehaviour
 
     private void SetCheckPoint() 
     {
+        // Get variables to save
         int cameraYAxisOffset = GameCamera.instance.yOffset;
         float playerX = _Player.instance.transform.position.x;
         float playerY = _Player.instance.transform.position.y;
 
-        // Create Header section of file
-        SavedGame.Header header = new SavedGame.Header(SavedGame.Header.MAGIC_NUMBER);
+        SavedGame savedGame = new SavedGame(
+            cameraYAxisOffset,
+            playerX,
+            playerY);
 
-        // Create Data section of file
-        SavedGame.Data data = new SavedGame.Data(cameraYAxisOffset, playerX, playerY);
-
-        // Create file
-        SavedGame savedGame = new SavedGame(header, data);
-
-        // Serialize file
         savedGame.Serialize();
+
+        Debug.Log("Camera offset: " + cameraYAxisOffset);
+        Debug.Log("Player X: " + playerX);
+        Debug.Log("Player Y: " + playerY);
     }
 
     public static SavedState Load()

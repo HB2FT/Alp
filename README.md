@@ -1,9 +1,11 @@
 # Mir
 ***
 # V0.13.0
-* Created `Asseblies` folser. This folder contains libraries (dll).
+* Created `Asseblies` folder. This folder contains libraries (dll files).
 * Mir.Serialization.dll imported.
 * Created Debug Object.
+* Game saves itself now
+* 
 ***
 # V0.12.1
 * Game sounds stops and resumes with game.

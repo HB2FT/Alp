@@ -21,18 +21,23 @@ namespace Mir.Managers
 
         public static void LoadGame()
         {
-            SavedGame savedGame = SavedGame.Deserialize();
+            SavedGame savedGame = new SavedGame();
 
-            GameCamera.instance.yOffset = savedGame.GetData().CameraYAxisOffset;
+            // Check save file
+            if (!savedGame.Exists) return;
 
-            string msg = "Camera y offset: " + savedGame.GetData().CameraYAxisOffset + "\n" +
-                    "Player x: " + savedGame.GetData().PlayerX + "\n" +
-                    "Player y: " + savedGame.GetData().PlayerY + "\n";
+            savedGame.Load();
+
+            GameCamera.instance.yOffset = savedGame.CameraYAxisOffset;
+
+            string msg = "Camera y offset: " + savedGame.CameraYAxisOffset + "\n" +
+                    "Player x: " + savedGame.PlayerX + "\n" +
+                    "Player y: " + savedGame.PlayerY + "\n";
             Debug.Log(msg);
 
             Vector3 playerLocation = new Vector3(
-                savedGame.GetData().PlayerX,
-                savedGame.GetData().PlayerY);
+                savedGame.PlayerX,
+                savedGame.PlayerY);
 
             _Player.instance.transform.position = playerLocation;
         }
@@ -43,17 +48,10 @@ namespace Mir.Managers
             float playerX = _Player.instance.transform.position.x;
             float playerY = _Player.instance.transform.position.y;
 
-            // Create Header section of file
-            SavedGame.Header header = new SavedGame.Header(SavedGame.Header.MAGIC_NUMBER);
 
-            // Create Data section of file
-            SavedGame.Data data = new SavedGame.Data(cameraYAxisOffset, playerX, playerY);
-
-            // Create file
-            SavedGame savedGame = new SavedGame(header, data);
-
-            // Serialize file
-            savedGame.Serialize();
+            Debug.Log("Camera offset: " + cameraYAxisOffset);
+            Debug.Log("Player X: " + playerX);
+            Debug.Log("Player Y: " + playerY);
         }
 
         private void HandleBackPressed()

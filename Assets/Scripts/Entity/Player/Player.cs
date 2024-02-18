@@ -370,6 +370,7 @@ public class Player : Entity
         }
     }
 
+    [Obsolete]
     private void LoadSavedGame()
     {
         CheckPoint.SavedState savedState = CheckPoint.Load();
