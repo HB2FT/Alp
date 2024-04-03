@@ -1,5 +1,8 @@
 # Mir
 ***
+# V0.13.0.1
+* Removed `UnityEditor.Experimental.GraphView.GraphView` static dependecy.
+***
 # V0.13.0
 * Created `Asseblies` folder. This folder contains libraries (dll files).
 * Mir.Serialization.dll imported.
