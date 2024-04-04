@@ -12,7 +12,6 @@
 * Mir.Serialization.dll imported.
 * Created Debug Object.
 * Game saves itself now
-* 
 ***
 # V0.12.1
 * Game sounds stops and resumes with game.
