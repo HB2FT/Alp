@@ -11,11 +11,17 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] private GameObject menu;
 
+    private void Start()
+    {
+        GameEventsManager.instance.onGamePause += Show;
+        GameEventsManager.instance.onGameResume += Hide;
+    }
+
     private void Update()
     {
         if (InputManager.instance.GetBackPressed())
         {
-            ToggleMenu();
+            //ToggleMenu();
         }
     }
 
@@ -39,7 +45,7 @@ public class PauseMenu : MonoBehaviour
         VisualEffectsManager.instance.weight = 1;
 
         menu.gameObject.SetActive(true);
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
     }
 
     private void Hide()
@@ -47,7 +53,7 @@ public class PauseMenu : MonoBehaviour
         VisualEffectsManager.instance.weight = 0;
 
         menu.gameObject.SetActive(false);
-        Time.timeScale = 1.0f;
+        //Time.timeScale = 1.0f;
     }
 
     public void btn_Resume()

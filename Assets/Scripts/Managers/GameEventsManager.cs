@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameEventsManager : MonoBehaviour
@@ -22,6 +20,24 @@ public class GameEventsManager : MonoBehaviour
         if (onPlayerDeath != null)
         {
             onPlayerDeath();
+        }
+    }
+
+    public event Action onGamePause;
+    public void OnGamePause()
+    {
+        if (onGamePause != null)
+        {
+            onGamePause();
+        }
+    }
+
+    public event Action onGameResume;
+    public void OnGameResume()
+    {
+        if (onGameResume != null)
+        {
+            onGameResume();
         }
     }
 }

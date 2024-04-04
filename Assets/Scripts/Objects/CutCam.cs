@@ -1,9 +1,4 @@
-using FMOD.Studio;
-using FMODUnity;
-using Mir.Managers;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Mir.Controllers;
 using UnityEngine;
 
 namespace Mir.Objects

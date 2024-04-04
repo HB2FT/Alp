@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
+using Mir.Controllers;
+using Mir.Serialization;
 
 public class CheckPoint : MonoBehaviour
 {
@@ -33,10 +33,11 @@ public class CheckPoint : MonoBehaviour
         {
             //SetCheckPoint(player);
 
-            if (_player.latestCheckPoint != transform)
+            //if (_player.latestCheckPoint != transform)
                 ShowDialog();
 
             _player.latestCheckPoint = transform;
+            SetCheckPoint();
         }
     }
 
@@ -45,24 +46,23 @@ public class CheckPoint : MonoBehaviour
         bottomBarController.PlayScene(checkpointSetDialog);
     }
 
-    private void SetCheckPoint(Player player) 
+    private void SetCheckPoint() 
     {
-        bool tutorialCompleted;
-        float playerX, playerY;
-        int cameraYAxisOffset;
+        // Get variables to save
+        int cameraYAxisOffset = GameCamera.instance.yOffset;
+        float playerX = _Player.instance.transform.position.x;
+        float playerY = _Player.instance.transform.position.y;
 
-        tutorialCompleted = true;
-        playerX = player.transform.position.x;
-        playerY = player.transform.position.y;
-        cameraYAxisOffset = gameCamera.yOffset;
+        SavedGame savedGame = new SavedGame(
+            cameraYAxisOffset,
+            playerX,
+            playerY);
 
-        Save(new SavedState(tutorialCompleted, playerX, playerY, cameraYAxisOffset));
+        savedGame.Serialize();
 
-        string content = LABEL_TUTORIAL + tutorialCompleted + "\n"
-                        + LABEL_PLAYERX+ playerX + "\n" + LABEL_PLAYERY + playerY + "\n"
-                        + LABEL_CAMERA_Y_AXIS_OFFSET + cameraYAxisOffset + "\n";
-
-        File.WriteAllText("Save.alp", content);
+        Debug.Log("Camera offset: " + cameraYAxisOffset);
+        Debug.Log("Player X: " + playerX);
+        Debug.Log("Player Y: " + playerY);
     }
 
     public static SavedState Load()
