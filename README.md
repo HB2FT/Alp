@@ -1,5 +1,8 @@
 # Mir
 ***
+# V0.14.1
+* Made changements to old scene file (SampleSccene.unity).
+***
 # V0.14.0
 * Restored game map. 
 > `SapmleScene.unity` needs some help.
