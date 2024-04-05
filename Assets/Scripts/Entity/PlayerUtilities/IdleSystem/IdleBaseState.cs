@@ -1,24 +1,27 @@
 ﻿using UnityEngine;
 
-public class IdleBaseState : State
+namespace Mir.Entity.PlayerUtilities.IdleSystem
 {
-    public float duration;
-    protected Animator animator;
-
-    public override void OnEnter(StateMachine _stateMachine)
+    public class IdleBaseState : State
     {
-        base.OnEnter(_stateMachine);
-        
-        animator = GetComponent<Animator>();
-    }
+        public float duration;
+        protected Animator animator;
 
-    public override void OnUpdate()
-    {
-        base.OnUpdate();
-    }
+        public override void OnEnter(StateMachine _stateMachine)
+        {
+            base.OnEnter(_stateMachine);
 
-    public override void OnExit()
-    {
-        base.OnExit();
+            animator = GetComponent<Animator>();
+        }
+
+        public override void OnUpdate()
+        {
+            base.OnUpdate();
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+        }
     }
 }

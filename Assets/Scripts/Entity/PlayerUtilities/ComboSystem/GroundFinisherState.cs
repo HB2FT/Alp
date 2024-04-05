@@ -1,35 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundFinisherState : SwordBaseState
+namespace Mir.Entity.PlayerUtilities.ComboSystem
 {
-    public override void OnEnter(StateMachine _stateMachine)
+    public class GroundFinisherState : SwordBaseState
     {
-        base.OnEnter(_stateMachine);
-
-        // Attack
-        attackIndex = 3;
-        duration = .433f;
-        animator.SetTrigger("Attack" + attackIndex);
-        Debug.Log("Player Atack" + 3 + " -> Attacked");
-    }
-
-    public override void OnUpdate()
-    {
-        base.OnUpdate();
-
-        if (fixedtime >= duration)
+        public override void OnEnter(StateMachine _stateMachine)
         {
-            if (shouldCombo.Value)
-            {
-                stateMachine.SetNextState(new GroundEntryState()); Debug.Log("Finisher to Entry");
-            }
+            base.OnEnter(_stateMachine);
 
-            else
+            // Attack
+            attackIndex = 3;
+            duration = .433f;
+            animator.SetTrigger("Attack" + attackIndex);
+            Debug.Log("Player Atack" + 3 + " -> Attacked");
+        }
+
+        public override void OnUpdate()
+        {
+            base.OnUpdate();
+
+            if (fixedtime >= duration)
             {
-                stateMachine.SetNextStateToMain();
+                if (shouldCombo.Value)
+                {
+                    stateMachine.SetNextState(new GroundEntryState()); Debug.Log("Finisher to Entry");
+                }
+
+                else
+                {
+                    stateMachine.SetNextStateToMain();
+                }
             }
         }
     }
+
 }

@@ -1,9 +1,14 @@
-﻿public class IdleState : IdleBaseState
-{
-    public override void OnEnter(StateMachine _stateMachine)
-    {
-        base.OnEnter(_stateMachine);
+﻿using Mir.Entity.PlayerUtilities.ComboSystem;
 
-        animator.SetTrigger("DropHand");
+namespace Mir.Entity.PlayerUtilities.IdleSystem
+{
+    public class IdleState : IdleBaseState
+    {
+        public override void OnEnter(StateMachine _stateMachine)
+        {
+            base.OnEnter(_stateMachine);
+
+            animator.SetTrigger("DropHand");
+        }
     }
 }

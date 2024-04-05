@@ -1,27 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-
-public class IdleCombatState : SwordBaseState
+﻿namespace Mir.Entity.PlayerUtilities.ComboSystem
 {
-    public override void OnEnter(StateMachine _stateMachine)
+    public class IdleCombatState : SwordBaseState
     {
-        base.OnEnter(_stateMachine);
-
-        animator.SetTrigger("HandSword");
-    }
-
-    public override void OnUpdate()
-    {
-        base.OnUpdate();
-
-        if (shouldCombo.Value)
+        public override void OnEnter(StateMachine _stateMachine)
         {
-            stateMachine.SetNextState(new GroundEntryState());
-            shouldCombo.Value = false;
+            base.OnEnter(_stateMachine);
+
+            animator.SetTrigger("HandSword");
+        }
+
+        public override void OnUpdate()
+        {
+            base.OnUpdate();
+
+            if (shouldCombo.Value)
+            {
+                stateMachine.SetNextState(new GroundEntryState());
+                shouldCombo.Value = false;
+            }
         }
     }
 }

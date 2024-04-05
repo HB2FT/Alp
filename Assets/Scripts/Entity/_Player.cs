@@ -2,6 +2,8 @@ using FMOD.Studio;
 using Mir.Audio.Oba;
 using Mir.Entity.PlayerUtilities;
 using Mir.Entity.PlayerUtilities.BowSystem;
+using Mir.Entity.PlayerUtilities.ComboSystem;
+using Mir.Entity.PlayerUtilities.IdleSystem;
 using System;
 using UnityEngine;
 
@@ -32,6 +34,9 @@ namespace Mir.Entity
 
         // checkpoints
         public Transform latestCheckPoint;
+
+        // arrow sprite
+        public Sprite spr_Arrow;
 
         public static _Player instance { get; private set; }
 

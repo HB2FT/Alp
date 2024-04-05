@@ -1,14 +1,18 @@
 using UnityEngine;
 
-public class SlideBaseState : State
+namespace Mir.Entity.PlayerUtilities.SlideSystem
 {
-    public float duration;
-    protected Animator animator;
-
-    public override void OnEnter(StateMachine _stateMachine)
+    public class SlideBaseState : State
     {
-        base.OnEnter(_stateMachine);
+        public float duration;
+        protected Animator animator;
 
-        animator = GetComponent<Animator>();
+        public override void OnEnter(StateMachine _stateMachine)
+        {
+            base.OnEnter(_stateMachine);
+
+            animator = GetComponent<Animator>();
+        }
     }
+
 }

@@ -2,55 +2,59 @@ using Mir.Entity.PlayerUtilities.BowSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ComboCharacter : MonoBehaviour
+namespace Mir.Entity.PlayerUtilities.ComboSystem
 {
-    private PlayerInput playerInput;
-    private StateMachine stateMachine;
-
-    [SerializeField] public Collider2D hit;
-
-    private bool isAttackPressed;
-
-    void Start()
+    public class ComboCharacter : MonoBehaviour
     {
-        stateMachine = GetComponent<StateMachine>();
-    }
+        private PlayerInput playerInput;
+        private StateMachine stateMachine;
 
-    void Update()
-    {
-        if (isAttackPressed && stateMachine.CurrentState.GetType() == typeof(IdleCombatState))
+        [SerializeField] public Collider2D hit;
+
+        private bool isAttackPressed;
+
+        void Start()
         {
-            stateMachine.SetNextState(new GroundEntryState());
-            isAttackPressed = false;
+            stateMachine = GetComponent<StateMachine>();
         }
 
-        if (isAttackPressed && stateMachine.CurrentState.GetType() == typeof(IdleBowState))
+        void Update()
         {
-            stateMachine.SetNextState(new BowPreparingState());
-            isAttackPressed = false;
+            if (isAttackPressed && stateMachine.CurrentState.GetType() == typeof(IdleCombatState))
+            {
+                stateMachine.SetNextState(new GroundEntryState());
+                isAttackPressed = false;
+            }
+
+            if (isAttackPressed && stateMachine.CurrentState.GetType() == typeof(IdleBowState))
+            {
+                stateMachine.SetNextState(new BowPreparingState());
+                isAttackPressed = false;
+            }
+        }
+
+        private void Awake()
+        {
+            playerInput = new PlayerInput();
+
+            playerInput.Player.Attack.started += Attack; // On Attack
+            playerInput.Player.Attack.canceled += Attack; // End Attack
+        }
+
+        void Attack(InputAction.CallbackContext context)
+        {
+            isAttackPressed = context.ReadValueAsButton();
+        }
+
+        private void OnEnable()
+        {
+            playerInput.Player.Enable();
+        }
+
+        private void OnDisable()
+        {
+            playerInput.Player.Disable();
         }
     }
 
-    private void Awake()
-    {
-        playerInput = new PlayerInput();
-
-        playerInput.Player.Attack.started += Attack; // On Attack
-        playerInput.Player.Attack.canceled += Attack; // End Attack
-    }
-
-    void Attack(InputAction.CallbackContext context)
-    {
-        isAttackPressed = context.ReadValueAsButton();
-    }
-
-    private void OnEnable()
-    {
-        playerInput.Player.Enable();
-    }
-
-    private void OnDisable()
-    {
-        playerInput.Player.Disable();
-    }
 }

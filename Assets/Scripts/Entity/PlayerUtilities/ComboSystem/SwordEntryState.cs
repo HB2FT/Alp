@@ -1,10 +1,13 @@
-﻿public class SwordEntryState : State
+﻿namespace Mir.Entity.PlayerUtilities.ComboSystem
 {
-    public override void OnEnter(StateMachine _stateMachine)
+    public class SwordEntryState : State
     {
-        base.OnEnter(_stateMachine);
+        public override void OnEnter(StateMachine _stateMachine)
+        {
+            base.OnEnter(_stateMachine);
 
-        State nexState = (State)new GroundEntryState();
-        stateMachine.SetNextState(nexState);
+            State nexState = (State)new GroundEntryState();
+            stateMachine.SetNextState(nexState);
+        }
     }
 }

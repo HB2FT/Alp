@@ -3,72 +3,75 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SwordBaseState : State
+namespace Mir.Entity.PlayerUtilities.ComboSystem
 {
-    [Obsolete]
-    private PlayerInput playerInput;
-
-    public float duration;
-    protected Animator animator;
-    protected AtomicBoolean shouldCombo;
-    protected int attackIndex;
-    protected bool isAttackPressed;
-
-    public override void OnEnter(StateMachine _stateMachine)
+    public class SwordBaseState : State
     {
-        base.OnEnter(_stateMachine);
+        [Obsolete]
+        private PlayerInput playerInput;
 
-        animator = GetComponent<Animator>();
+        public float duration;
+        protected Animator animator;
+        protected AtomicBoolean shouldCombo;
+        protected int attackIndex;
+        protected bool isAttackPressed;
 
-        shouldCombo = new AtomicBoolean(false);
-
-        SetPlayerAttackColliderState(true);
-
-        //playerInput = new PlayerInput();
-
-        //playerInput.Enable();
-
-        //playerInput.Player.Attack.started += Attack;
-
-        Sword.instance.onUse += UseSword;
-
-    }
-
-    void SetPlayerAttackColliderState(bool state)
-    {
-        if (StateMachine.instance.CurrentState.GetType() != typeof(IdleCombatState))
+        public override void OnEnter(StateMachine _stateMachine)
         {
-            PlayerAttackCollider.instance.gameObject.SetActive(state);
+            base.OnEnter(_stateMachine);
+
+            animator = GetComponent<Animator>();
+
+            shouldCombo = new AtomicBoolean(false);
+
+            SetPlayerAttackColliderState(true);
+
+            //playerInput = new PlayerInput();
+
+            //playerInput.Enable();
+
+            //playerInput.Player.Attack.started += Attack;
+
+            Sword.instance.onUse += UseSword;
+
         }
-    }
 
-    void Attack(InputAction.CallbackContext context)
-    {
-        isAttackPressed = context.ReadValueAsButton();
-    }
+        void SetPlayerAttackColliderState(bool state)
+        {
+            if (StateMachine.instance.CurrentState.GetType() != typeof(IdleCombatState))
+            {
+                PlayerAttackCollider.instance.gameObject.SetActive(state);
+            }
+        }
 
-    void UseSword()
-    {
-        shouldCombo.Value = true;
-    }
+        void Attack(InputAction.CallbackContext context)
+        {
+            isAttackPressed = context.ReadValueAsButton();
+        }
 
-    public override void OnUpdate()
-    {
-        base.OnUpdate();
+        void UseSword()
+        {
+            shouldCombo.Value = true;
+        }
 
-        //if (isAttackPressed)
-        //{
-        //    shouldCombo = true;
-        //    isAttackPressed = false;
-        //}
-    }
+        public override void OnUpdate()
+        {
+            base.OnUpdate();
 
-    public override void OnExit()
-    {
-        base.OnExit();
+            //if (isAttackPressed)
+            //{
+            //    shouldCombo = true;
+            //    isAttackPressed = false;
+            //}
+        }
 
-        SetPlayerAttackColliderState(false);
+        public override void OnExit()
+        {
+            base.OnExit();
 
-        //playerInput.Disable();
+            SetPlayerAttackColliderState(false);
+
+            //playerInput.Disable();
+        }
     }
 }
