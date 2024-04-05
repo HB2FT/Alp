@@ -1,11 +1,10 @@
+using Mir.Entity;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
-using UnityEngine.Rendering.VirtualTexturing;
-using System.IO;
 
+[Obsolete]
 public class Player : Entity
 {
     public GameObject bottomBar;

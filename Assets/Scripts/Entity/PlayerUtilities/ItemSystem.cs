@@ -2,7 +2,7 @@ using Mir.Objects.Items;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Mir.Entity.Player
+namespace Mir.Entity.PlayerUtilities
 {
     public class ItemSystem : MonoBehaviour
     {

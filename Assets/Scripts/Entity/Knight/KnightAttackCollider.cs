@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Mir.Entity;
 using UnityEngine;
 
 public class KnightAttackCollider : MonoBehaviour

@@ -1,5 +1,6 @@
 using FMOD.Studio;
 using Mir.Audio.Dag;
+using Mir.Entity;
 using Mir.Managers;
 using Mir.Objects;
 using System.Collections;

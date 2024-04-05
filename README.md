@@ -1,5 +1,17 @@
 # Mir
 ***
+# V0.14.2
+* Healthbar fixed twice.
+> Healthbar's max value is player's max health.
+* Deathmenu fixed.
+* Created `AttackToEntity()` funcion in KnightAttackTrigger script.
+* Added sprites:
+	- `UI/keyboard-buttons` contains sprites for keyboard buttons.
+	- `UI/ps4-buttons` contains sprites for PS4 controller.
+	- `Kam/Kam`
+* Added new npc movement mechanic.
+* Namespaces added (to be fixed...)
+***
 # V0.14.1
 * Made changements to old scene file (SampleSccene.unity).
 ***
@@ -11,7 +23,7 @@
 * Removed `UnityEditor.Experimental.GraphView.GraphView` static dependecy.
 ***
 # V0.13.0
-* Created `Asseblies` folder. This folder contains libraries (dll files).
+* Created `Assemblies` folder. This folder contains libraries (dll files).
 * Mir.Serialization.dll imported.
 * Created Debug Object.
 * Game saves itself now

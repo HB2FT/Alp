@@ -1,3 +1,4 @@
+using Mir.Entity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -42,12 +43,18 @@ public class KnightAttackTrigger : MonoBehaviour
 
                 if (triggerTime > attackStartOffset + attackStartOffset)
                 {
-                    collidedEntity.GetComponent<Rigidbody2D>().AddForce(new Vector2(6 * Direction, 0), ForceMode2D.Impulse);
+                    AttackToEntity(collidedEntity);
 
                     triggerTime = 0;
                 }
             }
         }
+    }
+
+    private void AttackToEntity(Entity entity)
+    {
+        entity.health -= parent.Damage;
+        entity.GetComponent<Rigidbody2D>().AddForce(new Vector2(6 * Direction, 0), ForceMode2D.Impulse);
     }
 
     private void OnTriggerExit2D(Collider2D collision)

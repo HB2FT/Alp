@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Mir.Entity;
+using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {

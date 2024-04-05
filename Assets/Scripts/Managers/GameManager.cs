@@ -1,3 +1,4 @@
+using Mir.Entity;
 using Mir.Input;
 using Mir.Serialization;
 using UnityEngine;
