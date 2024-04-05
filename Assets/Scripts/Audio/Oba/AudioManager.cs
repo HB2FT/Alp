@@ -1,6 +1,5 @@
 using FMOD.Studio;
 using FMODUnity;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,6 +24,12 @@ namespace Mir.Audio.Oba
             eventInstances = new List<EventInstance>();
         }
 
+        private void Start()
+        {
+            GameEventsManager.instance.onGamePause += PauseAllSounds;
+            GameEventsManager.instance.onGameResume += ResuemeAllSounds;
+        }
+
         public StudioEventEmitter InitializeEventEmitter(EventReference eventReference, GameObject emitterGameObject)
         {
             StudioEventEmitter eventEmitter = emitterGameObject.GetComponent<StudioEventEmitter>();
@@ -38,6 +43,22 @@ namespace Mir.Audio.Oba
             EventInstance eventInstance = RuntimeManager.CreateInstance(sound);
             eventInstances.Add(eventInstance);
             return eventInstance;
+        }
+
+        private void PauseAllSounds()
+        {
+            foreach (EventInstance eventInstance in eventInstances)
+            {
+                eventInstance.setPaused(true);
+            }
+        }
+
+        private void ResuemeAllSounds()
+        {
+            foreach (EventInstance eventInstance in eventInstances)
+            {
+                eventInstance.setPaused(false);
+            }
         }
 
         public void CleanUp()

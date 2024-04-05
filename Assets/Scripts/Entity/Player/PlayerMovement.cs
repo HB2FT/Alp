@@ -1,3 +1,4 @@
+using Mir.Input;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,15 +10,10 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInput playerInput;
     private StateMachine stateMachine;
 
-    Vector2 movementInput;
-    Vector3 currentMovement;
-
-    bool isMovementPressed;
     [SerializeField] bool jumpQuery;
-    [SerializeField] bool isJumpPressed;
-    bool isSlidePressed;
     bool isAttackPressed;
     bool isRunning;
+    static bool canMove;
 
     [SerializeField] int itemIndex;
     const int MAX_ITEM_INDEX = 2;
@@ -28,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
         stateMachine = GetComponent<StateMachine>();
 
         itemIndex = 0;
+
+        canMove = true;
     }
 
     private void Update()
@@ -40,13 +38,16 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-            HandleMovement();
+            if (CanMove)
+            {
+                HandleMovement();
 
-            HandleJump();
+                HandleJump();
 
-            HandleSlide();
+                HandleSlide();
 
-            HandleAttak();
+                HandleAttak();
+            }
 
             UpdateAnimator();
         }
@@ -54,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateAnimator()
     {
-        player.Animator.SetBool("IsRunning", isRunning); // Set animation
+        player.Animator.SetBool("IsRunning", isRunning && canMove); // Set animation
     }
 
     private void HandleAttak()
@@ -74,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
         //
         // Slide
         //
-        if (isSlidePressed && isMovementPressed) // Pressed slide while moving
+        if (InputManager.instance.GetSlidePressed() && InputManager.instance.GetMovementPressed() && _Player.instance.IsGrounded) // Pressed slide while moving, and must be grounded
         {
             if (stateMachine.CurrentState.GetType() != typeof(SlideState))
             {
@@ -89,30 +90,22 @@ public class PlayerMovement : MonoBehaviour
                 {
                     rotation = -1;
                 }
-                player.Rigidbody.AddForce(new Vector2(player.Speed * 50 * rotation, 0));
+                player.Rigidbody.AddForce(new Vector2(player.Speed * rotation * 2, 0), ForceMode2D.Impulse);
             }
-
-            isSlidePressed = false;
         }
     }
 
     private void HandleJump()
     {
         //
-        // Jump
+        // Jump query
         //
-        if (isJumpPressed)
+        if (InputManager.instance.GetJumpPressed())
         {
-            if (player.IsGrounded)
+            if (player.IsGrounded || player.Rigidbody.velocity.y < -5)
             {
                 jumpQuery = true;
             }
-            else if (player.Rigidbody.velocity.y < -5)
-            {
-                jumpQuery = true;
-            }
-
-            isJumpPressed = false;
         }
 
         //
@@ -128,18 +121,18 @@ public class PlayerMovement : MonoBehaviour
     private void HandleMovement()
     {
         #region rotation
-        if (movementInput == Vector2.right && !player.isRight)
+        if (InputManager.instance.Movement == Vector3.right && !player.isRight)
         {
             player.Rotate(); Debug.Log("Rotate right");
         }
 
-        if (movementInput == Vector2.left && player.isRight)
+        if (InputManager.instance.Movement == Vector3.left && player.isRight)
         {
             player.Rotate(); Debug.Log("Rotate right");
         }
         #endregion
 
-        isRunning = currentMovement != Vector3.zero;// handle is running
+        isRunning = InputManager.instance.Movement != Vector3.zero;// handle is running
 
         float _speed = player.Speed;
 
@@ -151,9 +144,9 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (player.canMove)
+        if (CanMove || true)
         {
-            player.transform.position += currentMovement * _speed * Time.deltaTime;
+            player.transform.position += InputManager.instance.Movement * _speed * Time.deltaTime;
         }
 
         //player.Rigidbody.velocity = new Vector3(_speed * currentMovement.x, player.Rigidbody.velocity.y);
@@ -163,15 +156,11 @@ public class PlayerMovement : MonoBehaviour
     {
         playerInput = new PlayerInput();
 
-        playerInput.Player.Movement.started += Move; // On press
-        playerInput.Player.Movement.performed += Move; // While pressing
-        playerInput.Player.Movement.canceled += Move; // End press
+        //playerInput.Player.Slide.started += Slide; // On slide
+        //playerInput.Player.Slide.canceled += Slide; // End slide
 
-        playerInput.Player.Slide.started += Slide; // On slide
-        playerInput.Player.Slide.canceled += Slide; // End slide
-
-        playerInput.Player.Jump.started += Jump; // On Jump
-        playerInput.Player.Jump.canceled += Jump; // End Jump
+        //playerInput.Player.Jump.started += Jump; // On Jump
+        //playerInput.Player.Jump.canceled += Jump; // End Jump
 
         //playerInput.Player.ItemIndex.started += OnItemChanged; // On item change
     }
@@ -210,22 +199,22 @@ public class PlayerMovement : MonoBehaviour
 
     void Move(InputAction.CallbackContext context)
     {
-        movementInput = context.ReadValue<Vector2>();
+        //movementInput = context.ReadValue<Vector2>();
 
-        currentMovement.x = movementInput.x;
-        currentMovement.y = movementInput.y;
+        //currentMovement.x = movementInput.x;
+        //currentMovement.y = movementInput.y;
 
-        isMovementPressed = movementInput != Vector2.zero;
+        //isMovementPressed = movementInput != Vector2.zero;
     }
 
     void Slide(InputAction.CallbackContext context)
     {
-        isSlidePressed = context.ReadValueAsButton();
+        //isSlidePressed = context.ReadValueAsButton();
     }
 
     void Jump(InputAction.CallbackContext context)
     {
-        isJumpPressed = context.ReadValueAsButton();
+        //isJumpPressed = context.ReadValueAsButton();
     }
 
     private void OnEnable()
@@ -236,5 +225,18 @@ public class PlayerMovement : MonoBehaviour
     private void OnDisable()
     {
         playerInput.Player.Disable();
+    }
+
+    public static bool CanMove
+    {
+        get
+        {
+            return canMove;
+        }
+
+        set
+        {
+            canMove = value;
+        }
     }
 }

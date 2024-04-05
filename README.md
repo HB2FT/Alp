@@ -1,5 +1,74 @@
 # Mir
 ***
+# V0.14.0
+* Restored game map. 
+> `SapmleScene.unity` needs some help.
+***
+# V0.13.0.1
+* Removed `UnityEditor.Experimental.GraphView.GraphView` static dependecy.
+***
+# V0.13.0
+* Created `Asseblies` folder. This folder contains libraries (dll files).
+* Mir.Serialization.dll imported.
+* Created Debug Object.
+* Game saves itself now
+* 
+***
+# V0.12.1
+* Game sounds stops and resumes with game.
+* Created `BottomBar` layer.
+* FMODStudioSettings.asset added to .gitignore
+***
+# V0.12.0
+* Created event & methods `On Game Pause` and `On Game Resume` in Game Events Manager
+* Created `Game Manager` object
+> Game pause mechanics is started to change.
+* Input Manager enables when game resumed, disables when game paused.
+* Input actions in Player Movement posted to Input Manager.
+	- movementInput variable is removed (from Player Movement)
+	- isMovmentPressed variable is removed (from Player Movement)
+	- currentMovement variable is removed (from Player Movement)
+	- isSlidePressed variable is removed (from Player Movement)
+	- isJumpPressed variable is removed (from Player Movement)
+* Input actions in GameController.BottomBarController posted to Input Manager.
+* Dialogs cen bi skipped now.
+* Added `PAUSED` and `NONE` states to BottomBarController.State
+* Bottom Bar Controller moved to Mir.Controllers namespace
+* Dialog view stops writing down when game paused.
+* Created `Kam` prefab.
+***
+# V0.11.1
+* Created abstract class `Interactable`
+ - > This class contains only `OnInterract` function
+* Kam inherited from Interactable class
+* Input Manager handles interraction input (Keyboard: X, Gamepad: X) now
+* Created `InteractionButton` object
+ - Properties:
+	- Text
+	- Image
+> When player triggers an Interactable, Interaction options (just an image and a text) appears.
+***
+# V0.10.13
+* Moved variable `canMove` from `_Player` to `PlayerMovement` as static
+* Added `Kam` as a square (yes, a square) to scene for develope interraction mechanics
+***
+# V0.10.12
+* Created `Terrain` layer
+* Added `HandleIsOutOfScene` and `UpdateOutOfScene` methods to "_Player" class
+* Fixed bugs on Sliding Mechanic:
+	+ Player stops moving when released derction buttons (A,D) [Fixed]
+	+ Player was able to sliding on air [Fixed]
+* Completed Death Menu's design 
+***
+# V0.10.11
+* Simplified assigning Jump Query
+> This version is editted with Unity's newer version. Be carefull.
+***
+# V0.10.10
+* Fixed `State Machine bug`. (At last)
+	+ In State Machine, Main State Stype inits defaultly
+> Spent time only for find the reason is almost 4-6 weeks
+***
 # V0.10.9
 * Fixed bug on direction of Arrow
 * Deleted `First Combat Scene Manager`, `Boss Fight Manager`

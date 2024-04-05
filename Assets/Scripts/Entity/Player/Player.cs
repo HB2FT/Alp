@@ -77,17 +77,7 @@ public class Player : Entity
         maxHealth = health;
 
 
-        //
-        // Load saves
-        //
-        LoadSavedGame();
-        string saveContent = File.ReadAllText("Save.alp");
-
-        if (File.Exists("Save.alp"))
-        {
-            transform.position = new Vector2(-305, transform.position.y);
-            tutorial.StartTutorial();
-        }
+       
 
 /*
         string[] saveContentEntries = saveContent.Split(':');
@@ -380,6 +370,7 @@ public class Player : Entity
         }
     }
 
+    [Obsolete]
     private void LoadSavedGame()
     {
         CheckPoint.SavedState savedState = CheckPoint.Load();

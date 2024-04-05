@@ -42,7 +42,7 @@ public class BossFightSceneManager : MonoBehaviour
 
     void DisablePlayer()
     {
-        _Player.instance.canMove = false;
+        _Player.instance.CanMove = false;
     }
 
     void PlayMusic()

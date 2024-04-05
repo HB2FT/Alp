@@ -8,7 +8,8 @@ public class SlideState : SlideBaseState
     {
         base.OnEnter(_stateMachine);
 
-       
+        // Disable player input (All movements)
+       _Player.instance.CanMove = false;
 
         duration = .35f;
         animator.SetTrigger("Slide");

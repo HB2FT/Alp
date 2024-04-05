@@ -2,7 +2,10 @@ using FMOD.Studio;
 using Mir.Audio.Oba;
 using Mir.Entity.Player;
 using System;
+using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class _Player : Entity
 {
@@ -19,12 +22,16 @@ public class _Player : Entity
     private int _itemIndex; // Temp variable for InputSystem.currentItemIndex
     [SerializeField] private int criticalHealth;
 
-    // movement
-    public bool canMove;
+    // variables
+    [Obsolete] private bool canMove;
+    private bool isOutOfScene;
 
     // audio
     private EventInstance lowHealth;
     private EventInstance deathSound;
+
+    // checkpoints
+    public Transform latestCheckPoint;
 
     public static _Player instance { get; private set; }
 
@@ -46,9 +53,11 @@ public class _Player : Entity
         boxCollider = GetComponent<BoxCollider2D>();
 
         _itemIndex = 0;
+        canMove = true;
 
         lowHealth = AudioManager.instance.CreateEventInstance(MusicEvents.instance.playerLowHealth);
         //deathSound = AudioManager.instance.CreateEventInstance(MusicEvents.instance.playerDeath);
+
     }
 
     public override void Update()
@@ -69,7 +78,11 @@ public class _Player : Entity
             HandleCanMove();
 
             UpdateIsGrounded();
+
+            HandleIsOutOfScene();
         }
+
+        UpdateIsOutOfScene();
     }
 
     protected override void OnDeath()
@@ -78,9 +91,28 @@ public class _Player : Entity
 
         GameEventsManager.instance.OnPlayerDeath();
 
+        Animator.SetTrigger("isDead");
+
         UnityEngine.Debug.Log("player died");
     }
 
+    private void UpdateIsOutOfScene()
+    {
+        if (transform.position.y < -6)
+        {
+            isOutOfScene = true;
+        }
+    }
+
+    private void HandleIsOutOfScene()
+    {
+        if (isOutOfScene)
+        {
+            OnDeath();
+        }
+    }
+
+    // This funcion's source is from Shaped by Rain Studios - How to make an Audio System in Unity | Unity + FMOD Tutorial (https://youtube.com/watch?v=rcBHIOjZDpk)
     private void UpdateIsGrounded()
     {
         Bounds colliderBounds = boxCollider.bounds;
@@ -105,8 +137,13 @@ public class _Player : Entity
 
     private void HandleCanMove()
     {
+        
+    }
+
+    private void UpdateCanMove()
+    {
         // disable move on bow preparing state, otherwise enable move
-            canMove = StateMachine.instance.CurrentState.GetType() != typeof(BowPreparingState);
+        //canMove = StateMachine.instance.CurrentState.GetType() != typeof(BowPreparingState);
     }
 
     private void HandleLowHealth()
@@ -171,5 +208,19 @@ public class _Player : Entity
         }
 
         stateMachine.SetNextStateToMain();
+    }
+
+    [Obsolete]
+    public bool CanMove
+    {
+        get
+        {
+            return canMove;
+        }
+
+        set
+        {
+            canMove = value;
+        }
     }
 }

@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
+using Mir.Controllers;
+using Mir.Serialization;
 
 public class CheckPoint : MonoBehaviour
 {
@@ -16,6 +16,8 @@ public class CheckPoint : MonoBehaviour
     public static string LABEL_CAMERA_Y_AXIS_OFFSET = "cameraYAxisOffset:";
 
     public GameCamera gameCamera;
+    public BottomBarController bottomBarController;
+    public StoryScene checkpointSetDialog;
 
     void Update()
     {
@@ -25,31 +27,42 @@ public class CheckPoint : MonoBehaviour
     protected void OnTriggerEnter2D(Collider2D collision)
     {
         Player player = collision.GetComponent<Player>();
+        _Player _player = collision.GetComponent<_Player>();
 
-        if (player != null)
+        if (_player != null)
         {
-            SetCheckPoint(player);
+            //SetCheckPoint(player);
+
+            //if (_player.latestCheckPoint != transform)
+                ShowDialog();
+
+            _player.latestCheckPoint = transform;
+            SetCheckPoint();
         }
     }
 
-    private void SetCheckPoint(Player player) 
+    void ShowDialog()
     {
-        bool tutorialCompleted;
-        float playerX, playerY;
-        int cameraYAxisOffset;
+        bottomBarController.PlayScene(checkpointSetDialog);
+    }
 
-        tutorialCompleted = true;
-        playerX = player.transform.position.x;
-        playerY = player.transform.position.y;
-        cameraYAxisOffset = gameCamera.yOffset;
+    private void SetCheckPoint() 
+    {
+        // Get variables to save
+        int cameraYAxisOffset = GameCamera.instance.yOffset;
+        float playerX = _Player.instance.transform.position.x;
+        float playerY = _Player.instance.transform.position.y;
 
-        Save(new SavedState(tutorialCompleted, playerX, playerY, cameraYAxisOffset));
+        SavedGame savedGame = new SavedGame(
+            cameraYAxisOffset,
+            playerX,
+            playerY);
 
-        string content = LABEL_TUTORIAL + tutorialCompleted + "\n"
-                        + LABEL_PLAYERX+ playerX + "\n" + LABEL_PLAYERY + playerY + "\n"
-                        + LABEL_CAMERA_Y_AXIS_OFFSET + cameraYAxisOffset + "\n";
+        savedGame.Serialize();
 
-        File.WriteAllText("Save.alp", content);
+        Debug.Log("Camera offset: " + cameraYAxisOffset);
+        Debug.Log("Player X: " + playerX);
+        Debug.Log("Player Y: " + playerY);
     }
 
     public static SavedState Load()

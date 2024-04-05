@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
@@ -21,6 +19,11 @@ public class VisualEffectsManager : MonoBehaviour
     public void SetCurrentProfile(PostProcessProfile profile)
     {
         postProcessVolume.profile = profile;
+    }
+
+    public void ResetVisualEffects()
+    {
+        postProcessVolume.profile = null;
     }
 
     public float weight
