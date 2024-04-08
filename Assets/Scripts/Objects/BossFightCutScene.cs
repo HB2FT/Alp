@@ -1,5 +1,5 @@
 ﻿using FMOD.Studio;
-using Mir.Audio.Dag;
+using Mir.Entity.PlayerUtilities;
 using Mir.Managers;
 
 namespace Mir.Objects

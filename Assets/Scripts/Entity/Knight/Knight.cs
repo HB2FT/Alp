@@ -1,12 +1,11 @@
+using Mir.Entity;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 
 public class Knight : Entity
 {
-    public Player target;
+    public _Player target;
     public GameObject attackCollider;
     public bool isTriggered;
 
@@ -15,14 +14,22 @@ public class Knight : Entity
 
     private AtomicBoolean deathChecker = new AtomicBoolean(true);
 
-    public readonly float[] triggerArea = {-10f, 10f };
+    public readonly float[] triggerArea = { -10f, 10f };
 
+    [SerializeField] public int Damage;
     private int index = 0; // This is for change isDead animator parameter after a while
     private float dissapearTime = 5f;
+
+    // Area 
+    private float boundLeft, boundRight;
+    [SerializeField] GameObject borderLeft, borderRight;
 
     public override void Start()
     {
         base.Start();
+
+        boundLeft = borderLeft.transform.position.x;
+        boundRight = borderRight.transform.position.x;
     }
 
     public override void Update()
@@ -30,6 +37,12 @@ public class Knight : Entity
         base.Update();
 
         CheckTrigger();
+
+        //
+        // Stay in boundery
+        //
+        if (transform.position.x < boundLeft) LookAt(Vector2.right);
+        if (transform.position.x > boundRight) LookAt(Vector2.left);
 
         if (health > 0)
         {
@@ -60,7 +73,7 @@ public class Knight : Entity
         //}
     }
 
-    protected override void OnDeath() 
+    protected override void OnDeath()
     {
         base.OnDeath();
 
@@ -76,7 +89,7 @@ public class Knight : Entity
     {
         yield return new WaitForSeconds(dissapearTime);
 
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -92,14 +105,14 @@ public class Knight : Entity
 
     }
 
-    public void OnAttackEnd() 
+    public void OnAttackEnd()
     {
         //animator.SetBool("isAttacking", false);
         //animator.SetTrigger("Attack");
         //attackCollider.gameObject.SetActive(false);
     }
 
-    public void CheckTrigger() 
+    public void CheckTrigger()
     {
         float deltaPosition = target.transform.position.x - transform.position.x;
 
@@ -108,7 +121,7 @@ public class Knight : Entity
             isTriggered = true;
         }
 
-        else 
+        else
         {
             isTriggered = false;
         }
@@ -122,3 +135,4 @@ public class Knight : Entity
         }
     }
 }
+

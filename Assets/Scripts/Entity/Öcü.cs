@@ -1,78 +1,80 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Öcü : Entity   
+namespace Mir.Entity
 {
-    public float startPosX;
-    public float range;
-    public float border;
-
-    public int damage;
-
-    private bool readyToAttac;
-
-    public Player player; // Accessed for damage
-
-    public AtomicBoolean isDead;
-
-    // Start is called before the first frame update
-    public override void Start()
+    public class Öcü : Entity
     {
-        base.Start();
+        public float startPosX;
+        public float range;
+        public float border;
 
-        startPosX = transform.position.x;
-        range = 10;
-        border = startPosX + range;
-        readyToAttac = true;
+        public int damage;
 
-        isDead = new AtomicBoolean(true);
-    }
+        private bool readyToAttac;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (health > 0)
+        public Player player; // Accessed for damage
+
+        public AtomicBoolean isDead;
+
+        // Start is called before the first frame update
+        public override void Start()
         {
-            transform.position += transform.right * Speed * Time.deltaTime;
+            base.Start();
 
-            if (transform.position.x > startPosX + 10 || transform.position.x < startPosX - 10)
+            startPosX = transform.position.x;
+            range = 10;
+            border = startPosX + range;
+            readyToAttac = true;
+
+            isDead = new AtomicBoolean(true);
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (health > 0)
             {
-                Rotate();
+                transform.position += transform.right * Speed * Time.deltaTime;
+
+                if (transform.position.x > startPosX + 10 || transform.position.x < startPosX - 10)
+                {
+                    Rotate();
+                }
+            }
+
+            else
+            {
+                if (isDead.Value)
+                {
+                    this.gameObject.SetActive(false);
+                }
             }
         }
 
-        else
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (isDead.Value)
+            Player player = collision.gameObject.GetComponent<Player>();
+
+            if (player != null && readyToAttac)
             {
-                this.gameObject.SetActive(false);
+                int direction;
+
+                if (isRight) direction = -1;
+                else direction = 1;
+
+                player.health -= damage;
+                player.GetComponent<Rigidbody2D>().AddForce(new Vector2(3 * direction, 1), ForceMode2D.Impulse);
+
+                readyToAttac = false;
+                StartCoroutine(SetReadyToAttack());
             }
         }
-    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Player player = collision.gameObject.GetComponent<Player>();
-
-        if (player != null && readyToAttac)
+        IEnumerator SetReadyToAttack()
         {
-            int direction;
-
-            if (isRight) direction = -1;
-            else direction = 1;
-
-            player.health -= damage;
-            player.GetComponent<Rigidbody2D>().AddForce(new Vector2(3 * direction, 1), ForceMode2D.Impulse);
-
-            readyToAttac = false;
-            StartCoroutine(SetReadyToAttack());
+            yield return new WaitForSeconds(1f);
+            readyToAttac = true;
         }
-    }
-
-    IEnumerator SetReadyToAttack()
-    {
-        yield return new WaitForSeconds(1f);
-        readyToAttac = true;
     }
 }

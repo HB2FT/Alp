@@ -1,3 +1,4 @@
+using Mir.Entity;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour

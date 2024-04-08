@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
+using Mir.Entity;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class FirstCombatSceneController : MonoBehaviour

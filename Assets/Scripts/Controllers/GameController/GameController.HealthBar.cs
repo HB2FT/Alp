@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Mir.Entity;
 using UnityEngine;
 using UnityEngine.UI;
 
 partial class GameController
 {
-    public Player player;
+    [SerializeField] private _Player player;
     public Slider slider;
     public Gradient gradient;
     public Image Fill;
@@ -16,6 +12,7 @@ partial class GameController
     void HealthBarStart()
     {
         SetMaxhealth(player.health);
+        slider.maxValue = player.maxHealth;
     }
 
     void HealthBarUpdate()
