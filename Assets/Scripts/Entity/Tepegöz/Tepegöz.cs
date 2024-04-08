@@ -1,6 +1,5 @@
+using Mir.Entity;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Tepegöz : Entity

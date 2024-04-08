@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Mir.Entity;
 using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour // Player'ın etkileşimlerini, konumlarını kontrol eder
 {
-    public Player player;
+    public _Player player;
     public StorySceneManager StorySceneManager;
 
     public GameObject bottomBar;
@@ -30,7 +26,7 @@ public class PlayerController : MonoBehaviour // Player'ın etkileşimlerini, ko
     {
         if (player.gameObject.transform.position.y < worldBorderY) player.health = 0;
 
-        player.isControllable = !bottomBar.activeSelf;
+        //player.isControllable = !bottomBar.activeSelf;
 
         if (Input.GetKeyDown(KeyCode.E))
         {

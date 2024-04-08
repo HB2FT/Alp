@@ -5,6 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using Mir.Controllers;
 using Mir.Serialization;
+using Mir.Entity;
 
 public class CheckPoint : MonoBehaviour
 {
