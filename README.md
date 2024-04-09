@@ -1,5 +1,13 @@
 # Mir
 ***
+# V0.14.3
+* `ps4-buttons` sliced.
+* Added `Kam Idle` sprites.
+* Created Kam's idle animation.
+* Created animation controller: `Kam`
+* Resized dialog bar (bottom bar) text sizes.
+* Created `onGamepadConected` and `onGamepadDisconnected` events.
+***
 # V0.14.2
 * Healthbar fixed twice.
 > Healthbar's max value is player's max health.
