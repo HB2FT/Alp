@@ -12,7 +12,7 @@ public partial class GameController : MonoBehaviour // Oyunu genel hatlarýyla ko
         HealthBarStart();
 
         Debug.Log("GameController");
-        InputSystem.onDeviceChange += InputUser_onChange;
+        //InputSystem.onDeviceChange += InputUser_onChange;
     }
 
     void Update()

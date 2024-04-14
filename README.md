@@ -1,5 +1,11 @@
 # Mir
 ***
+# V0.14.5
+* Sprites folder movedi into `Resources` folder.
+* Gamepad handling moved to Input Manager from UI Sprites Manager.
+* UI sprites (interaction buttons etc.) changes according to current input device (Gamepad or keyboard).
+* UI Sprite Manager can load spirtes dynamically now.
+***
 # V0.14.4
 * Created new `UI Sprites Manager` object.
 > This manager's aim is loading ui sprites dynamically.

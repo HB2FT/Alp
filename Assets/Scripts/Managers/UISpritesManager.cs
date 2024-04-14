@@ -1,11 +1,12 @@
+using Mir.Input;
 using System;
+using System.Linq;
 using UnityEngine;
 
-namespace Mir
+namespace Mir.Managers
 {
     public class UISpritesManager : MonoBehaviour
     {
-        public bool isGamepad;
 
         public static UISpritesManager Instance;
 
@@ -16,33 +17,68 @@ namespace Mir
             Instance = this;
         }
 
+        [SerializeField] private string path;
+
         private void Start()
         {
-            GameEventsManager.instance.onGamepadConnected += GamepadConnected;
-            GameEventsManager.instance.onGamepadDisconnected += GamepadDisconnected;
+                       
+        }
 
-            Sprite sprite = LoadSprite("Sprites/Arrow/ok");
-            if (sprite == null)
+        public Sprite LoadSprite(UISprite sprite)
+        {
+            UISprite.SpritePath spritePath = sprite.GetSpritePath();
+            Sprite[] sprites = Resources.LoadAll(spritePath.Path, typeof(Sprite)).Cast<Sprite>().ToArray();
+
+            foreach (Sprite spr in sprites)
             {
-                Debug.LogError("Sprite boþtu");
+                if (spr.name.Equals(spritePath.Name)) return spr;
+            }
+
+            throw new NullReferenceException("Sprite bulunamadý: " + spritePath.Path + ", " + spritePath.Name);
+        }
+
+        
+    }
+
+    public class UISprite
+    {
+        public SpritePath ValueKeyboard { get; private set; }
+        public SpritePath ValueGamepad { get; private set; }
+        private UISprite(SpritePath valueKeyboard, SpritePath valueGamepad)
+        {
+            this.ValueKeyboard = valueKeyboard;
+            this.ValueGamepad = valueGamepad;
+        }
+
+        /**
+         * Returns sprite path and name related to input type (gamepad or keyboard)
+         */
+        public SpritePath GetSpritePath()
+        {
+            if (InputManager.instance.IsGamepad)
+            {
+                Debug.Log("Loading: " + ValueGamepad.Path);
+                return ValueGamepad;
+            }
+
+            else
+            {
+                return ValueKeyboard;
             }
         }
 
-        public Sprite LoadSprite(string name)
-        {
-            return Resources.Load(name) as Sprite;
-        }
+        public static UISprite INTERACTION_BUTTON { get { return new UISprite(new SpritePath("Sprites/UI/keyboard-buttons", "keyboard-buttons_x"), new SpritePath("Sprites/UI/ps4-buttons", "ps4-buttons_x")); } }
 
-        private void GamepadConnected()
+        public class SpritePath
         {
-            if (isGamepad) Debug.LogWarning("Birden fazla kontrolcü algýlandý.");
-            isGamepad = true;
-        }
+            public string Path { get; private set; }
+            public string Name { get; private set; }
 
-        private void GamepadDisconnected()
-        {
-            if (!isGamepad) Debug.LogError("Bilinmeyen bir hata meydana gelid.");
-            isGamepad = false;
+            public SpritePath(string path, string name)
+            {
+                this.Path = path;
+                this.Name = name;
+            }
         }
     }
 }
