@@ -246,8 +246,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -750977141
-  m_SortingLayer: 2
+  m_SortingLayerID: 1661351157
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 502ed8eabb93ddd42a03bc95c20d97da, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5473,6 +5473,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kam
       objectReference: {fileID: 0}
+    - target: {fileID: 7624265513050595434, guid: 957513ef185ee9945ba2e6fde39f03ff, type: 3}
+      propertyPath: storyScene
+      value: 
+      objectReference: {fileID: 11400000, guid: de2399363bc916e43aaa2975027cf5df, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -43290,8 +43294,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -750977141
-  m_SortingLayer: 2
+  m_SortingLayerID: 1661351157
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 502ed8eabb93ddd42a03bc95c20d97da, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -44297,8 +44301,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -750977141
-  m_SortingLayer: 2
+  m_SortingLayerID: 1661351157
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 502ed8eabb93ddd42a03bc95c20d97da, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

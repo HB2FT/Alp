@@ -1,5 +1,9 @@
 # Mir
 ***
+# V0.14.4
+* Created new `UI Sprites Manager` object.
+> This manager's aim is loading ui sprites dynamically.
+***
 # V0.14.3
 * `ps4-buttons` sliced.
 * Added `Kam Idle` sprites.

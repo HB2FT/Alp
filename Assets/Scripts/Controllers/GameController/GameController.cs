@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.InputSystem.Users;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public partial class GameController : MonoBehaviour // Oyunu genel hatlarýyla kontrol eder
@@ -10,6 +10,9 @@ public partial class GameController : MonoBehaviour // Oyunu genel hatlarýyla ko
 
         //if (bottomBar.Enabled) BottomBarStart();
         HealthBarStart();
+
+        Debug.Log("GameController");
+        InputSystem.onDeviceChange += InputUser_onChange;
     }
 
     void Update()
@@ -20,15 +23,32 @@ public partial class GameController : MonoBehaviour // Oyunu genel hatlarýyla ko
         HealthBarUpdate();
         MenuUpdate();
 
-        InputUser.onChange += InputUser_onChange;
+       
 
 
     }
 
-    private void InputUser_onChange(InputUser arg1, InputUserChange arg2, UnityEngine.InputSystem.InputDevice arg3)
+    private void InputUser_onChange(InputDevice device, InputDeviceChange change)
     {
-        Debug.Log("InputDevice Name:" + arg3.name);
-        Debug.Log("InputDevice Display Name:" + arg3.displayName);
+        Debug.Log("InputDevice Display Name:" + device.displayName);
+        
+        if (device.displayName.Equals("Wireless Controller"))
+        {
+            if (change == InputDeviceChange.Reconnected || change == InputDeviceChange.Added)
+            {
+                Debug.Log("Kontrolcü algýlandý: " + device.displayName);
+
+                GameEventsManager.instance.OnGamepadConnected();
+            }
+            
+            if (change == InputDeviceChange.Disconnected || change == InputDeviceChange.Removed)
+            {
+                Debug.Log("Kontrolcü çýkarýldý: " + device.displayName);
+
+                GameEventsManager.instance.OnGamepadDisconnected();
+            }
+        }
+
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode loadMode)
