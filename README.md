@@ -1,5 +1,12 @@
 # Mir
 ***
+# V 0.14.6
+* Removed sprite `/Assets/Resources/Sprites/UI/X.png`
+* Created input acion `Next`
+* Fixed bug `Starting the same dialog twice`
+* Added `Skip dialog` property.
+* New story scenes created: `By the way, Controls, Combat, Interaction, Jump, Slide, Movement (A,D)`
+***
 # V0.14.5
 * Sprites folder movedi into `Resources` folder.
 * Gamepad handling moved to Input Manager from UI Sprites Manager.

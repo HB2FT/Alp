@@ -148,7 +148,7 @@ namespace Mir.Input
             #endregion
 
             #region Bottom Bar
-            playerInput.Player.Jump.started += NextPressed;
+            playerInput.Player.Next.started += NextPressed;
             #endregion
         }
 
@@ -169,7 +169,7 @@ namespace Mir.Input
             playerInput.Player.Jump.started -= JumpPressed; // On Jump
             playerInput.Player.Jump.canceled -= JumpPressed; // End Jump
 
-            playerInput.Player.Jump.started -= NextPressed;
+            playerInput.Player.Next.started -= NextPressed;
         }
 
         private void InteractionPressed(InputAction.CallbackContext context)
