@@ -23,4 +23,4 @@ MonoBehaviour:
       Yolun a\xE7\u0131k, sonuysa mavi g\xF6k gibi ayd\u0131nl\u0131k olsun, K\xF6k
       Tengri yan\u0131nda olsun Alp."
     speaker: {fileID: 11400000, guid: 9820211468ca6e74db62c5e8d76548a6, type: 2}
-  nextScene: {fileID: 0}
+  nextScene: {fileID: 11400000, guid: 44f5cdd0b2651604ebcb7506feee5060, type: 2}

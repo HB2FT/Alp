@@ -40,4 +40,22 @@ public class GameEventsManager : MonoBehaviour
             onGameResume();
         }
     }
+
+    public event Action onGamepadConnected;
+    public void OnGamepadConnected()
+    {
+        if (onGamepadConnected != null)
+        {
+            onGamepadConnected();
+        }
+    }
+
+    public event Action onGamepadDisconnected;
+    public void OnGamepadDisconnected()
+    {
+        if (onGamepadDisconnected != null)
+        {
+            onGamepadDisconnected();
+        }
+    }
 }

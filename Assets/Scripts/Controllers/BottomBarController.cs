@@ -37,7 +37,21 @@ namespace Mir.Controllers
 
         private void Update()
         {
-            if (state != State.NONE && InputManager.instance.GetNextPressed())
+            if (InputManager.instance.GetNextPressed())
+            {
+                OnNextPressed();
+            }
+        }
+
+        private void OnNextPressed()
+        {
+            if (state == State.PLAYING)
+            {
+                CompleteScene();
+                return;
+            }
+
+            if (state != State.NONE)
             {
                 StopAllCoroutines();
 
@@ -94,6 +108,8 @@ namespace Mir.Controllers
 
         public void PlayScene(StoryScene scene)
         {
+            if (state == State.PLAYING) return;
+
             Enabled = true;
             currentScene = scene;
             sentenceIndex = -1;
@@ -112,6 +128,14 @@ namespace Mir.Controllers
             {
                 Enabled = false;
             }
+        }
+
+        public void CompleteScene()
+        {
+            StopAllCoroutines();
+
+            barText.text = currentScene.sentences[sentenceIndex].text;
+            state = State.COMPLETED;
         }
 
         public bool IsCompleted()

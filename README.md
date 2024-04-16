@@ -1,5 +1,30 @@
 # Mir
 ***
+# V 0.14.6
+* Removed sprite `/Assets/Resources/Sprites/UI/X.png`
+* Created input acion `Next`
+* Fixed bug `Starting the same dialog twice`
+* Added `Skip dialog` property.
+* New story scenes created: `By the way, Controls, Combat, Interaction, Jump, Slide, Movement (A,D)`
+***
+# V0.14.5
+* Sprites folder movedi into `Resources` folder.
+* Gamepad handling moved to Input Manager from UI Sprites Manager.
+* UI sprites (interaction buttons etc.) changes according to current input device (Gamepad or keyboard).
+* UI Sprite Manager can load spirtes dynamically now.
+***
+# V0.14.4
+* Created new `UI Sprites Manager` object.
+> This manager's aim is loading ui sprites dynamically.
+***
+# V0.14.3
+* `ps4-buttons` sliced.
+* Added `Kam Idle` sprites.
+* Created Kam's idle animation.
+* Created animation controller: `Kam`
+* Resized dialog bar (bottom bar) text sizes.
+* Created `onGamepadConected` and `onGamepadDisconnected` events.
+***
 # V0.14.2
 * Healthbar fixed twice.
 > Healthbar's max value is player's max health.
