@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cef195d66076a1d4bb4e1418081efcda, type: 3}
+  m_Name: By the way
+  m_EditorClassIdentifier: 
+  sentences:
+  - text: "Bu arada sana oyunu nas\u0131l oynayabilece\u011Fini \xF6\u011Fretmeliyim.
+      Yoksa tengri bile sana yard\u0131m edemez."
+    speaker: {fileID: 11400000, guid: 9820211468ca6e74db62c5e8d76548a6, type: 2}
+  - text: "B\xFCt\xFCn kontrolleri s\u0131rayla s\xF6yleyece\u011Fim \xE7\xFCnk\xFC
+      oyun \u015Fimdilik interaktif bir \xF6\u011Fretici yetene\u011Fine sahip de\u011Fil.
+      Haz\u0131rsan ba\u015Flayal\u0131m."
+    speaker: {fileID: 11400000, guid: 9820211468ca6e74db62c5e8d76548a6, type: 2}
+  - text: "Ha bu arada Enter ya da Space (z\u0131plama) tu\u015Flar\u0131na basarak
+      bu konu\u015Fmalar\u0131 atlayabilirsin."
+    speaker: {fileID: 11400000, guid: 9820211468ca6e74db62c5e8d76548a6, type: 2}
+  nextScene: {fileID: 11400000, guid: 4a2bd14d012e8a943b3db4977d6bd4a7, type: 2}

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,6 +20,9 @@ namespace Mir.Input
         // Bottombar variables
         private bool isNextPressed;
 
+        // Gamepad connection
+        public bool isGamepad;
+
         public static InputManager instance { get; private set; }
 
         private void Awake()
@@ -42,6 +44,15 @@ namespace Mir.Input
         {
             GameEventsManager.instance.onGamePause += UnregisterToEvetns;
             GameEventsManager.instance.onGameResume += RegisterToEvents;
+
+            #region Gamepad Handling
+            InputSystem.onDeviceChange += InputUser_onChange;
+
+            GameEventsManager.instance.onGamepadConnected += GamepadConnected;
+            GameEventsManager.instance.onGamepadDisconnected += GamepadDisconnected;
+            #endregion
+
+            ScanInputDevices();
         }
 
         private void OnEnable()
@@ -53,6 +64,69 @@ namespace Mir.Input
         {
             playerInput.Player.Disable();
         }
+
+        #region Gamepad
+        private void InputUser_onChange(InputDevice device, InputDeviceChange change)
+        {
+            Debug.Log("InputDevice Display Name:" + device.name);
+
+            if (device.name.Equals("DualShock4GamepadHID"))
+            {
+                if ( change == InputDeviceChange.Added || change == InputDeviceChange.Enabled)
+                {
+                    Debug.Log("Kontrolcü algýlandý: " + device.displayName);
+
+                    if (IsGamepad) Debug.LogWarning("Birden fazla kontrolcü algýlandý.");
+                    IsGamepad = true;
+
+                    GameEventsManager.instance.OnGamepadConnected();
+                }
+
+                if ( change == InputDeviceChange.Removed || change == InputDeviceChange.Disabled)
+                {
+                    Debug.Log("Kontrolcü çýkarýldý: " + device.displayName);
+
+                    if (!IsGamepad) Debug.LogError("Bilinmeyen bir hata meydana geldi.");
+                    IsGamepad = false;
+
+                    GameEventsManager.instance.OnGamepadDisconnected();
+                }
+            }
+
+        }
+
+        private void ScanInputDevices()
+        {
+            // Scan for curretn input (keyboard or gamepad)
+            int i = 0;
+            foreach (InputDevice device in InputSystem.devices)
+            {
+                if (device.name.Equals("DualShock4GamepadHID"))
+                {
+                    IsGamepad = true;
+                    i++;
+
+                    if (i > 1)
+                    {
+                        Debug.Log("Kontrolcü algýlandý: " + device.name);
+                        return;
+                    }
+
+                    GameEventsManager.instance.OnGamepadConnected();
+                }
+            }
+        }
+
+        private void GamepadConnected()
+        {
+            
+        }
+
+        private void GamepadDisconnected()
+        {
+            
+        }
+        #endregion
 
         private void RegisterToEvents()
         {
@@ -74,7 +148,7 @@ namespace Mir.Input
             #endregion
 
             #region Bottom Bar
-            playerInput.Player.Jump.started += NextPressed;
+            playerInput.Player.Next.started += NextPressed;
             #endregion
         }
 
@@ -95,7 +169,7 @@ namespace Mir.Input
             playerInput.Player.Jump.started -= JumpPressed; // On Jump
             playerInput.Player.Jump.canceled -= JumpPressed; // End Jump
 
-            playerInput.Player.Jump.started -= NextPressed;
+            playerInput.Player.Next.started -= NextPressed;
         }
 
         private void InteractionPressed(InputAction.CallbackContext context)
@@ -186,6 +260,19 @@ namespace Mir.Input
             get
             {
                 return movement;
+            }
+        }
+
+        public bool IsGamepad
+        {
+            get
+            {
+                return isGamepad;
+            }
+
+            private set
+            {
+                isGamepad = value;
             }
         }
 

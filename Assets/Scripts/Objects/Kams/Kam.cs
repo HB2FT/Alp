@@ -65,7 +65,6 @@ public class Kam : Interactable
         {
             if (onSecondTriggerExit != null)
             {
-                Debug.Log("Exit");
                 onSecondTriggerExit();
             }
 

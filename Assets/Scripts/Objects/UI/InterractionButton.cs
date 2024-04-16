@@ -1,4 +1,5 @@
 using Mir.Input;
+using Mir.Managers;
 using Mir.Objects;
 using TMPro;
 using UnityEngine;
@@ -17,11 +18,24 @@ public class InterractionButton : MonoBehaviour
         //text = GetComponentInChildren<TextMeshPro>();
 
         Enabled = false;
+
+        GameEventsManager.instance.onGamepadConnected += LoadSprite;
+        GameEventsManager.instance.onGamepadDisconnected += LoadSprite;
+
+        LoadSprite();
     }
 
     private void Update()
     {
         HandlePressed();
+    }
+
+    public void LoadSprite()
+    {
+        Debug.Log("Mevcut kontrol birimine göre grafik yükleniyor...");
+
+        Sprite sprite = UISpritesManager.Instance.LoadSprite(UISprite.INTERACTION_BUTTON);
+        Sprite = sprite;
     }
 
     private void HandlePressed()
@@ -49,6 +63,14 @@ public class InterractionButton : MonoBehaviour
             enabled = value;
             spriteRenderer.gameObject.SetActive(value);
             text.gameObject.SetActive(value);
+        }
+    }
+
+    public Sprite Sprite
+    {
+        set
+        {
+            spriteRenderer.sprite = value;
         }
     }
 }

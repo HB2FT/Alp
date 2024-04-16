@@ -89,6 +89,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Next"",
+                    ""type"": ""Button"",
+                    ""id"": ""b4f3b0d1-1efa-409f-ab87-dab9dffed96a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -366,6 +375,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Interracion"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6720c96-ab95-4d28-99ba-469056bdef45"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Next"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d680868-f47c-42f5-a3c7-8cad8a8b8716"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Next"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -381,6 +412,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_ItemIndex = m_Player.FindAction("ItemIndex", throwIfNotFound: true);
         m_Player_Back = m_Player.FindAction("Back", throwIfNotFound: true);
         m_Player_Interracion = m_Player.FindAction("Interracion", throwIfNotFound: true);
+        m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -449,6 +481,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ItemIndex;
     private readonly InputAction m_Player_Back;
     private readonly InputAction m_Player_Interracion;
+    private readonly InputAction m_Player_Next;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -460,6 +493,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @ItemIndex => m_Wrapper.m_Player_ItemIndex;
         public InputAction @Back => m_Wrapper.m_Player_Back;
         public InputAction @Interracion => m_Wrapper.m_Player_Interracion;
+        public InputAction @Next => m_Wrapper.m_Player_Next;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -490,6 +524,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Interracion.started += instance.OnInterracion;
             @Interracion.performed += instance.OnInterracion;
             @Interracion.canceled += instance.OnInterracion;
+            @Next.started += instance.OnNext;
+            @Next.performed += instance.OnNext;
+            @Next.canceled += instance.OnNext;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -515,6 +552,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Interracion.started -= instance.OnInterracion;
             @Interracion.performed -= instance.OnInterracion;
             @Interracion.canceled -= instance.OnInterracion;
+            @Next.started -= instance.OnNext;
+            @Next.performed -= instance.OnNext;
+            @Next.canceled -= instance.OnNext;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -541,5 +581,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnItemIndex(InputAction.CallbackContext context);
         void OnBack(InputAction.CallbackContext context);
         void OnInterracion(InputAction.CallbackContext context);
+        void OnNext(InputAction.CallbackContext context);
     }
 }

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cef195d66076a1d4bb4e1418081efcda, type: 3}
+  m_Name: Movement (A,D)
+  m_EditorClassIdentifier: 
+  sentences:
+  - text: "A ve D tu\u015Flar\u0131 ile hareket edeceksin. Ger\xE7i buraya gelene
+      kadar zaten fark eti\u015Fsindir."
+    speaker: {fileID: 11400000, guid: 9820211468ca6e74db62c5e8d76548a6, type: 2}
+  nextScene: {fileID: 11400000, guid: 379e5ae8c94ecb64e8bef041a47d6219, type: 2}
