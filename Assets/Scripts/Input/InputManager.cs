@@ -33,6 +33,8 @@ namespace Mir.Input
             }
             instance = this;
 
+            Debug.LogError("Input Manager devrede!");
+
             playerInput = new PlayerInput();
 
             RegisterToEvents();

@@ -3,6 +3,7 @@ using Mir.Input;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Mir.Controllers
 {
@@ -12,6 +13,7 @@ namespace Mir.Controllers
 
         public TextMeshProUGUI barText;
         public TextMeshProUGUI personNameText;
+        public Image image;
 
         private int sentenceIndex = -1;
         public StoryScene currentScene;
@@ -123,6 +125,7 @@ namespace Mir.Controllers
                 StartCoroutine(TypeText(currentScene.sentences[++sentenceIndex].text));
                 personNameText.text = currentScene.sentences[sentenceIndex].speaker.speakerName;
                 personNameText.color = currentScene.sentences[sentenceIndex].speaker.textColor;
+                image.sprite = currentScene.sentences[sentenceIndex].speaker.sprite;
             }
             catch
             {

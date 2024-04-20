@@ -1,5 +1,15 @@
 # Mir
 ***
+# V 0.14.7
+* Added `Archer` sprites.
+* Addded `Mir` sprite.
+* Addded `Ulgen` sprite.
+* Addded `Kam` sprite.
+* Added person image to bottom bar.
+* Added sprite field to Speaker object.
+* Deleted `PauseMenu.Update()` function.
+* 
+***
 # V 0.14.6
 * Removed sprite `/Assets/Resources/Sprites/UI/X.png`
 * Created input acion `Next`

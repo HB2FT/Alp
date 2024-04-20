@@ -14,9 +14,10 @@ namespace Mir
         // Start is called before the first frame update
         void Start()
         {
+            Debug.developerConsoleEnabled = true;
+            Debug.developerConsoleVisible = true;
 
-
-            
+            Debug.LogError("Hata ayýklama objesi devrede.");
         }
 
         // Update is called once per frame

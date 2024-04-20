@@ -17,14 +17,6 @@ public class PauseMenu : MonoBehaviour
         GameEventsManager.instance.onGameResume += Hide;
     }
 
-    private void Update()
-    {
-        if (InputManager.instance.GetBackPressed())
-        {
-            //ToggleMenu();
-        }
-    }
-
     private void ToggleMenu()
     {
         // menu ON
