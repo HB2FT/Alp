@@ -8204,7 +8204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b8447f7866bad4c8485c67c7370813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: -0.1
+  parallaxFactor: 0.05
 --- !u!212 &743588299
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -123472,7 +123472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b8447f7866bad4c8485c67c7370813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0
+  parallaxFactor: 0.015
 --- !u!212 &2115580216
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -123570,7 +123570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b8447f7866bad4c8485c67c7370813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0
+  parallaxFactor: 0.1
 --- !u!212 &2129201818
 SpriteRenderer:
   m_ObjectHideFlags: 0
