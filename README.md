@@ -1,5 +1,14 @@
 # Mir
 ***
+# V 0.14.7
+* Added `Archer` sprites.
+* Addded `Mir` sprite.
+* Addded `Ulgen` sprite.
+* Addded `Kam` sprite.
+* Added person image to bottom bar.
+* Added sprite field to Speaker object.
+* Deleted `PauseMenu.Update()` function.
+***
 # V 0.14.6
 * Removed sprite `/Assets/Resources/Sprites/UI/X.png`
 * Created input acion `Next`
@@ -7,17 +16,17 @@
 * Added `Skip dialog` property.
 * New story scenes created: `By the way, Controls, Combat, Interaction, Jump, Slide, Movement (A,D)`
 ***
-# V0.14.5
+# V 0.14.5
 * Sprites folder movedi into `Resources` folder.
 * Gamepad handling moved to Input Manager from UI Sprites Manager.
 * UI sprites (interaction buttons etc.) changes according to current input device (Gamepad or keyboard).
 * UI Sprite Manager can load spirtes dynamically now.
 ***
-# V0.14.4
+# V 0.14.4
 * Created new `UI Sprites Manager` object.
 > This manager's aim is loading ui sprites dynamically.
 ***
-# V0.14.3
+# V 0.14.3
 * `ps4-buttons` sliced.
 * Added `Kam Idle` sprites.
 * Created Kam's idle animation.
@@ -25,7 +34,7 @@
 * Resized dialog bar (bottom bar) text sizes.
 * Created `onGamepadConected` and `onGamepadDisconnected` events.
 ***
-# V0.14.2
+# V 0.14.2
 * Healthbar fixed twice.
 > Healthbar's max value is player's max health.
 * Deathmenu fixed.
@@ -37,14 +46,14 @@
 * Added new npc movement mechanic.
 * Namespaces added (to be fixed...)
 ***
-# V0.14.1
+# V 0.14.1
 * Made changements to old scene file (SampleSccene.unity).
 ***
-# V0.14.0
+# V 0.14.0
 * Restored game map. 
 > `SapmleScene.unity` needs some help.
 ***
-# V0.13.0.1
+# V 0.13.0.1
 * Removed `UnityEditor.Experimental.GraphView.GraphView` static dependecy.
 ***
 # V0.13.0

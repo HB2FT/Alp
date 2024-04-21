@@ -58,7 +58,7 @@ namespace Mir.Managers
         {
             if (InputManager.instance.GetBackPressed())
             {
-                paused = !paused;
+                paused = !paused; 
 
                 HandlePauseAndResume();
             }
