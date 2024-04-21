@@ -1,16 +1,15 @@
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class ParallaxLayer : MonoBehaviour
 {
     public float parallaxFactor;
 
     public void Move(float delta)
     {
-        Vector3 newPos = transform.localPosition;
+        Vector2 newPos = transform.position;
         newPos.x -= delta * parallaxFactor;
 
-        transform.localPosition = newPos;
+        transform.position = newPos;
     }
 
 }
