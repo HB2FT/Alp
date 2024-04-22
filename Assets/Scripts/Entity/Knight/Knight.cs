@@ -13,8 +13,10 @@ public class Knight : Entity
     [Obsolete("Bu parametre animatörden kaldýrýldý")]
     public bool isAttacking;
 
-    private bool isCancelKnockback;
-    private Vector2 cancelledKnockback; // Geri tepmenin iptal edilebilmesi için objenin sabitleneceði pozisyon.
+    [SerializeField] private bool isPlayerInArea;
+
+    private bool isKnockbackCancellingPermited;
+    private Vector2 cancelledKnockbackPosition; // Geri tepmenin iptal edilebilmesi için objenin sabitleneceði pozisyon.
 
     private AtomicBoolean deathChecker = new AtomicBoolean(true);
 
@@ -66,16 +68,27 @@ public class Knight : Entity
                     animator.SetBool("isWalking", false);
                 }
             }
+
+            else
+            {
+                //
+                // Check out this code.  
+                //
+                isTriggered = false;   
+            }
         }
 
         CancelKnockback();
+        CheckIsPlayerInArea();
+        FocusTarget();
     }
 
     private void CancelKnockback()
     {
-        if (isCancelKnockback)
+        if (isKnockbackCancellingPermited)
         {
-            transform.position = cancelledKnockback;
+            transform.position = cancelledKnockbackPosition;
+            rigidBody.velocity = Vector2.zero; // Also remove velocity
         }
     }
 
@@ -91,11 +104,23 @@ public class Knight : Entity
         Destroy(gameObject, dissapearTime);
     }
 
-    IEnumerator Disappear()
+    private void FocusTarget()
     {
-        yield return new WaitForSeconds(dissapearTime);
+        if (isPlayerInArea)
+        {
+            if (target.transform.position.x < transform.position.x) LookAt(Vector2.left);
+            if (target.transform.position.x > transform.position.x) LookAt(Vector2.right);
+        }
+    }
 
+    private void CheckIsPlayerInArea()
+    {
+        if (target.transform.position.x < boundRight && target.transform.position.x > boundLeft) 
+        {
+            isPlayerInArea = true;
+        }
 
+        else isPlayerInArea = false;
     }
 
     public override void OnCollisionEnter2D(Collision2D collision)
@@ -104,10 +129,8 @@ public class Knight : Entity
         
         if (collision.gameObject.CompareTag("Player"))
         {
-            //Physics2D.IgnoreCollision(boxCollider, collision.collider);
-
-            isCancelKnockback = true;
-            cancelledKnockback = transform.position;
+            isKnockbackCancellingPermited = true;
+            cancelledKnockbackPosition = transform.position;
         }
     }
 
@@ -117,7 +140,7 @@ public class Knight : Entity
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            isCancelKnockback = false;
+            isKnockbackCancellingPermited = false;
         }
     }
 
@@ -125,7 +148,7 @@ public class Knight : Entity
     {
         if (collision.CompareTag("NPCBorder"))
         {
-            Rotate();
+            Rotate(); Debug.LogError("NPCBorder kullanýmý 0.14.2 sürümünde kaldýrýldý. Onun yerine prefab içindeki 'bound'larý kullanýnýz.");
         }
     }
 

@@ -1,5 +1,11 @@
 # Mir
 ***
+# V 0.14.8
+* Created `Hortlak` prefab.
+* Fixed parallax background mechanics.
+* Fixed hortlak mechanics.
+* Createed `Archer` object.
+***
 # V 0.14.7
 * Knight's knockback is supressed.
 ***
@@ -20,7 +26,7 @@
 * New story scenes created: `By the way, Controls, Combat, Interaction, Jump, Slide, Movement (A,D)`
 ***
 # V 0.14.5
-* Sprites folder movedi into `Resources` folder.
+* Sprites folder moved into `Resources` folder.
 * Gamepad handling moved to Input Manager from UI Sprites Manager.
 * UI sprites (interaction buttons etc.) changes according to current input device (Gamepad or keyboard).
 * UI Sprite Manager can load spirtes dynamically now.

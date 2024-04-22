@@ -1,3 +1,4 @@
+using Mir.Entity;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,15 +7,35 @@ public class ParallaxBackground : MonoBehaviour
     public ParallaxCamera parallaxCamera;
     List<ParallaxLayer> parallaxLayers = new List<ParallaxLayer>();
 
+    private bool subscribed;
+
     void Start()
     {
         if (parallaxCamera == null)
             parallaxCamera = Camera.main.GetComponent<ParallaxCamera>();
 
-        if (parallaxCamera != null)
-            parallaxCamera.onCameraTranslate += Move;
-
         SetLayers();
+    }
+
+    private void Update()
+    {
+        if (_Player.instance.transform.position.x > transform.position.x)
+        {
+            Subscribe();
+        }
+    }
+
+    private void Subscribe()
+    {
+        if (!subscribed)
+        {
+            if (parallaxCamera != null)
+            {
+                parallaxCamera.onCameraTranslate += Move;
+                subscribed = true;
+            }
+                
+        }
     }
 
     void SetLayers()
