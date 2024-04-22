@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Hortlak : Entity
 {
+    public int Damage;
+
     public bool isAlive;
     public bool isTriggered;
     public bool isAttacking;
@@ -29,7 +31,7 @@ public class Hortlak : Entity
         animator.speed = 0;
     }
 
-    void Update()
+    public override void Update()
     {
         SetAnimationVariables();
         CheckTrigger();
@@ -49,25 +51,21 @@ public class Hortlak : Entity
 
             if (animator.GetBool("isTriggered"))
             {
-                /*
-                #region Move codes
+                
+                #region Rotation codes
 
                 if (target.transform.position.x < transform.position.x) // Move left
                 {
                     if (isRight) Rotate();
-
-                    transform.position += transform.right * speed * Time.deltaTime;
                 }
 
                 if (target.transform.position.x > transform.position.x) // Move right
                 {
                     if (!isRight) Rotate();
-
-                    transform.position += transform.right * speed * Time.deltaTime;
                 }
 
                 #endregion
-                */
+                
 
                 transform.position += transform.right * Speed * Time.deltaTime;
             }
@@ -102,7 +100,7 @@ public class Hortlak : Entity
 
     public override void OnCollisionEnter2D(Collision2D collision)
     {
-        Player player = collision.gameObject.GetComponent<Player>();
+        _Player player = collision.gameObject.GetComponent<_Player>();
 
         if (player != null)
         {
@@ -114,7 +112,8 @@ public class Hortlak : Entity
     {
         if (collision.CompareTag("NPCBorder"))
         {
-            Rotate();
+            //Rotate();
+            Debug.LogError("NPCBorder kullanýmý 0.14.2 sürümünde kaldýrýldý. Onun yerine prefab içindeki 'bound'larý kullanýnýz.");
         }
     }
 
