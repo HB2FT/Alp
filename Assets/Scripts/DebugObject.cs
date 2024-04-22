@@ -17,7 +17,7 @@ namespace Mir
             Debug.developerConsoleEnabled = true;
             Debug.developerConsoleVisible = true;
 
-            Debug.LogError("Hata ayýklama objesi devrede.");
+            //Debug.LogError("Hata ayýklama objesi devrede.");
         }
 
         // Update is called once per frame

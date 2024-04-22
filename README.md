@@ -1,6 +1,9 @@
 # Mir
 ***
 # V 0.14.7
+* Knight's knockback is supressed.
+***
+# V 0.14.7
 * Added `Archer` sprites.
 * Addded `Mir` sprite.
 * Addded `Ulgen` sprite.
