@@ -6,11 +6,15 @@ using UnityEngine;
 public class Knight : Entity
 {
     public _Player target;
-    public GameObject attackCollider;
+    [Obsolete] public GameObject attackCollider;
     public bool isTriggered;
+    private BoxCollider2D boxCollider;
 
     [Obsolete("Bu parametre animatörden kaldýrýldý")]
     public bool isAttacking;
+
+    private bool isCancelKnockback;
+    private Vector2 cancelledKnockback; // Geri tepmenin iptal edilebilmesi için objenin sabitleneceði pozisyon.
 
     private AtomicBoolean deathChecker = new AtomicBoolean(true);
 
@@ -27,6 +31,8 @@ public class Knight : Entity
     public override void Start()
     {
         base.Start();
+        
+        boxCollider = GetComponent<BoxCollider2D>();
 
         boundLeft = borderLeft.transform.position.x;
         boundRight = borderRight.transform.position.x;
@@ -62,15 +68,15 @@ public class Knight : Entity
             }
         }
 
-        //else
-        //{
-        //    if (deathChecker.Value) OnDeath();
+        CancelKnockback();
+    }
 
-        //    if (++index == 10)
-        //    {
-        //        animator.SetBool("isDead", false);
-        //    }
-        //}
+    private void CancelKnockback()
+    {
+        if (isCancelKnockback)
+        {
+            transform.position = cancelledKnockback;
+        }
     }
 
     protected override void OnDeath()
@@ -92,24 +98,35 @@ public class Knight : Entity
 
     }
 
+    public override void OnCollisionEnter2D(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision);
+        
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            //Physics2D.IgnoreCollision(boxCollider, collision.collider);
+
+            isCancelKnockback = true;
+            cancelledKnockback = transform.position;
+        }
+    }
+
+    public override void OnCollisionExit2D(Collision2D collision)
+    {
+        base.OnCollisionExit2D(collision);
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            isCancelKnockback = false;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("NPCBorder"))
         {
             Rotate();
         }
-    }
-
-    public void EnableAttackCollider()
-    {
-
-    }
-
-    public void OnAttackEnd()
-    {
-        //animator.SetBool("isAttacking", false);
-        //animator.SetTrigger("Attack");
-        //attackCollider.gameObject.SetActive(false);
     }
 
     public void CheckTrigger()
