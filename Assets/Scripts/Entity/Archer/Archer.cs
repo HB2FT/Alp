@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Mir.Entity.Archer
@@ -36,6 +37,8 @@ namespace Mir.Entity.Archer
                     {
                         animator.SetTrigger("Attack");
                         attackTimer = 0f;
+
+                        StartCoroutine(ThrowArrow());
                     }
                 }
             }
@@ -44,6 +47,13 @@ namespace Mir.Entity.Archer
             {
                 attackTimer = 0f;
             }
+        }
+
+        IEnumerator ThrowArrow()
+        {
+            yield return new WaitForSeconds(0.6f);
+
+            CreateArrow();
         }
 
         private void Debug()
@@ -60,12 +70,12 @@ namespace Mir.Entity.Archer
 
             if (transform.rotation.y == 180 || transform.rotation.y == -180)
             {
-                direction = Vector2.right;
+                direction = Vector2.left;
             }
 
             else
             {
-                direction = Vector2.left;
+                direction = Vector2.right;
             }
 
             Arrow2.Create(ArrowPrefab, ArrowSpawnPoint.transform.position, direction);
