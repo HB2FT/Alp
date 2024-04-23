@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
+using static Mir.Managers.UISprite;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 namespace Mir.Entity.PlayerUtilities.BowSystem
@@ -13,6 +15,8 @@ namespace Mir.Entity.PlayerUtilities.BowSystem
             bowStateName = "ReleaseBow";
             animator.SetTrigger(bowStateName); Debug.Log(bowStateName);
 
+            PlayerMovement.CanMove = false;
+
             CreateArrow();
         }
 
@@ -24,6 +28,13 @@ namespace Mir.Entity.PlayerUtilities.BowSystem
             {
                 stateMachine.SetNextStateToMain();
             }
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+
+            PlayerMovement.CanMove = true;
         }
 
         private void CreateArrow()

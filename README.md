@@ -4,7 +4,14 @@
 * Created `Hortlak` prefab.
 * Fixed parallax background mechanics.
 * Fixed hortlak mechanics.
-* Createed `Archer` object.
+* Created `Archer` object.
+* Added Mir's Climb sprites.
+* Mir's archery mechanics have improved.
+* Archer's death animation fixed.
+* Archer's knockback is prevented.
+* Player stops moving when `Attack Bow` and `Prepare Bow` animations are playing.
+* Arrow2's directional problems fixed.
+* `Arrow2.Create()` function overloaded.
 ***
 # V 0.14.7
 * Knight's knockback is supressed.

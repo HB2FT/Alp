@@ -90,7 +90,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2459168038680829982}
   m_BodyType: 0
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -107,7 +107,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &8349534284648748576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,15 +121,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  isRight: 1
+  isRight: 0
   speed: 0
   jumpForce: 0
   health: 100
-  maxHealth: 0
+  maxHealth: 100
   isGrounded: 0
-  ArrowPrefab: {fileID: 0}
+  ArrowPrefab: {fileID: 6270433710821954849, guid: 8f0514e7dc4faad47a3561c9d3c2abcd, type: 3}
+  ArrowSpawnPoint: {fileID: 4816710471967272039}
   camera: {fileID: 0}
   waitForAttack: 0.3
+  throwingForce: 20
+  target: {fileID: 0}
 --- !u!1 &4816710471967272039
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +158,7 @@ Transform:
   m_GameObject: {fileID: 4816710471967272039}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.31, y: 0.28, z: 0}
+  m_LocalPosition: {x: 0.352, y: 0.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
