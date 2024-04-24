@@ -3,7 +3,7 @@
 # V 0.14.9
 * Game is saved when player interacts with any Kam.
 * Added `applyCheckpoint` field to `Player Manager`.
-	- This feature prevents to loading saved game state. *It's only for debug*
+	- This feature prevents to load saved game state. *It's only for debug*
 ***
 # V 0.14.8
 * Created `Hortlak` prefab.
