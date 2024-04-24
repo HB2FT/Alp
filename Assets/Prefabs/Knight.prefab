@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6093864388784263485}
   m_Layer: 0
   m_Name: Border Left
-  m_TagString: NPCBorder
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 262988458156075812}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.03, y: -0.93, z: 0}
+  m_LocalPosition: {x: -1.29, y: -1.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -234,9 +234,9 @@ MonoBehaviour:
   health: 75
   maxHealth: 75
   isGrounded: 0
-  target: {fileID: 8267374319091301168, guid: 56d22ba73cb1a9e4aa9f4d0ae48e4249, type: 3}
+  target: {fileID: 0}
   attackCollider: {fileID: 0}
-  isTriggered: 0
+  isTriggered: 1
   isAttacking: 0
   isPlayerInArea: 0
   Damage: 20
@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 3508930332432674009}
   m_Layer: 0
   m_Name: Border Right
-  m_TagString: NPCBorder
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -267,7 +267,7 @@ Transform:
   m_GameObject: {fileID: 5431401009214883507}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.16, y: -0.92, z: 0}
+  m_LocalPosition: {x: 1.36, y: -1.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

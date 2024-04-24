@@ -44,7 +44,7 @@ public class Knight : Entity
     {
         base.Update();
 
-        CheckTrigger();
+        //CheckTrigger();
 
         //
         // Stay in boundery
@@ -74,7 +74,7 @@ public class Knight : Entity
                 //
                 // Check out this code.  
                 //
-                isTriggered = false;   
+                //isTriggered = false;   
             }
         }
 
@@ -156,7 +156,7 @@ public class Knight : Entity
     {
         float deltaPosition = target.transform.position.x - transform.position.x;
 
-        if (deltaPosition > triggerArea[0] && deltaPosition < triggerArea[1] && !IsDead)
+        if (deltaPosition > triggerArea[1] && deltaPosition < triggerArea[0] && !IsDead)
         {
             isTriggered = true;
         }
