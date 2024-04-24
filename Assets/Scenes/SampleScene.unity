@@ -1522,11 +1522,11 @@ PrefabInstance:
       objectReference: {fileID: 1358095891}
     - target: {fileID: 8267374319091301176, guid: 56d22ba73cb1a9e4aa9f4d0ae48e4249, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -391.33
+      value: 221.94
       objectReference: {fileID: 0}
     - target: {fileID: 8267374319091301176, guid: 56d22ba73cb1a9e4aa9f4d0ae48e4249, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.15
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8267374319091301176, guid: 56d22ba73cb1a9e4aa9f4d0ae48e4249, type: 3}
       propertyPath: m_LocalPosition.z
@@ -82857,7 +82857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1701231191
 Animator:
   serializedVersion: 5
@@ -124400,6 +124400,10 @@ PrefabInstance:
       propertyPath: deathMenu
       value: 
       objectReference: {fileID: 1301555396}
+    - target: {fileID: 1783156850386897175, guid: a6533a3c7bd19f84e98af2164d4aa61e, type: 3}
+      propertyPath: applyCheckpoint
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1783156850914530912, guid: a6533a3c7bd19f84e98af2164d4aa61e, type: 3}
       propertyPath: m_Name
       value: Managers
