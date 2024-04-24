@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cef195d66076a1d4bb4e1418081efcda, type: 3}
+  m_Name: NewStoryScene
+  m_EditorClassIdentifier: 
+  sentences:
+  - text: Esenlikler Mir.
+    speaker: {fileID: 11400000, guid: 9820211468ca6e74db62c5e8d76548a6, type: 2}
+  - text: "\u0130smimi nereden bilirsin ey y\xFCce kam?"
+    speaker: {fileID: 11400000, guid: 619fe915585cb8c40a55a1e29981f379, type: 2}
+  - text: "Bizler pek \xE7ok \u015Feyi biliriz Mir sen onu merak etme. Gel otur kar\u015F\u0131ma
+      sana s\xF6yleyecek bir \xE7ift laf\u0131m var. Yolun sand\u0131\u011F\u0131ndan
+      uzun olacak Mir. Dikkat et. Senin gibi nice gen\xE7 intikam h\u0131rs\u0131yla
+      can\u0131ndan oldu. Sana s\xF6yleyece\u011Fim daha \xF6nemli bir \u015Fey var
+      Mir. \xDClgen Han ve t\xFCm iyi ruhlar seninledir. Bundan hi\xE7 \u015F\xFCphen
+      olmas\u0131n. Bunca gen\xE7 geldi ge\xE7ti buralardan ama sen ba\u015Fkas\u0131n
+      Mir. Yolun a\xE7\u0131k, sonuysa mavi g\xF6k gibi ayd\u0131nl\u0131k olsun,
+      K\xF6k Tengri yan\u0131nda olsun Mir."
+    speaker: {fileID: 11400000, guid: 9820211468ca6e74db62c5e8d76548a6, type: 2}
+  - text: "\u0130lgin\xE7. Demek \xDClgen Han ve t\xFCm o efsaneler ger\xE7ekmi\u015F.
+      Neyse ger\xE7ek ya da de\u011Fil, \xF6nemli olan yolculu\u011Fuma devam etmem"
+    speaker: {fileID: 11400000, guid: 619fe915585cb8c40a55a1e29981f379, type: 2}
+  - text: "Ben \xDClgen Han. Ey Mir, g\xF6kten inmemin sebebi \u015Fudur ki; senin
+      yolculu\u011Fun bitmedi, daha yeni ba\u015Fl\u0131yor. Ka\u011Fan\u0131n\u0131z
+      ... Ka\u011Fan d\xFC\u015Fmanlar taraf\u0131ndan adice \xF6ld\xFCr\xFCld\xFC.
+      Senden istedi\u011Fimiz Ka\u011Fan\u0131n ruhunu yer alt\u0131ndan bulup geri
+      getirmendir ki bunu yapmak i\xE7in \xF6nce Kaf Da\u011F\u0131ndaki bir ma\u011Farada
+      bulunan Ta\u015Fkap\u0131\u2019y\u0131 bulmal\u0131s\u0131n. Onu bulunca senin
+      yan\u0131na gelece\u011Fim. K\xF6k Tengri sana yard\u0131m etsin Mir."
+    speaker: {fileID: 11400000, guid: 7b16ccaf044d77d4cb085e1641e494eb, type: 2}
+  - text: "Ey er ki\u015Fi Mir; ne zaman ihtiya\xE7 olur, beni \xE7a\u011F\u0131r.
+      Ben g\xF6kte seni izliyorum. Tengri seni korusun."
+    speaker: {fileID: 11400000, guid: 193fc2c6868e05f4f9d7cd69ab2c8265, type: 2}
+  - text: "Kimsem yoksa bile K\xF6k Tengri benimle."
+    speaker: {fileID: 11400000, guid: 619fe915585cb8c40a55a1e29981f379, type: 2}
+  - text: Seni bekliyordum Mir.
+    speaker: {fileID: 11400000, guid: f6a55d362460c9c4b9b869f98c4ec660, type: 2}
+  - text: "Beni nerden tan\u0131yorsun?"
+    speaker: {fileID: 11400000, guid: 619fe915585cb8c40a55a1e29981f379, type: 2}
+  - text: "Bizim aram\u0131zda haber \xE7abuk yay\u0131l\u0131r. Hem senin kadar
+      cesur biri nas\u0131l tan\u0131nmas\u0131n?"
+    speaker: {fileID: 11400000, guid: f6a55d362460c9c4b9b869f98c4ec660, type: 2}
+  - text: "Te\u015Fekk\xFCrler ama ben sadece bana verilen g\xF6revi yap\u0131yorum."
+    speaker: {fileID: 11400000, guid: 619fe915585cb8c40a55a1e29981f379, type: 2}
+  - text: "O g\xF6rev bizlere de s\xF6ylendi ama hi\xE7 kimse cesaret edemedi. Sen
+      ise hi\xE7 duraksamadan korkmadan kabullendin g\xF6revini. Tengri seni korusun
+      Mir."
+    speaker: {fileID: 11400000, guid: f6a55d362460c9c4b9b869f98c4ec660, type: 2}
+  - text: "Dur orada. Nas\u0131l buldun inimizi?"
+    speaker: {fileID: 11400000, guid: 1ad7a6d0f36df3c44bf803dcedef7a0d, type: 2}
+  - text: "Ben Kaf Da\u011F\u0131\u2019na gidiyorum. D\xFC\u015Fmanlardan ka\xE7arken
+      bu ormana d\xFC\u015Ft\xFCm. Sonra buray\u0131 g\xF6rd\xFCm. Merak\u0131m akl\u0131ma
+      \xFCst\xFCn geldi. Ba\u011F\u0131\u015Flay\u0131n beni."
+    speaker: {fileID: 11400000, guid: 619fe915585cb8c40a55a1e29981f379, type: 2}
+  - text: "B\xF6yle cesur bir delikanl\u0131 k\u0131rk y\u0131lda bir gelir. Sana
+      asla dokunmam. Buras\u0131 bizlerin, y\u0131lanlar\u0131n s\u0131\u011F\u0131na\u011F\u0131,
+      g\xFCvende oldu\u011Fumuz tek yer, l\xFCtfen buray\u0131 kimseye s\xF6yleme.
+      Sen iyi bir ki\u015Fisin. Bizim yerimizi kimseye s\xF6yleme ki senle dost olal\u0131m.
+      Ha e\u011Fer s\xF6ylersen sonucuna katlan\u0131rs\u0131n."
+    speaker: {fileID: 11400000, guid: 1ad7a6d0f36df3c44bf803dcedef7a0d, type: 2}
+  - text: "Ey y\xFCce \u015Eahmeran, sizin yerinizi s\xF6ylemem. Hayat\u0131m ve
+      namusum \xFCzerine yemin ederim ki kar\u015F\u0131mdaki kim olursa olsun s\xF6ylemem.
+      Sizde benim can\u0131m\u0131 ba\u011F\u0131\u015Flay\u0131n."
+    speaker: {fileID: 11400000, guid: 619fe915585cb8c40a55a1e29981f379, type: 2}
+  - text: "Can\u0131n\u0131 ba\u011F\u0131\u015Flar\u0131m ancak bir \u015Fart\u0131m
+      vard\u0131r. Senden Kaf Da\u011F\u0131\u2019n\u0131n eteklerindeki bir \xE7i\xE7e\u011Fi
+      al\u0131p bana getirmeni istiyorum. Madem bir yolculuktas\u0131n bir ara \xE7i\xE7e\u011Fi
+      kopar ve bana getir. Acelesi yok ama e\u011Fer getirmezsen y\u0131lanlar\u0131m
+      seni bulur. Hadi bakal\u0131m git art\u0131k. Tengri seninle olsun."
+    speaker: {fileID: 11400000, guid: 1ad7a6d0f36df3c44bf803dcedef7a0d, type: 2}
+  - text: "Ey Mir, seni buldu\u011Fumda \xF6l\xFCyd\xFCn. Kazanm\u0131\u015Fs\u0131n
+      ama yaralar\u0131n y\xFCz\xFCnden \xF6lm\xFC\u015Fs\xFCn. Senin ruhunu yer
+      alt\u0131ndan kurtar\u0131p geldim. \xD6len ruhlar yer alt\u0131na gider bilirsin.
+      Bir daha \xE7ok dikkatli ol. Yak\u0131n\u0131nda bir \u015Faman olmazsa ruhun
+      yer alt\u0131nda kaybolur gider. Yolun a\xE7\u0131k olsun Mir. Tengri senden
+      yana olsun."
+    speaker: {fileID: 11400000, guid: f6a55d362460c9c4b9b869f98c4ec660, type: 2}
+  - text: "Tengri\u2019m beni kurtard\u0131, \xDClgen Han beni kurtard\u0131. Bana
+      g\xFCveniyorlar. Kimsenin umudunu bo\u015Fa \xE7\u0131karmayaca\u011F\u0131m."
+    speaker: {fileID: 11400000, guid: 619fe915585cb8c40a55a1e29981f379, type: 2}
+  - text: "Buras\u0131 yer alt\u0131na a\xE7\u0131lan Ta\u015Fkap\u0131\u2019n\u0131n
+      oldu\u011Fu ma\u011Fara Mir. \xC7ok dikkatli ol. Yolun kolay k\u0131sm\u0131
+      bitti. Art\u0131k yer alt\u0131na ineceksin. Oradan ruhu al\u0131p gel. Erlik\u2019in
+      saray\u0131nda sak\u0131n Erlik\u2019e yakalanma, gizlice al\u0131p gel. Ha
+      unutmadan al bu duay\u0131 Mir. Zora d\xFC\u015Ft\xFC\u011F\xFCn zaman kullan.
+      Tengri seninle olsun, seni muzaffer eylesin Mir."
+    speaker: {fileID: 11400000, guid: 7b16ccaf044d77d4cb085e1641e494eb, type: 2}
+  - text: "Ey er ki\u015Fi. Ey Mir. Ben K\u0131zagan Han.  Senin zorda oldu\u011Funu
+      g\xF6rd\xFCm. Ben sava\u015F tanr\u0131s\u0131 K\u0131zagan Han sana bu at\u0131
+      veriyorum. Tulpar art\u0131k senin emrindedir. Biz yi\u011Fitlere hep yerd\u0131m
+      ederiz. Sende bir yi\u011Fitsin. Tulpar\u2019\u0131n sayesinde istedi\u011Fin
+      yere git. Lakin y\xFCksekten u\xE7ma ki kanatlar\u0131 yanmas\u0131n. Tengri
+      seninle olsun Mir. Hep muzaffer olas\u0131n."
+    speaker: {fileID: 11400000, guid: a9e0dc9c2a2afd44e91742b76c3c3d3b, type: 2}
+  - text: "Burada ne i\u015Fin var insan."
+    speaker: {fileID: 11400000, guid: f267d89f7f7b7b34aaeb629acc37044c, type: 2}
+  - text: "Ey Mir. Senin g\xF6revin bitmedi. Ben senin i\xE7ini bilirim. Seni oradan
+      almam\u0131n sebebi \u015Fudur ki sen Erlik\u2019i \xF6ld\xFCrecek kudrettesin.
+      E\u011Fer Erlik \xF6l\xFCrse benim bir amac\u0131m kalmaz. \u0130yiyle k\xF6t\xFC
+      ay\u0131rt edilemez. Her ki\u015Fi ile er ki\u015Fi kim anla\u015F\u0131lmaz.
+      Erlik k\xF6t\xFCd\xFCr ama \xF6yle olmas\u0131 laz\u0131md\u0131r. Yoksa iyilikte
+      olmaz. Sen onu \xF6ld\xFCrsen bu d\xFCzen bozulurdu. Erlik\u2019i kurtarmam\u0131n
+      sebebi budur. Sak\u0131n \xFCz\xFClme. G\xF6revine gelirsek, senin en ba\u015F\u0131ndan
+      beri kaderini biliyordum. Senin kaderinde yer\xFCst\xFCndeki diyar\u0131n han\u0131
+      olmak var. Sen \xE7ok yi\u011Fit bir han olacaks\u0131n. Sana b\xF6yle bir
+      g\xF6rev vermemizin amac\u0131 seni s\u0131namakt\u0131. Bu s\u0131navdan ge\xE7tin.
+      En ba\u015F\u0131ndan beri eski han\u0131n ruhu diye bir \u015Fey yok. Erlik
+      o ruhu yok etti. Bundan sonra han sensin Mir."
+    speaker: {fileID: 11400000, guid: 7b16ccaf044d77d4cb085e1641e494eb, type: 2}
+  - text: "Beni han se\xE7tiyseniz, art\u0131k t\xFCm kabileleri toplay\u0131p d\xFC\u015Fmandan
+      intikam almak gereklidir. \xDClgen Han\u2019\u0131m siz her \u015Feyi daha
+      iyi bilirsiniz. Art\u0131k kaybedecek vaktim yok. K\xF6k Tengri bizimle olsun.
+      Ho\u015F\xE7a kal\u0131n\u2026"
+    speaker: {fileID: 11400000, guid: 619fe915585cb8c40a55a1e29981f379, type: 2}
+  nextScene: {fileID: 0}
