@@ -1,3 +1,4 @@
+using Mir.Entity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,7 @@ public class TepegözAttackCollider : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject collidedGameObject = collision.gameObject;
-        Player collidedPlayer = collidedGameObject.GetComponent<Player>();
+        _Player collidedPlayer = collidedGameObject.GetComponent<_Player>();
 
         int direction;
 

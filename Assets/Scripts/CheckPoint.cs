@@ -20,6 +20,11 @@ public class CheckPoint : MonoBehaviour
     public BottomBarController bottomBarController;
     public StoryScene checkpointSetDialog;
 
+    private void Start()
+    {
+        if (gameCamera == null) gameCamera = GameCamera.instance;
+    }
+
     void Update()
     {
         
@@ -44,6 +49,11 @@ public class CheckPoint : MonoBehaviour
 
     void ShowDialog()
     {
+        if (checkpointSetDialog == null)
+        {
+            Debug.LogWarning("Check point ayarlandýðýnda oynatýlacak diyalog boþtu!");
+            return;
+        }
         bottomBarController.PlayScene(checkpointSetDialog);
     }
 
@@ -61,9 +71,12 @@ public class CheckPoint : MonoBehaviour
 
         savedGame.Serialize();
 
-        Debug.Log("Camera offset: " + cameraYAxisOffset);
-        Debug.Log("Player X: " + playerX);
-        Debug.Log("Player Y: " + playerY);
+        string str = "Oyun kaydedildi -> " + SAVE_FILE + "\n"
+            + "Camera y axis offset: " + cameraYAxisOffset + "\n"
+            + "Player X: " + playerX + "\n"
+            + "Player Y: " + playerY;
+
+        Debug.Log(str);
     }
 
     public static SavedState Load()

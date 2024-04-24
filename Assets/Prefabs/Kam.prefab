@@ -211,7 +211,7 @@ SpriteRenderer:
   m_SortingLayerID: -1666323485
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: -385146226, guid: 721ffeff79102834499664195a5af625, type: 3}
+  m_Sprite: {fileID: 924360528, guid: c4663950542281a4a8faddddb9de468d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -233,6 +233,7 @@ GameObject:
   - component: {fileID: 210770171294437684}
   - component: {fileID: 6565574533333664996}
   - component: {fileID: 7624265513050595434}
+  - component: {fileID: 7079798497917591077}
   m_Layer: 0
   m_Name: Kam
   m_TagString: Untagged
@@ -316,6 +317,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyScene: {fileID: 11400000, guid: 466ddbcf70a199445bd17f4c88ab66c7, type: 2}
   InterractionButton: {fileID: 2623503075242564908}
+--- !u!114 &7079798497917591077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2957445631433821036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f20e4340aacc7964396cbe2056319349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameCamera: {fileID: 0}
+  bottomBarController: {fileID: 0}
+  checkpointSetDialog: {fileID: 0}
 --- !u!1 &3136884997537537555
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,13 +541,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9066913616663993823}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.108125, y: 3.108125, z: 1.9892}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 210770171294437684}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8680873525523383439
 SpriteRenderer:
   m_ObjectHideFlags: 0

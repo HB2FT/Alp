@@ -13,6 +13,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float increaseAmount;
     [SerializeField] private GameObject deathMenu;
 
+    public bool applyCheckpoint;
+
     public static PlayerManager instance {  get; private set; }
 
     private void Awake()
