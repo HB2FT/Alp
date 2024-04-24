@@ -1,10 +1,22 @@
 # Mir
 ***
+# V 0.14.9
+* Game is saved when player interacts with any Kam.
+* Added `applyCheckpoint` field to `Player Manager`.
+	- This feature prevents to loading saved game state. *It's only for debug*
+***
 # V 0.14.8
 * Created `Hortlak` prefab.
 * Fixed parallax background mechanics.
 * Fixed hortlak mechanics.
-* Createed `Archer` object.
+* Created `Archer` object.
+* Added Mir's Climb sprites.
+* Mir's archery mechanics have improved.
+* Archer's death animation fixed.
+* Archer's knockback is prevented.
+* Player stops moving when `Attack Bow` and `Prepare Bow` animations are playing.
+* Arrow2's directional problems fixed.
+* `Arrow2.Create()` function overloaded.
 ***
 # V 0.14.7
 * Knight's knockback is supressed.

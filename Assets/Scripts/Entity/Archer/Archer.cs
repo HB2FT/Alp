@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Mir.Entity.Archer
@@ -7,17 +8,26 @@ namespace Mir.Entity.Archer
         [SerializeField] private GameObject ArrowPrefab;
         [SerializeField] private GameObject ArrowSpawnPoint;
 
+        private bool isKnockbackCancellingPermited;
+        private Vector2 cancelledKnockbackPosition; // Geri tepmenin iptal edilebilmesi için objenin sabitleneceði pozisyon.
+
         private BoxCollider2D boxCollider;
         [SerializeField] private new Camera camera;
 
         [SerializeField] private float waitForAttack;
         private float attackTimer;
+
+        [SerializeField] private float throwingForce;
+
+        [SerializeField] private _Player target;
         
         public override void Start()
         {
             base.Start();
 
             boxCollider = GetComponent<BoxCollider2D>();
+
+            if (target == null) target = _Player.instance;
         }
 
         public override void Update()
@@ -26,24 +36,82 @@ namespace Mir.Entity.Archer
 
             Debug();
 
-            if (IsTriggered)
+            if (!IsDead)
             {
-                attackTimer += Time.deltaTime;
-
-                if (CurrentAnimationClip.name != "Attack")
+                if (IsTriggered)
                 {
-                    if (attackTimer > (0.6f + waitForAttack))
+                    attackTimer += Time.deltaTime;
+
+                    if (CurrentAnimationClip.name != "Attack")
                     {
-                        animator.SetTrigger("Attack");
-                        attackTimer = 0f;
+                        if (attackTimer > (0.6f + waitForAttack))
+                        {
+                            animator.SetTrigger("Attack");
+                            attackTimer = 0f;
+
+                            StartCoroutine(ThrowArrow());
+                        }
                     }
                 }
-            }
 
-            else
-            {
-                attackTimer = 0f;
+                else
+                {
+                    attackTimer = 0f;
+                }
+
+                FocusOnTarget();
+                CancelKnockback();
             }
+        }
+
+        protected override void OnDeath()
+        {
+            base.OnDeath();
+
+            animator.SetTrigger("Death");
+        }
+
+        private void CancelKnockback()
+        {
+            if (isKnockbackCancellingPermited)
+            {
+                transform.position = cancelledKnockbackPosition;
+                rigidBody.velocity = Vector2.zero; // Also remove velocity
+            }
+        }
+
+        public override void OnCollisionEnter2D(Collision2D collision)
+        {
+            base.OnCollisionEnter2D(collision);
+
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                isKnockbackCancellingPermited = true;
+                cancelledKnockbackPosition = transform.position;
+            }
+        }
+
+        public override void OnCollisionExit2D(Collision2D collision)
+        {
+            base.OnCollisionExit2D(collision);
+
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                isKnockbackCancellingPermited = false;
+            }
+        }
+
+        private void FocusOnTarget()
+        {
+            if (target.transform.position.x < transform.position.x && isRight) Rotate();
+            if (target.transform.position.x > transform.position.x && !isRight) Rotate();
+        }
+
+        IEnumerator ThrowArrow()
+        {
+            yield return new WaitForSeconds(0.6f);
+
+            CreateArrow();
         }
 
         private void Debug()
@@ -56,20 +124,7 @@ namespace Mir.Entity.Archer
 
         public void CreateArrow()
         {
-            Vector2 direction;
-
-            if (transform.rotation.y == 180 || transform.rotation.y == -180)
-            {
-                direction = Vector2.right;
-            }
-
-            else
-            {
-                direction = Vector2.left;
-            }
-
-            Arrow2.Create(ArrowPrefab, ArrowSpawnPoint.transform.position, direction);
-            //Arrow2 arrow = Instantiate(ArrowPrefab, ArrowSpawnPoint.transform.position, Quaternion.identity).GetComponent<Arrow2>();
+            Arrow2.Create(ArrowPrefab, ArrowSpawnPoint.transform.position, isRight, throwingForce);
         }
 
         public AnimationClip CurrentAnimationClip
@@ -84,6 +139,8 @@ namespace Mir.Entity.Archer
         {
             get
             {
+                if (_Player.instance.IsDead) return false;
+
                 Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
                 return GeometryUtility.TestPlanesAABB(planes, boxCollider.bounds);
             }

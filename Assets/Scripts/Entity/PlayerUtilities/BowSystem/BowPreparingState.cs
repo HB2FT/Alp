@@ -13,6 +13,8 @@ namespace Mir.Entity.PlayerUtilities.BowSystem
             duration = .683f;
             animator.SetTrigger(bowStateName);
             Debug.Log("Bow Preparing");
+
+            PlayerMovement.CanMove = false;
         }
 
         public override void OnUpdate()
@@ -35,6 +37,8 @@ namespace Mir.Entity.PlayerUtilities.BowSystem
         public override void OnExit()
         {
             base.OnExit();
+
+            PlayerMovement.CanMove = true;
         }
     }
 

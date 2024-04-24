@@ -121,6 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 0}
   boxCollider: {fileID: 0}
+  damage: 20
 --- !u!1 &8496758282210622930
 GameObject:
   m_ObjectHideFlags: 0

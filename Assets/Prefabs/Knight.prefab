@@ -234,10 +234,11 @@ MonoBehaviour:
   health: 75
   maxHealth: 75
   isGrounded: 0
-  target: {fileID: 0}
+  target: {fileID: 8267374319091301168, guid: 56d22ba73cb1a9e4aa9f4d0ae48e4249, type: 3}
   attackCollider: {fileID: 0}
   isTriggered: 0
   isAttacking: 0
+  isPlayerInArea: 0
   Damage: 20
   borderLeft: {fileID: 262988458156075812}
   borderRight: {fileID: 5431401009214883507}

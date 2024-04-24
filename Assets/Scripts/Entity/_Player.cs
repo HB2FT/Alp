@@ -23,6 +23,7 @@ namespace Mir.Entity
         [Obsolete] private int itemIndex;
         private int _itemIndex; // Temp variable for InputSystem.currentItemIndex
         [SerializeField] private int criticalHealth;
+        public Transform arrowSpawnPoint;
 
         // variables
         [Obsolete] private bool canMove;
@@ -140,11 +141,13 @@ namespace Mir.Entity
             }
         }
 
+        [Obsolete]
         private void HandleCanMove()
         {
 
         }
 
+        [Obsolete]
         private void UpdateCanMove()
         {
             // disable move on bow preparing state, otherwise enable move

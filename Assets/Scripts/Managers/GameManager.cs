@@ -26,11 +26,15 @@ namespace Mir.Managers
             // Check save file
             if (!savedGame.Exists) return;
 
+            // Check checkpoints are enabled
+            if (!PlayerManager.instance.applyCheckpoint) return;
+
             savedGame.Load();
 
             GameCamera.instance.yOffset = savedGame.CameraYAxisOffset;
 
-            string msg = "Camera y offset: " + savedGame.CameraYAxisOffset + "\n" +
+            string msg = "Kayýtlý oyun bulundu! Yükleniyor...\n" +
+                    "Camera y offset: " + savedGame.CameraYAxisOffset + "\n" +
                     "Player x: " + savedGame.PlayerX + "\n" +
                     "Player y: " + savedGame.PlayerY + "\n";
             Debug.Log(msg);

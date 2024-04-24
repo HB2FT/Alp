@@ -202,6 +202,7 @@ MonoBehaviour:
   deathVisualEffect: {fileID: 0}
   increaseAmount: 6
   deathMenu: {fileID: 0}
+  applyCheckpoint: 1
 --- !u!1 &1783156850914530912
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e6d7ac828e3ed4b989ca34f1f624e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGamepad: 0
 --- !u!1 &1783156851280263404
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,7 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f74e2ef519ae2a42924a18610eb2330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGamepad: 0
+  path: Sprites/UI/ps4-buttons
 --- !u!1 &3877478134207674435
 GameObject:
   m_ObjectHideFlags: 0
