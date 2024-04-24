@@ -16,7 +16,7 @@ public class Tepegöz : Entity
     public bool isDamagable;
     public float waitAfterDamage;
 
-    public Player target;
+    public _Player target;
     public GameObject attackCollider;
 
     public static Tepegöz instance {  get; private set; }

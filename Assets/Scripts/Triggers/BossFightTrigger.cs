@@ -1,6 +1,6 @@
+using Mir.Entity;
+using Mir.Entity.PlayerUtilities;
 using Mir.Managers;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mir.Triggers
@@ -14,7 +14,7 @@ namespace Mir.Triggers
         public BossFightController bossFightController;
 
         public GameObject cutCam, mainCam;
-        public Player player;
+        public _Player player;
 
         void Start()
         {
@@ -45,7 +45,7 @@ namespace Mir.Triggers
         {
             cutCam.SetActive(true);
             mainCam.SetActive(false);
-            player.isControllable = false;
+            PlayerMovement.CanMove = false;
             player.Animator.SetBool("IsRunning", false);
             animator.SetBool("bossFight", true);
         }
