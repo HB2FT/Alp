@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6093864388784263485}
   m_Layer: 0
   m_Name: Border Left
-  m_TagString: NPCBorder
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -236,7 +236,7 @@ MonoBehaviour:
   isGrounded: 0
   target: {fileID: 8267374319091301168, guid: 56d22ba73cb1a9e4aa9f4d0ae48e4249, type: 3}
   attackCollider: {fileID: 0}
-  isTriggered: 0
+  isTriggered: 1
   isAttacking: 0
   isPlayerInArea: 0
   Damage: 20
@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 3508930332432674009}
   m_Layer: 0
   m_Name: Border Right
-  m_TagString: NPCBorder
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
