@@ -34,8 +34,6 @@ namespace Mir.Entity.Archer
         {
             base.Update();
 
-            Debug();
-
             if (!IsDead)
             {
                 if (IsTriggered)
@@ -126,14 +124,6 @@ namespace Mir.Entity.Archer
             yield return new WaitForSeconds(0.6f);
 
             CreateArrow();
-        }
-
-        private void Debug()
-        {
-            if (UnityEngine.Input.GetKeyDown(KeyCode.X))
-            {
-                CreateArrow();
-            }
         }
 
         public void CreateArrow()

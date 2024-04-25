@@ -135,6 +135,15 @@ namespace Mir.Entity
 
             set { speed = value; }
         }
+
+        public Vector2 FacingDirection
+        {
+            get
+            {
+                if (isRight) return Vector2.right;
+                else return Vector2.left;
+            }
+        }
     }
 
 }

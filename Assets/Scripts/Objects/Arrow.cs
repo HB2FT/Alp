@@ -34,6 +34,7 @@ public class Arrow : MonoBehaviour
 
         boxCollider.offset = new Vector2(-0.006f, -0.007f);
         boxCollider.size = new Vector2(0.17f, 0.05f);
+        boxCollider.isTrigger = true;
 
         rigidBody.AddForce(new Vector2(600 * Direction, 50)); //Fýrlatýlma
     }
@@ -44,20 +45,6 @@ public class Arrow : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-
-        
-
-        //transform.SetParent(collision.transform, false);
-
-        //rigidBody.simulated = false;
-        //isStuck = true; Debug.Log("arrow collision enter");
-
-        //Destroy(gameObject);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
     {
         rigidBody.velocity = Vector2.zero;
 

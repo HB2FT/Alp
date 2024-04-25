@@ -1,4 +1,5 @@
 using Mir.Serialization;
+using System.IO;
 using UnityEngine;
 
 namespace Mir
@@ -23,7 +24,10 @@ namespace Mir
         // Update is called once per frame
         void Update()
         {
-        
+            if (UnityEngine.Input.GetKeyDown(KeyCode.B))
+            {
+                File.Delete("mir.savedgame");
+            }
         }
     }
 }

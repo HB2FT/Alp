@@ -1,6 +1,4 @@
-using Mir.Input;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -46,6 +44,15 @@ public class PauseMenu : MonoBehaviour
 
         menu.gameObject.SetActive(false);
         //Time.timeScale = 1.0f;
+    }
+
+    public void btn_StartFromLatestCheckpoint()
+    {
+        Hide();
+
+        loadingScreen.SetActive(true);
+
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 
     public void btn_Resume()
