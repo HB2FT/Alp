@@ -1,5 +1,10 @@
 # Mir
 ***
+# V 0.14.10
+* Archer is destroyed afer it died.
+* Player takes decreased damage now.
+* Hortlak dies on collision with damagable object.
+***
 # V 0.14.9
 * Game is saved when player interacts with any Kam.
 * Added `applyCheckpoint` field to `Player Manager`.

@@ -100,6 +100,8 @@ public class Hortlak : Entity
 
     public override void OnCollisionEnter2D(Collision2D collision)
     {
+        base.OnCollisionEnter2D(collision);
+
         _Player player = collision.gameObject.GetComponent<_Player>();
 
         if (player != null)

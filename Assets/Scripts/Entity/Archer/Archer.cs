@@ -68,7 +68,21 @@ namespace Mir.Entity.Archer
         {
             base.OnDeath();
 
+            boxCollider.enabled = false;
+            rigidBody.simulated = false;
+
             animator.SetTrigger("Death");
+            Disappear();
+        }
+
+        private void Disappear()
+        {
+            StartCoroutine(DisappearCoroutine());
+        }
+        IEnumerator DisappearCoroutine()
+        {
+            yield return new WaitForSeconds(3f);
+            Destroy(gameObject);
         }
 
         private void CancelKnockback()
