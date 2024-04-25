@@ -1,5 +1,24 @@
 # Mir
 ***
+# V 0.14.11
+* Replaced `Alp` with `Mir` in dialogs.
+* Bossfight trigger disabled.
+* Hortlak's damage system fixed.
+> Tepegöz bölümünden sonraki yeraltı arkaplanı hareketlendirildi.
+* Bossfight cutcam animation fixed.
+* Added `FacingDirection` property to `Entity` class.
+* Player Controller turned into singleton object.
+* Removed Debug method in `Archer`.
+* Kam gives elixir to player now.
+* `Arrow`'s and `Arrow2`'s box collider are trigger now. So we prevented knockback.
+* Added *Start From Latest Checkpoint* option to `Puse Menu`.
+* Removed old game saving method.
+***
+# V 0.14.10
+* Archer is destroyed afer it died.
+* Player takes decreased damage now.
+* Hortlak dies on collision with damagable object.
+***
 # V 0.14.9
 * Game is saved when player interacts with any Kam.
 * Added `applyCheckpoint` field to `Player Manager`.

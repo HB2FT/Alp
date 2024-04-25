@@ -30,5 +30,7 @@ public class HortlakAttackCollider : MonoBehaviour
             player.health -= parent.Damage;
             player.GetComponent<Rigidbody2D>().AddForce(new Vector2(5 * direction, 3), ForceMode2D.Impulse);
         }
+
+        gameObject.SetActive(false);
     }
 }

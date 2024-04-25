@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Gelisme
   m_EditorClassIdentifier: 
   sentences:
-  - text: "Yolun sand\u0131\u011F\u0131ndan uzun olacak Alp. Dikkat et. Senin gibi
+  - text: "Yolun sand\u0131\u011F\u0131ndan uzun olacak Mir. Dikkat et. Senin gibi
       nice gen\xE7 intikam h\u0131rs\u0131yla can\u0131ndan oldu. "
     speaker: {fileID: 11400000, guid: 9820211468ca6e74db62c5e8d76548a6, type: 2}
-  - text: "Sana  s\xF6yleyece\u011Fim daha \xF6nemli bir \u015Fey var Alp. \xDClgen
+  - text: "Sana  s\xF6yleyece\u011Fim daha \xF6nemli bir \u015Fey var Mir. \xDClgen
       Han ve t\xFCm iyi ruhlar seninledir. Bundan hi\xE7 \u015F\xFCphen  olmas\u0131n. "
     speaker: {fileID: 11400000, guid: 9820211468ca6e74db62c5e8d76548a6, type: 2}
-  - text: "Bunca gen\xE7 geldi ge\xE7ti buralardan ama sen ba\u015Fkas\u0131n Alp.
+  - text: "Bunca gen\xE7 geldi ge\xE7ti buralardan ama sen ba\u015Fkas\u0131n Mir.
       Yolun a\xE7\u0131k, sonuysa mavi g\xF6k gibi ayd\u0131nl\u0131k olsun, K\xF6k
-      Tengri yan\u0131nda olsun Alp."
+      Tengri yan\u0131nda olsun Mir."
     speaker: {fileID: 11400000, guid: 9820211468ca6e74db62c5e8d76548a6, type: 2}
   nextScene: {fileID: 11400000, guid: 44f5cdd0b2651604ebcb7506feee5060, type: 2}

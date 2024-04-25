@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Mir.Entity
 {
@@ -50,10 +49,12 @@ namespace Mir.Entity
                 //isGrounded = true;
             }
 
-            if (collision.gameObject.name == "DamagableObjects")
-            {
-                health = 0;
-            }
+            if (collision.gameObject.name == "DamagableObjects") OnCollisionWithDamagableObject();
+        }
+
+        public virtual void OnCollisionWithDamagableObject()
+        {
+            health = 0;
         }
 
         public virtual void OnCollisionExit2D(Collision2D collision) // Zemine deðmiyor mu
@@ -133,6 +134,15 @@ namespace Mir.Entity
             }
 
             set { speed = value; }
+        }
+
+        public Vector2 FacingDirection
+        {
+            get
+            {
+                if (isRight) return Vector2.right;
+                else return Vector2.left;
+            }
         }
     }
 

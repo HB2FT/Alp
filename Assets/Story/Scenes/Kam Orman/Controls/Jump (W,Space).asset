@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sentences:
   - text: "W tu\u015Fu ile z\u0131playacaks\u0131n. Space tu\u015Funuyla da z\u0131pad\u0131\u011F\u0131n\u0131
-      zaten s\xF6ylemi\u015Ftim. W tu\u015Funu hayat\u0131nda oyun oynmam\u0131\u015F
+      zaten s\xF6ylemi\u015Ftim. W tu\u015Funu hayat\u0131nda oyun oynamam\u0131\u015F
       k\xF6yl\xFCler i\xE7in \xF6zel olarak atad\u0131k."
     speaker: {fileID: 11400000, guid: 9820211468ca6e74db62c5e8d76548a6, type: 2}
   nextScene: {fileID: 11400000, guid: 317027a82f8efc7488295612b58f6da5, type: 2}

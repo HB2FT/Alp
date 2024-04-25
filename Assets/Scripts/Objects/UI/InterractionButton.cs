@@ -70,7 +70,7 @@ public class InterractionButton : MonoBehaviour
     {
         set
         {
-            spriteRenderer.sprite = value;
+            spriteRenderer.sprite = value; ;
         }
     }
 }

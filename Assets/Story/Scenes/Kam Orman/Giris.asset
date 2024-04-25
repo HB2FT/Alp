@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Giris
   m_EditorClassIdentifier: 
   sentences:
-  - text: Esenlikler Alp.
+  - text: Esenlikler Mir.
     speaker: {fileID: 11400000, guid: 9820211468ca6e74db62c5e8d76548a6, type: 2}
   - text: "\u0130smimi nereden bilirsin ey y\xFCce kam?"
     speaker: {fileID: 11400000, guid: 619fe915585cb8c40a55a1e29981f379, type: 2}
-  - text: "Bizler pek \xE7ok \u015Feyi biliriz Alp sen onu merak etme. Gel otur kar\u015F\u0131ma
+  - text: "Bizler pek \xE7ok \u015Feyi biliriz Mir sen onu merak etme. Gel otur kar\u015F\u0131ma
       sana s\xF6yleyecek bir \xE7ift laf\u0131m var. "
     speaker: {fileID: 11400000, guid: 9820211468ca6e74db62c5e8d76548a6, type: 2}
   nextScene: {fileID: 11400000, guid: 26cd7f31381b05143a0b63c4efb025e0, type: 2}

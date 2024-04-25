@@ -17,6 +17,17 @@ public class PlayerController : MonoBehaviour // Player'ın etkileşimlerini, ko
 
     private AtomicBoolean atomicBool = new AtomicBoolean(true);
 
+    public static PlayerController instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogError("Found more than one Player CController in the scene.");
+        }
+        instance = this;
+    }
+
     void Start()
     {
         
@@ -34,10 +45,24 @@ public class PlayerController : MonoBehaviour // Player'ın etkileşimlerini, ko
             {
                 player.Animator.SetBool("IsHealing", true);
 
-                remainingElixir--;
-            }
+                _Player.instance.health = _Player.instance.maxHealth;
 
+                RemainingElixir--;
+            }
+        }
+    }
+
+    public int RemainingElixir
+    {
+        set
+        {
+            remainingElixir = value;
             elixirText.text = "x" + remainingElixir;
+        }
+
+        get
+        {
+            return remainingElixir;
         }
     }
 }

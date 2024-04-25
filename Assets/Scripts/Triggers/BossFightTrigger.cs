@@ -18,7 +18,7 @@ namespace Mir.Triggers
 
         void Start()
         {
-
+            GetComponent<SpriteRenderer>().enabled = false;
         }
 
         void Update()
