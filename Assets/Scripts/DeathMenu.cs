@@ -22,7 +22,7 @@ public class DeathMenu : MonoBehaviour
                (player.latestCheckPoint.position.x + 100).ToString(),
                 player.latestCheckPoint.position.y.ToString()
             };
-            File.WriteAllLines("saved.game", saveContents);
+            //File.WriteAllLines("saved.game", saveContents);
         }
 
         SceneManager.LoadScene("SampleScene");

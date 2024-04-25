@@ -20,21 +20,10 @@ public class TepegözAttackCollider : MonoBehaviour
         GameObject collidedGameObject = collision.gameObject;
         _Player collidedPlayer = collidedGameObject.GetComponent<_Player>();
 
-        int direction;
-
-        if ((collidedPlayer.transform.position.x - transform.position.x) > 0)
-        {
-            direction = -1;
-        }
-        else
-        {
-            direction = 1;
-        }
-
         if (collidedPlayer != null)
         {
             Rigidbody2D rbPlayer = collidedPlayer.GetComponent<Rigidbody2D>();
-            rbPlayer.AddForce(new Vector2(10 * direction, 5), ForceMode2D.Impulse); 
+            rbPlayer.AddForce(new Vector2(10 * tepegöz.FacingDirection.x, 5), ForceMode2D.Impulse); 
             collidedPlayer.health -= tepegöz.damage;
 
             gameObject.SetActive(false);

@@ -102,6 +102,11 @@ namespace Mir.Entity
             UnityEngine.Debug.Log("player died");
         }
 
+        public override void OnCollisionWithDamagableObject()
+        {
+            health -= 20;
+        }
+
         private void UpdateIsOutOfScene()
         {
             if (transform.position.y < -6)

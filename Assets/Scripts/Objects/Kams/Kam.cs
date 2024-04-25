@@ -50,6 +50,9 @@ public class Kam : Interactable
                 ShowDialog();
 
                 onSecondTriggerEnter += ShowInterractionButton;
+
+                // Give elixir to player
+                PlayerController.instance.RemainingElixir++;
             }
         }
 

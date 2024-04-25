@@ -154,12 +154,13 @@ public class Tepegöz : Entity
 
     IEnumerator AttackToPlayer()
     {
-        yield return new WaitForSeconds(waitForAttack);
-
+        
         if (!isDamaged)
         {
             animator.SetBool("isAttacking", true);
         }
+
+        yield return new WaitForSeconds(waitForAttack);
     }
 
     public void SetIsDamagedFalse()

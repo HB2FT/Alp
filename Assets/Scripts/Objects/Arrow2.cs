@@ -12,6 +12,8 @@ public class Arrow2 : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+
+        boxCollider.isTrigger = true;
     }
 
     void Update()
@@ -45,7 +47,7 @@ public class Arrow2 : MonoBehaviour
         arrow.Throw(throwingForce);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         Entity collidedEntity = collision.gameObject.GetComponent<Entity>();
 
