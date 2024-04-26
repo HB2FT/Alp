@@ -1,5 +1,15 @@
 # Mir
 ***
+# V 0.14.12
+* Knight does not focus on target after it died.
+* Cencelled Player's throwback.
+* Player stops moving during attack.
+* Fixed player's healing mechanic.
+* Removed old `Player` script from player.
+* Player's attack collider extended.
+* Archer's sprite pivots fixed.
+* Left mouse button assigned as Next Button
+***
 # V 0.14.11
 * Replaced `Alp` with `Mir` in dialogs.
 * Bossfight trigger disabled.

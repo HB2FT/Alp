@@ -1,6 +1,5 @@
 using Mir.Entity;
 using System;
-using System.Collections;
 using UnityEngine;
 
 public class Knight : Entity
@@ -56,6 +55,8 @@ public class Knight : Entity
         {
             if (CanMove)
             {
+                FocusTarget();
+
                 if (isTriggered)
                 {
                     transform.position -= Speed * Time.deltaTime * transform.right;
@@ -80,7 +81,6 @@ public class Knight : Entity
 
         CancelKnockback();
         CheckIsPlayerInArea();
-        FocusTarget();
     }
 
     private void CancelKnockback()
@@ -148,7 +148,7 @@ public class Knight : Entity
     {
         if (collision.CompareTag("NPCBorder"))
         {
-            Rotate(); Debug.LogError("NPCBorder kullanýmý 0.14.2 sürümünde kaldýrýldý. Onun yerine prefab içindeki 'bound'larý kullanýnýz.");
+           Debug.LogError("NPCBorder kullanýmý 0.14.2 sürümünde kaldýrýldý. Onun yerine prefab içindeki 'bound'larý kullanýnýz.");
         }
     }
 

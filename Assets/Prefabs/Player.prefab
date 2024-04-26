@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 8267374319091301178}
   - component: {fileID: 8267374319091301179}
   - component: {fileID: 8267374319091301316}
-  - component: {fileID: 8267374319091301183}
   - component: {fileID: 8267374319091301181}
   - component: {fileID: 8267374319091301171}
   - component: {fileID: 8267374319091301180}
@@ -221,55 +220,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8267374319091301183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8267374319091301317}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4874a372d16d84442b0b20be81a98ee7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  isRight: 1
-  speed: 0
-  jumpForce: 560
-  health: 100
-  maxHealth: 0
-  isGrounded: 0
-  bottomBar: {fileID: 0}
-  attackCollider: {fileID: 8267374320292888064}
-  deathMenu: {fileID: 0}
-  gameCamera: {fileID: 0}
-  postProcessVolumes: []
-  mainCam: {fileID: 0}
-  postProcessVolume: {fileID: 0}
-  volumeDeathEffect: {fileID: 0}
-  volumeLowHealthEffect: {fileID: 0}
-  profileDeath: {fileID: 11400000, guid: 1c3bdecd5cd263745b36e516d28e87b4, type: 2}
-  profileLowHealth: {fileID: 11400000, guid: cbb3c071db42046429d228759abc203f, type: 2}
-  music: {fileID: 0}
-  musicHeartbeatEffect: {fileID: 0}
-  deathMusic: {fileID: 11400000, guid: e88ebaaf33a76424793905e2e63d1295, type: 2}
-  sessionLowHealth: {fileID: 11400000, guid: 53c442ec6e493bb43a93c2d25e3f745c, type: 2}
-  spr_Arrow: {fileID: 21300000, guid: c40e3cc3929e13f4c8adb21e91160ea3, type: 3}
-  isAttacking: 0
-  isControllable: 1
-  isDying: 0
-  bowHanded: 0
-  gravity: 0
-  damage: 20
-  jumpQuery: 0
-  isSliding: 0
-  slideForce: 400
-  attackQuery: 0
-  currentMouseScroll: 0
-  currentAttackComboIndex: 0
-  attackCombo: 0
-  tutorial: {fileID: 0}
 --- !u!114 &8267374319091301181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,7 +300,9 @@ MonoBehaviour:
     m_Bits: 128
   boxCollider: {fileID: 0}
   criticalHealth: 35
+  arrowSpawnPoint: {fileID: 0}
   latestCheckPoint: {fileID: 0}
+  spr_Arrow: {fileID: 0}
 --- !u!114 &8267374319091301169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,8 +317,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   jumpQuery: 0
-  isJumpPressed: 0
-  isSlidePressed: 0
   itemIndex: 0
 --- !u!1 &8267374320240453696
 GameObject:
@@ -532,7 +482,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.15580402, y: -0.000099897385}
+  m_Offset: {x: 0.17346454, y: -0.000099897385}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -543,7 +493,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.14551291, y: 0.24880391}
+  m_Size: {x: 0.18083405, y: 0.24880391}
   m_EdgeRadius: 0
 --- !u!114 &8267374320292888068
 MonoBehaviour:

@@ -1,10 +1,11 @@
 ﻿using Mir.Entity;
+using System;
 using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour // Player'ın etkileşimlerini, konumlarını kontrol eder
 {
-    public _Player player;
+    [Obsolete("Use '_Player.instance' instead.")] public _Player player;
     public StorySceneManager StorySceneManager;
 
     public GameObject bottomBar;
@@ -35,15 +36,15 @@ public class PlayerController : MonoBehaviour // Player'ın etkileşimlerini, ko
 
     void Update()
     {
-        if (player.gameObject.transform.position.y < worldBorderY) player.health = 0;
+        if (_Player.instance.gameObject.transform.position.y < worldBorderY) _Player.instance.health = 0;
 
         //player.isControllable = !bottomBar.activeSelf;
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (player.health < 100 && remainingElixir > 0)
+            if (_Player.instance.health < _Player.instance.maxHealth && remainingElixir > 0)
             {
-                player.Animator.SetBool("IsHealing", true);
+                _Player.instance.Animator.SetBool("IsHealing", true);
 
                 _Player.instance.health = _Player.instance.maxHealth;
 
