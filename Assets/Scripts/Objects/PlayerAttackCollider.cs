@@ -25,28 +25,18 @@ public class PlayerAttackCollider : MonoBehaviour
 
         if (collidedEntity != null)
         {
+            collidedEntity.health -= 20;
+            collidedEntity.IsDamaged = true;
+
+            // Also check Tepegoz
             Tepegöz tepegöz = collidedEntity.GetComponent<Tepegöz>();
             if (tepegöz != null)
             {
                 if (tepegöz.IsDamagable)
                 {
-                    tepegöz.health -= 20;
-                    tepegöz.IsDamaged = true;
                     tepegöz.IsDamagable = false;
-
                 }
             }
-            else
-            {
-                int Direction;
-                if (GetComponentInParent<_Player>().isRight) Direction = 1; else Direction = -1;
-                collidedEntity.health -= 20;
-                collidedEntity.Rigidbody.AddForce(new Vector2(6 * Direction, 0), ForceMode2D.Impulse);
-                collidedEntity.IsDamaged = true;
-            }
-
-            Hortlak hortlak = GetComponentInParent<Hortlak>();
-            //if (hortlak != null) hortlak.isDamaged = true;
 
             gameObject.SetActive(false);
         }
