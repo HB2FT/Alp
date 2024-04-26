@@ -13,6 +13,9 @@ namespace Mir.Entity.PlayerUtilities.ComboSystem
             duration = .4f;
             animator.SetTrigger("Attack" + attackIndex);
             Debug.Log("Player Atack" + 2 + " -> Attacked");
+
+            // Disable palyer movement
+            PlayerMovement.CanMove = false;
         }
 
         public override void OnUpdate()
@@ -31,6 +34,14 @@ namespace Mir.Entity.PlayerUtilities.ComboSystem
                     stateMachine.SetNextStateToMain();
                 }
             }
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+
+            // Reactivate palyer movement
+            PlayerMovement.CanMove = true;
         }
     }
 

@@ -1,3 +1,4 @@
+using Mir.Controllers;
 using Mir.Entity.PlayerUtilities.SlideSystem;
 using Mir.Input;
 using System;
@@ -105,6 +106,8 @@ namespace Mir.Entity.PlayerUtilities
             //
             if (InputManager.instance.GetJumpPressed())
             {
+                if (BottomBarController.Instance.Enabled) return;
+
                 if (player.IsGrounded || player.Rigidbody.velocity.y < -5)
                 {
                     jumpQuery = true;

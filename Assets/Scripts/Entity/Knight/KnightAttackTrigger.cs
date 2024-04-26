@@ -30,7 +30,6 @@ public class KnightAttackTrigger : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         Entity collidedEntity = collision.GetComponent<Entity>();
-        Debug.Log("Trigger time" + triggerTime);
 
 
         if (collidedEntity != null)
