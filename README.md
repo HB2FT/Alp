@@ -1,5 +1,10 @@
 # Mir
 ***
+# V 0.14.13
+* Player Item System disabled on dialogs.
+* Tile map anchor set to `0`.
+* Some tiles' pivots set as *Bottom Left*.
+***
 # V 0.14.12
 * Knight does not focus on target after it died.
 * Cencelled Player's throwback.

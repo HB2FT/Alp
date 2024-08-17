@@ -29,12 +29,12 @@ public class PlayerAttackCollider : MonoBehaviour
             collidedEntity.IsDamaged = true;
 
             // Also check Tepegoz
-            Tepegöz tepegöz = collidedEntity.GetComponent<Tepegöz>();
-            if (tepegöz != null)
+            TepegÃ¶z tepegÃ¶z = collidedEntity.GetComponent<TepegÃ¶z>();
+            if (tepegÃ¶z != null)
             {
-                if (tepegöz.IsDamagable)
+                if (tepegÃ¶z.IsDamagable)
                 {
-                    tepegöz.IsDamagable = false;
+                    tepegÃ¶z.IsDamagable = false;
                 }
             }
 

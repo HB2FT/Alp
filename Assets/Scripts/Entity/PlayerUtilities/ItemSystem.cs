@@ -35,6 +35,8 @@ namespace Mir.Entity.PlayerUtilities
 
         void OnItemChanged(InputAction.CallbackContext context)
         {
+            if (!PlayerMovement.canMove) return;
+
             Vector2 vector = context.ReadValue<Vector2>();
 
             int delta = (int)vector.y;

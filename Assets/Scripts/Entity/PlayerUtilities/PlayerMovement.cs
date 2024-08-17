@@ -17,7 +17,7 @@ namespace Mir.Entity.PlayerUtilities
         [SerializeField] bool jumpQuery;
         bool isAttackPressed;
         bool isRunning;
-        static bool canMove;
+        public static bool canMove;
 
         [SerializeField] int itemIndex;
         const int MAX_ITEM_INDEX = 2;
@@ -38,20 +38,18 @@ namespace Mir.Entity.PlayerUtilities
             {
                 //bool isRunning = movementInput == Vector2.left || movementInput == Vector2.right;
 
-
-
-
-
-                if (CanMove)
+                if (!CanMove)
                 {
-                    HandleMovement();
-
-                    HandleJump();
-
-                    HandleSlide();
-
-                    HandleAttak();
+                    return;
                 }
+
+                HandleMovement();
+
+                HandleJump();
+
+                HandleSlide();
+
+                HandleAttak();
 
                 UpdateAnimator();
             }
@@ -59,7 +57,7 @@ namespace Mir.Entity.PlayerUtilities
 
         private void UpdateAnimator()
         {
-            player.Animator.SetBool("IsRunning", isRunning && canMove); // Set animation
+            player.Animator.SetBool("IsRunning", isRunning); // Set animation
         }
 
         private void HandleAttak()
