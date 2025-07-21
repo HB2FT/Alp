@@ -1,11 +1,8 @@
 using FMOD.Studio;
 using Mir.Audio.Dag;
-using Mir.Entity;
+using Mir.Entity.PlayerUtilities;
 using Mir.Managers;
 using Mir.Objects;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 
 public class BossFightSceneManager : MonoBehaviour
@@ -43,7 +40,8 @@ public class BossFightSceneManager : MonoBehaviour
 
     void DisablePlayer()
     {
-        _Player.instance.CanMove = false;
+        //_Player.instance.CanMove = false;
+        PlayerMovement.CanMove = false;
     }
 
     void PlayMusic()

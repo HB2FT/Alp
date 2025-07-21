@@ -8,6 +8,7 @@ namespace Mir.Managers
     {
         [field: Header("Cut Scene")]
         [field: SerializeField] public AnimationClip bossFightClip { get; private set; }
+        [field: SerializeField] public AnimationClip firstFightClip { get; private set; }
 
         public static CutSceneClips instance { get; private set; }
 

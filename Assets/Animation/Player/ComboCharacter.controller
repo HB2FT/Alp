@@ -503,7 +503,7 @@ AnimatorStateMachine:
     m_Position: {x: 2130, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -500660497130403722}
-    m_Position: {x: 870, y: 1240, z: 0}
+    m_Position: {x: 1110, y: 530, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3503861444122211680}
     m_Position: {x: 2130, y: 240, z: 0}
@@ -512,19 +512,19 @@ AnimatorStateMachine:
     m_Position: {x: -260, y: 210, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4025953925869236967}
-    m_Position: {x: 870, y: 1360, z: 0}
+    m_Position: {x: 1110, y: 650, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1859487194501747813}
-    m_Position: {x: 1110, y: 1240, z: 0}
+    m_Position: {x: 1350, y: 530, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2556874340313966753}
-    m_Position: {x: 1110, y: 1360, z: 0}
+    m_Position: {x: 1350, y: 650, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 9001771826185075351}
-    m_Position: {x: 1350, y: 1240, z: 0}
+    m_Position: {x: 1590, y: 530, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1493883120043217221}
-    m_Position: {x: 1410, y: 1360, z: 0}
+    m_Position: {x: 1650, y: 650, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7887811199557189445}
     m_Position: {x: 1000, y: -20, z: 0}
@@ -822,73 +822,73 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Attack2
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Attack3
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: BowPrepared
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: PrepareBow
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: HandSword
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: DropHand
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: HandBow
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsRunning
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: ReleaseBow
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Slide
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isDead
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer

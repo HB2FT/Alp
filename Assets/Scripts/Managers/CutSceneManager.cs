@@ -35,5 +35,10 @@ namespace Mir.Managers
             if (currentScene != null)
                 currentScene.OnStart(this);
         }
+
+        public void ClearCurrentScene()
+        {
+            currentScene = null;
+        }
     }
 }
