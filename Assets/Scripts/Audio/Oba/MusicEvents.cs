@@ -11,6 +11,7 @@ namespace Mir.Audio.Oba
 
         [field: Header("Music")]
         [field: SerializeField] public EventReference bossFightMusic { get; private set; }
+        [field: SerializeField] public EventReference firstFightMusic { get; private set; }
 
         public static MusicEvents instance {  get; private set; }
 

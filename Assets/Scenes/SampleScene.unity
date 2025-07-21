@@ -60727,6 +60727,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1469007082}
   m_CullTransparentMesh: 1
+--- !u!1 &1483710207 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2957445631433821036, guid: 957513ef185ee9945ba2e6fde39f03ff, type: 3}
+  m_PrefabInstance: {fileID: 1652545192}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1483710211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483710207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86407a85c5b4f4247a9a19f9f3830673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatSound_Infected: {fileID: 0}
+  player: {fileID: 1358095880}
+  cutCam: {fileID: 1701231190}
+  mainCam: {fileID: 519420028}
+  firstCombatSceneController: {fileID: 0}
 --- !u!4 &1485509545 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5001828659223547810, guid: 9159023780a26f04aab42d117d308e6b, type: 3}
@@ -62317,7 +62339,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2957445631433821036, guid: 957513ef185ee9945ba2e6fde39f03ff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1483710211}
   m_SourcePrefab: {fileID: 100100000, guid: 957513ef185ee9945ba2e6fde39f03ff, type: 3}
 --- !u!1 &1655623733
 GameObject:
@@ -105122,10 +105147,6 @@ PrefabInstance:
       propertyPath: deathMenu
       value: 
       objectReference: {fileID: 1301555396}
-    - target: {fileID: 1783156850386897175, guid: a6533a3c7bd19f84e98af2164d4aa61e, type: 3}
-      propertyPath: applyCheckpoint
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1783156850914530912, guid: a6533a3c7bd19f84e98af2164d4aa61e, type: 3}
       propertyPath: m_Name
       value: Managers
@@ -105174,6 +105195,10 @@ PrefabInstance:
       propertyPath: postProcessVolume
       value: 
       objectReference: {fileID: 519420036}
+    - target: {fileID: 2488348740239132360, guid: a6533a3c7bd19f84e98af2164d4aa61e, type: 3}
+      propertyPath: Hortlaks
+      value: 
+      objectReference: {fileID: 900718969}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

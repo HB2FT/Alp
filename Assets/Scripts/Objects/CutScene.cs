@@ -22,6 +22,8 @@ namespace Mir.Objects
         public virtual void OnExit()
         {
             time = 0;
+
+            CutSceneManager.instance.ClearCurrentScene();
         }
     }
 }

@@ -1,4 +1,6 @@
+using Mir;
 using Mir.Entity;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Hortlak : Entity
@@ -21,6 +23,7 @@ public class Hortlak : Entity
 
     public AtomicBoolean deathChecker = new AtomicBoolean(true);
     private AtomicBoolean speedControllerDuringAttack = new AtomicBoolean(true);
+    private AtomicBoolean musicParameterBoolean = new AtomicBoolean(true);
 
     public override void Start()
     {
@@ -96,6 +99,54 @@ public class Hortlak : Entity
 
         rigidBody.simulated = false;
         boxCollider.enabled = false;
+
+        HandleKilledHortlak();
+    }
+
+    private void HandleKilledHortlak()
+    {
+        FirstFightSceneManager.Instance.killedHortlaks++;
+        int remaining = FirstFightSceneManager.Instance.totalHortlaks - FirstFightSceneManager.Instance.killedHortlaks;
+
+        if (FirstFightSceneManager.Instance.killedHortlaks == 1)
+        {
+            FirstFightSceneManager.Instance.sceneMusic.setParameterByName("orman-combat", 3);
+        }
+
+        else if (FirstFightSceneManager.Instance.killedHortlaks == 2)
+        {
+            FirstFightSceneManager.Instance.sceneMusic.setParameterByName("orman-combat", 4);
+        }
+
+        else if (FirstFightSceneManager.Instance.killedHortlaks == 3)
+        {
+            FirstFightSceneManager.Instance.sceneMusic.setParameterByName("orman-combat", 5);
+        }
+
+        else if (remaining == 4)
+        {
+            FirstFightSceneManager.Instance.sceneMusic.setParameterByName("orman-combat", 4);
+        }
+
+        else if (remaining == 3)
+        {
+            FirstFightSceneManager.Instance.sceneMusic.setParameterByName("orman-combat", 3);
+        }
+
+        else if (remaining == 2)
+        {
+            FirstFightSceneManager.Instance.sceneMusic.setParameterByName("orman-combat", 2);
+        }
+
+        else if (remaining == 1)
+        {
+            FirstFightSceneManager.Instance.sceneMusic.setParameterByName("orman-combat", 1);
+        }
+
+        if (remaining == 0)
+        {
+            FirstFightSceneManager.Instance.StopScene();
+        }
     }
 
     public override void OnCollisionEnter2D(Collision2D collision)

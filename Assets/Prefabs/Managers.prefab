@@ -155,6 +155,13 @@ MonoBehaviour:
       Data3: -1426366276
       Data4: 153814030
     Path: event:/Music/Dag/Tepegoz
+  <firstFightMusic>k__BackingField:
+    Guid:
+      Data1: 149155565
+      Data2: 1164045219
+      Data3: -313265784
+      Data4: 785754675
+    Path: event:/Music/Orman/Combat
 --- !u!1 &1783156850386897173
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,6 +558,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8200010995900803803}
+  - {fileID: 6834146759165688141}
   m_Father: {fileID: 1783156850914530913}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4132085572989387575
@@ -642,6 +650,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d96eb69332f30554dac9f8aea8158051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7377124556738510417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6834146759165688141}
+  - component: {fileID: 2488348740239132360}
+  m_Layer: 0
+  m_Name: FirstFightSceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6834146759165688141
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7377124556738510417}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4362674903676533053}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2488348740239132360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7377124556738510417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41949a7eadcaa7e48aa3a4c1c1813c34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hortlakList: []
+  Hortlaks: {fileID: 0}
+  <totalHortlaks>k__BackingField: 0
+  killedHortlaks: 0
 --- !u!1 &8387358982808002559
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,3 +774,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <bossFightClip>k__BackingField: {fileID: 7400000, guid: c3abfd9c6e9e0704d928c327c399dce7, type: 2}
+  <firstFightClip>k__BackingField: {fileID: 7400000, guid: 61b56ebea0a89a548aea0fb448ad802b, type: 2}

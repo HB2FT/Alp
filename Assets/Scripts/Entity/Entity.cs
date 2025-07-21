@@ -115,7 +115,8 @@ namespace Mir.Entity
             {
                 if (value)
                 {
-                    animator.SetTrigger("Hurt");
+                    //animator.SetTrigger("Hurt");
+                    Debug.Log("Hasar alma animasyonu þimdilik devre dýþý býrakýldý");
                 }
             }
         }

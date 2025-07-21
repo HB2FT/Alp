@@ -1,20 +1,24 @@
+using Mir;
+using Mir.Entity;
+using Mir.Entity.PlayerUtilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CombatTrigger : MonoBehaviour
 {
-    public AudioSource combatSound_Infected;
-    private AtomicBoolean Playable;
+    private AtomicBoolean once;
 
-    public Player player;
+    public AudioSource combatSound_Infected;
+
+    public _Player player;
     public GameObject cutCam, mainCam;
     public FirstCombatSceneController firstCombatSceneController;
 
     // Start is called before the first frame update
     void Start()
     {
-        Playable = new AtomicBoolean(true);
+        once = new AtomicBoolean(true);
     }
 
     // Update is called once per frame
@@ -28,11 +32,9 @@ public class CombatTrigger : MonoBehaviour
 
         if (collision.name == "Player")
         {
-            if (Playable.Value)
+            if (once.Value)
             {
-                firstCombatSceneController.combatStarted = true;
-
-                StartCombatCutScene();
+                FirstFightSceneManager.Instance.StartScene();
             }
         }
     }
@@ -41,7 +43,8 @@ public class CombatTrigger : MonoBehaviour
     {
         cutCam.SetActive(true);
         mainCam.SetActive(false);
-        player.isControllable = false;
+        //player.isControllable = false;
+        PlayerMovement.CanMove = false;
         player.Animator.SetBool("IsRunning", false);
 
 
