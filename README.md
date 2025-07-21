@@ -2,15 +2,15 @@
 ***
 # V 0.14.13
 * First fight cut scene clip fixed.
-* Entity -> 'Hasar alma animasyonu şimdilik devre dış bırakıldı'.
+* Entity -> `Hasar alma animasyonu şimdilik devre dış bırakıldı`.
 * Music changes according to hortlak count in forest combat.
-* Added 'firstFightClip' to 'CutSceneClips'.
-* Added 'ClearCurrentScene' method to 'CutSceneManager'.
-* Added 'FirstFightSceneManager'.
+* Added `firstFightClip` to `CutSceneClips`.
+* Added `ClearCurrentScene` method to `CutSceneManager`.
+* Added `FirstFightSceneManager`.
 * Added 'FirstFightCutScene'.
-* Fixed disabling player movement in 'BossFightSceneManager'.
-* 'CutScene' clears current scene in 'CutSceneManager'.
-* 'CombatTrigger' is fixed to reuse.
+* Fixed disabling player movement in `BossFightSceneManager`.
+* `CutScene` clears current scene in `CutSceneManager`.
+* `CombatTrigger` is fixed to reuse.
 ***
 # V 0.14.12
 * Knight does not focus on target after it died.
