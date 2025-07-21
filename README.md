@@ -1,6 +1,9 @@
 # Mir
 ***
 # V 0.14.13
+* Player Item System disabled on dialogs.
+* Tile map anchor set to `0`.
+* Some tiles' pivots set as *Bottom Left*.
 * First fight cut scene clip fixed.
 * Entity -> `Hasar alma animasyonu şimdilik devre dış bırakıldı`.
 * Music changes according to hortlak count in forest combat.

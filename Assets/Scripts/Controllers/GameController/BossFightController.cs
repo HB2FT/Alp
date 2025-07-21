@@ -6,7 +6,7 @@ public class BossFightController : MonoBehaviour
 {
     public bool combatStarted;
 
-    public Tepegöz tepegöz;
+    public TepegÃ¶z tepegÃ¶z;
     public Player player;
 
     public MusicSession session;
@@ -40,7 +40,7 @@ public class BossFightController : MonoBehaviour
                 music.PlayNext(false);
             }
 
-            if (tepegöz.health <= 0 && once2.Value) OnEndBossFight();
+            if (tepegÃ¶z.health <= 0 && once2.Value) OnEndBossFight();
         }
     }
 

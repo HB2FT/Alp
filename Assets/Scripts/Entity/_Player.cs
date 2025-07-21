@@ -63,6 +63,11 @@ namespace Mir.Entity
 
             lowHealth = AudioManager.instance.CreateEventInstance(MusicEvents.instance.playerLowHealth);
             //deathSound = AudioManager.instance.CreateEventInstance(MusicEvents.instance.playerDeath);
+            
+            // Set camera location
+            GameCamera cam = GameCamera.instance;
+            cam.transform.position = new Vector2(transform.position.x, cam.transform.position.y);
+            Debug.Log("camera to player");
 
         }
 

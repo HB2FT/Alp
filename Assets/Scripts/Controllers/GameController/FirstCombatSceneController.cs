@@ -6,7 +6,7 @@ public class FirstCombatSceneController : MonoBehaviour
 {
     public Music music;
 
-    public List<Öcü> öcüler;
+    public List<Ã–cÃ¼> Ã¶cÃ¼ler;
     public Player player;
     public AudioSource sceneMusic;
     public MusicSession session;
@@ -14,7 +14,7 @@ public class FirstCombatSceneController : MonoBehaviour
     public AudioClip musicIn, musicMain, musicOut;
     public int clipIndex = 0;
 
-    public int öcüNumber;
+    public int Ã¶cÃ¼Number;
     private AtomicBoolean atomicBoolean;
 
     public bool combatStarted = false;
@@ -22,7 +22,7 @@ public class FirstCombatSceneController : MonoBehaviour
 
     void Start()
     {
-        öcüNumber = öcüler.Count;
+        Ã¶cÃ¼Number = Ã¶cÃ¼ler.Count;
         atomicBoolean = new AtomicBoolean(true);
         
     }
@@ -55,19 +55,19 @@ public class FirstCombatSceneController : MonoBehaviour
             music.PlayNext(true);
         }
 
-        for (int i = 0; i < öcüNumber; i++)
+        for (int i = 0; i < Ã¶cÃ¼Number; i++)
         {
-            if (öcüler.Count == 0) break;
+            if (Ã¶cÃ¼ler.Count == 0) break;
 
-            Öcü currentÖcü = öcüler[i];
+            Ã–cÃ¼ currentÃ¶cÃ¼ = Ã¶cÃ¼ler[i];
 
-            if (currentÖcü.health <= 0)
+            if (currentÃ¶cÃ¼.health <= 0)
             {
-                öcüler.RemoveAt(i);
+                Ã¶cÃ¼ler.RemoveAt(i);
             }
         }
          
-        if (öcüler.Count == 0 && atomicBoolean.Value) OnEndCombat();
+        if (Ã¶cÃ¼ler.Count == 0 && atomicBoolean.Value) OnEndCombat();
        
     }
 

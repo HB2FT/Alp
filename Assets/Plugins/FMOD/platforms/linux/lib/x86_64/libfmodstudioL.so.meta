@@ -3,12 +3,12 @@ guid: c172dbf300e9481459a79a7efad709d6
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2
-  iconMap: {}
+  IconMap: {}
   executionOrder: {}
   defineConstraints: []
-  isPreloaded: 0
-  isOverridable: 0
-  isExplicitlyReferenced: 0
+  IsPreloaded: 0
+  IsOverridable: 0
+  IsExplicitlyReferenced: 0
   validateReferences: 1
   platformData:
   - first:
@@ -22,6 +22,7 @@ PluginImporter:
       enabled: 1
       settings:
         CPU: x86_64
+        DefaultValueInitialized: true
         OS: Linux
   - first:
       Standalone: Linux64
